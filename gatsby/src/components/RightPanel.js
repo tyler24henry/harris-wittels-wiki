@@ -1,0 +1,145 @@
+import React from 'react';
+import styled from 'styled-components';
+import { useStaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
+
+const RightPanelStyles = styled.div`
+    height: 100%;
+    width: auto;
+    background: #f7f7f7;
+    border-left: 2px solid #e2e2e2;
+    @media(max-width: 1080px){
+        border: none;
+    }
+    .harris-img-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        border-bottom: 2px solid #e2e2e2;
+        box-shadow: 1px 1px 3px #e2e2e2;
+        background: #ffffff;
+         @media(max-width: 1080px){
+            background: #f7f7f7;
+            border-bottom: none;
+        }
+        .wiki-avatar {
+            width: 100%;
+        }
+    }
+    .wiki-wrapper {
+        margin-top: 1rem;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        @media(max-width: 1080px){
+            padding: 2rem 1rem;
+        }
+        .wiki-item {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 1rem;
+            @media(max-width: 1220px){
+                grid-template-columns: 110px 1fr;
+            }
+            @media(max-width: 1170px){
+                grid-template-columns: 95px 1fr;
+            }
+            @media(max-width: 1120px){
+                grid-template-columns: 80px 1fr;
+            }
+            @media(max-width: 1080px){
+                grid-template-columns: 70px 1fr;
+                margin-top: 1rem;
+            }
+            p, a {
+                font-size: 1.4rem;
+                @media(max-width: 1080px){
+                    font-size: 1.2rem;
+                }
+            }
+            .descriptor {
+                font-weight: 600;
+            }
+            .values-wrapper {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                .caret {
+                    font-size: 1rem;
+                    padding-top: 0.3rem;
+                }
+                .value {
+                    word-break: break-word;
+                    display: inline;
+                }
+                #not-link {
+                    cursor: text;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        #first-wiki {
+            @media(max-width: 1080px){
+                margin-top: -3.5rem;
+            }
+        }
+    }
+`;
+
+export const RightPanel = () => {
+    const { wikiItems, images } = useStaticQuery(graphql`
+        query {
+            wikiItems: allSanityWiki(sort: {fields: _createdAt, order: ASC}) {
+                nodes {
+                    id
+                    descriptor
+                    _createdAt
+                    values {
+                        id
+                        value
+                        link
+                    }
+                }
+            }
+            images: allSanitySiteImage {
+                nodes {
+                    id
+                    name
+                    image {
+                        asset {
+                            fluid {
+                                ...GatsbySanityImageFluid
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `);
+    const [wikiAvatar] = images.nodes.filter(image => image.name === 'Wiki Avatar');
+    return (
+        <RightPanelStyles>
+            <div className="harris-img-wrapper">
+                <Img className="wiki-avatar" fluid={wikiAvatar.image.asset.fluid} alt="Harris Wittels" />
+            </div>
+            <div className="wiki-wrapper">
+                {wikiItems.nodes.map((item, index) => {
+                    return (
+                    <div className="wiki-item" key={item.id} id={index === 0 ? 'first-wiki' : ''}>
+                        <p className="descriptor">{item.descriptor}</p>
+                        <div className="values-wrapper">
+                            {item.values.map(wikiValue => {
+                                return (
+                                    <a key={wikiValue.id} id={wikiValue.link ? 'link' : 'not-link'} href={wikiValue.link} target="_blank" className="value">{wikiValue.value}</a>
+                                )
+                            })}
+                        </div>
+                    </div>
+                )})}
+            </div>
+        </RightPanelStyles>
+    )
+}

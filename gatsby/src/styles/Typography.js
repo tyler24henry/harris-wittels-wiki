@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const Typography = createGlobalStyle`
   html {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'sf_mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #9da8c7;
   }
   p, li {
@@ -13,10 +13,13 @@ const Typography = createGlobalStyle`
     margin: 0;
   }
   a {
-    color: white;
-    text-decoration-color: var(--red);
+    color: var(--black);
+    text-decoration: none;
     /* Chrome renders this weird with this font, so we turn it off */
     text-decoration-skip-ink: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   mark, .mark {
     background: var(--yellow);
