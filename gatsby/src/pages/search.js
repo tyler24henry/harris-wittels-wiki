@@ -13,7 +13,7 @@ export default function SearchPage({ data, location }) {
     let tributes = data.tributes.nodes;
 
     let searchTerm = location ? location.search : null;
-    if(searchTerm.length > 3 && searchTerm.charAt(2) === '='){
+    if(searchTerm.length > 1 && searchTerm.charAt(2) === '='){
         searchTerm = searchTerm.slice(3);
     } else {
         searchTerm = null;

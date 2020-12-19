@@ -117,8 +117,8 @@ const LeftPanelStyles = styled.div`
     left: 0;
     top: 0;
     z-index: 5;
-    height: 100vh;
-    width: 200px;
+    height: 100%;
+    width: 300px;
     overflow-y: scroll;
     border-right: 2px solid #e2e2e2;
 `;
@@ -130,7 +130,7 @@ export const TopNav = () => {
 
     const isEnterPressed = e => {
         if(e.keyCode === 13){
-            navigate(`/search?s=${search}`);
+            navigate(`/search/?s=${search}`);
             setSearch('');
             searchRef.current.blur();
         }

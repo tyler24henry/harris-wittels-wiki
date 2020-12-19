@@ -162,7 +162,7 @@ export const Contact = ({ contactAvatar }) => {
                     <div id="name-wrapper">
                         <h2>Contact</h2>
                     </div>
-                    <p id="bio">Use the form below to send me a message. Thanks, Tyler Henry.</p>
+                    <p id="bio">Use the form below to send a message. Thanks, Tyler Henry.</p>
                 </div>
                 <div className="foam-nav">
                     <div className="foam">

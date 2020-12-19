@@ -124,109 +124,110 @@ const ImagesStyles = styled.div`
         pointer-events: none;
         filter: blur(2px);
     }
-    .image-modal-wrapper {
-        z-index: 2;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
+`;
+
+const ImageModalWrapperStyles = styled.div`
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    .modal {
+        position: relative;
+        width: 600px;
         height: 100vh;
-        overflow-y: scroll;
+        background: #f8f7f8;
+        padding: 2rem 2rem 6rem 2rem;
         display: grid;
         grid-template-columns: 1fr;
         justify-items: center;
-        align-items: center;
-        .modal {
-            position: relative;
-            width: 600px;
-            height: 100vh;
-            background: #f8f7f8;
-            padding: 2rem 2rem 6rem 2rem;
+        .modal-header {
             display: grid;
-            grid-template-columns: 1fr;
-            justify-items: center;
-            .modal-header {
-                display: grid;
-                grid-template-columns: auto 1fr auto;
-                gap: 1rem;
-                align-items: center;
-                width: calc(500px - 2rem);
-                padding: 1rem;
-                margin: 0 auto;
-                #exit-btn {
-                    justify-self: end;
-                    width: 20px;
-                    background: none;
-                    border: none;
-                    color: #919191;
-                    font-size: 2.5rem;
-                }
-                .instagram-avatar {
-                    height: 35px;
-                    width: 35px;
-                    border-radius: 50%;
-                }
-                p {
-                    font-size: 1.4rem;
-                    font-weight: 600;
-                    color: var(--black);
-                }
-            }
-            .modal-image {
-                width: 500px;
-                height: 500px;
-                object-fit: cover;
-            }
-            #caption {
-                font-size: 1.4rem;
-                color: var(--black);
-                width: calc(500px - 1rem);
-                margin: 0 auto;
-                margin-top: 1rem;
-                span {
-                    padding-right: 0.3rem;
-                    font-weight: 600;
-                }
-            }
-            #date {
-                font-size: 1.2rem;
-                font-weight: 500;
-                color: #919191;
-                width: calc(500px - 1rem);
-                margin: 0 auto;
-                margin-top: 1rem;
-            }
-            button {
+            grid-template-columns: auto 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            width: calc(500px - 2rem);
+            padding: 1rem;
+            margin: 0 auto;
+            #exit-btn {
+                justify-self: end;
+                width: 20px;
                 background: none;
                 border: none;
-                &[disabled]{
-                    pointer-events: none;
-                    opacity: 0;
-                }
-            }
-            .chevron-left, .chevron-right {
-                position: absolute;
-                top: 340px;
                 color: #919191;
-                font-size: 4rem;
+                font-size: 2.5rem;
             }
-            .chevron-left {
-                left: 15px;
+            .instagram-avatar {
+                height: 35px;
+                width: 35px;
+                border-radius: 50%;
             }
-            .chevron-right {
-                right: 15px;
+            p {
+                font-size: 1.4rem;
+                font-weight: 600;
+                color: var(--black);
             }
         }
-        #background-tint {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            background: black;
-            z-index: -1;
-            opacity: 0.5;
+        .modal-image {
+            width: 500px;
+            height: 500px;
+            object-fit: cover;
         }
+        #caption {
+            font-size: 1.4rem;
+            color: var(--black);
+            width: calc(500px - 1rem);
+            margin: 0 auto;
+            margin-top: 1rem;
+            span {
+                padding-right: 0.3rem;
+                font-weight: 600;
+            }
+        }
+        #date {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #919191;
+            width: calc(500px - 1rem);
+            margin: 0 auto;
+            margin-top: 1rem;
+        }
+        button {
+            background: none;
+            border: none;
+            &[disabled]{
+                pointer-events: none;
+                opacity: 0;
+            }
+        }
+        .chevron-left, .chevron-right {
+            position: absolute;
+            top: 310px;
+            color: #919191;
+            font-size: 4rem;
+        }
+        .chevron-left {
+            left: 15px;
+        }
+        .chevron-right {
+            right: 15px;
+        }
+    }
+    #background-tint {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        z-index: -1;
+        opacity: 0.5;
     }
 `;
 
@@ -239,50 +240,52 @@ export const Instagram = ({ instagramAvatar, images }) => {
     const isPrevIndex = selectedImageIndex > 0;
     const isNextIndex = selectedImageIndex + 1 < images.length;
     return (
-        <ImagesStyles>
-            <div className="images-page-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
-                <div className="background-image"></div>
-                <div className="instagram-bio-wrapper">
-                    <div className="avatar-following-grid">
-                        <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />
-                        <button id="following-btn" type="button">Grammin'</button>
+        <>
+            <ImagesStyles>
+                <div className="images-page-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
+                    <div className="background-image"></div>
+                    <div className="instagram-bio-wrapper">
+                        <div className="avatar-following-grid">
+                            <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />
+                            <button id="following-btn" type="button">Grammin'</button>
+                        </div>
+                        <div id="name-wrapper">
+                            <h2>harris wittels</h2>
+                        </div>
+                        <p id="handle">@twittels</p>
+                        <div className="followers-wrapper">
+                            <div className="item">
+                                <p id="number">153</p>
+                                <p>Posts</p>
+                            </div>
+                            <div className="item">
+                                <p id="number">12.7K</p>
+                                <p>Followers</p>
+                            </div>
+                            <div className="item">
+                                <p id="number">386</p>
+                                <p>Following</p>
+                            </div>
+                        </div>
                     </div>
-                    <div id="name-wrapper">
-                        <h2>harris wittels</h2>
-                    </div>
-                    <p id="handle">@twittels</p>
-                    <div className="followers-wrapper">
-                        <div className="item">
-                            <p id="number">153</p>
+                    <div className="posts-nav">
+                        <div className="posts">
                             <p>Posts</p>
                         </div>
-                        <div className="item">
-                            <p id="number">12.7K</p>
-                            <p>Followers</p>
-                        </div>
-                        <div className="item">
-                            <p id="number">386</p>
-                            <p>Following</p>
-                        </div>
+                    </div>
+                    <div className="images-wrapper">
+                        {images.map((harrisImage, index) => {
+                            return (
+                                <div className="image-wrapper" key={harrisImage.id} onClick={e => setSelectedImageIndex(index)}>
+                                    <Img className="image" fluid={harrisImage.image.asset.fluid} alt="From Instagram" />
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
-                <div className="posts-nav">
-                    <div className="posts">
-                        <p>Posts</p>
-                    </div>
-                </div>
-                <div className="images-wrapper">
-                    {images.map((harrisImage, index) => {
-                        return (
-                            <div className="image-wrapper" key={harrisImage.id} onClick={e => setSelectedImageIndex(index)}>
-                                <Img className="image" fluid={harrisImage.image.asset.fluid} alt="From Instagram" />
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
+            </ImagesStyles>
             {selectedImageIndex !== null && (
-                <div className="image-modal-wrapper">
+                <ImageModalWrapperStyles>
                     <div className="modal">
                         <div className="modal-header">
                             <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />
@@ -296,8 +299,8 @@ export const Instagram = ({ instagramAvatar, images }) => {
                         <button type="button" disabled={!isNextIndex} onClick={e => setSelectedImageIndex(selectedImageIndex + 1)}><FiChevronRight className="chevron-right" /></button>
                     </div>
                     <div id="background-tint"></div>
-                </div>
+                </ImageModalWrapperStyles>
             )}
-        </ImagesStyles>
+        </>
     )
 }

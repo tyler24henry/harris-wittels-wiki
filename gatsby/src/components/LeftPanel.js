@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import { RightPanel } from './RightPanel';
 import GeneralContext from './GeneralContext';
+import { FiChevronRight } from 'react-icons/fi';
 
 const LeftPanelStyles = styled.div`
     position: relative;
@@ -10,19 +11,31 @@ const LeftPanelStyles = styled.div`
     width: 200px;
     background: #f7f7f7;
     border-right: 2px solid #e2e2e2;
+    @media (max-width: 414px) {
+        width: 300px;
+    }
     .close-left-panel-btn {
         display: none;
         @media (max-width: 414px) {
-            position: absolute;
-            top: -8px;
-            left: -6px;
-            z-index: 5;
-            display: block;
-            width: 20px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
             background: none;
             border: none;
-            color: #919191;
-            font-size: 2rem;
+            color: var(--black);
+            font-size: 1.2rem;
+            letter-spacing: 0.1rem;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e2e2e2;
+            transition: all 0.4s;
+            text-align: left;
+            &:hover {
+                background-color: #e2e2e2;
+            }
+            .chevron-icon {
+                text-align: right;
+                font-size: 1.5rem;
+            }
         }
     }
     .link {
@@ -33,6 +46,9 @@ const LeftPanelStyles = styled.div`
         &:hover {
             text-decoration: none;
         }
+        @media (max-width: 414px) {
+            padding: 1rem 2rem;
+        }
     }
     #chevron {
       position: relative;
@@ -41,6 +57,9 @@ const LeftPanelStyles = styled.div`
       margin-bottom: 6px;
       height: 90px;
       width: 175px;
+      @media (max-width: 414px) {
+            width: 275px;
+        }
     }
     #chevron:before {
       content: '';
@@ -76,6 +95,9 @@ const LeftPanelStyles = styled.div`
         padding: 3.3rem 0 0 0;
         background-color: #ffffff;
         text-align: center;
+        @media (max-width: 414px) {
+            width: 300px;
+        }
         .link {
             color: var(--black);
             display: block;
@@ -124,13 +146,13 @@ export const LeftPanel = () => {
     const [search, setSearch, openLeftPanel, setOpenLeftPanel] = useContext(GeneralContext);
     return (
         <LeftPanelStyles>
-            <button type="button" className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}>&times;</button>
             <div className="site-name">
                 <Link className="link" id="first-name" to="/" onClick={e => setOpenLeftPanel(false)}>Harris</Link>
                 <Link className="link" id="last-name" to="/" onClick={e => setOpenLeftPanel(false)}>Wittels</Link>
             </div>
             <div id="chevron">hello</div>
             <div className="links">
+                <button type="button" className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}><span>Close panel</span> <FiChevronRight className="chevron-icon" /></button>
                 <Link className="link" id="first-link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast appearances</Link>
                 <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Twitter</Link>
                 <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Instagram</Link>

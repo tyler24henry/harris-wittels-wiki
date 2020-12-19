@@ -49,7 +49,7 @@ const RightPanelStyles = styled.div`
                 grid-template-columns: 80px 1fr;
             }
             @media(max-width: 1080px){
-                grid-template-columns: 70px 1fr;
+                grid-template-columns: 130px 1fr;
                 margin-top: 1rem;
             }
             p, a {
