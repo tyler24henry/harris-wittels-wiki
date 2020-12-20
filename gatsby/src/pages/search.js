@@ -30,7 +30,7 @@ export default function SearchPage({ data, location }) {
             return match;
         });
         harrisImages = harrisImages.filter(harrisImage => {
-            const match = regex.test(harrisImage.caption.toLowerCase());
+            const match = harrisImage.caption && regex.test(harrisImage.caption.toLowerCase());
             return match;
         });
         bits = bits.filter(bit => {

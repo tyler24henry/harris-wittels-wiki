@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
+import { FiChevronRight } from 'react-icons/fi';
 
 const FoamCornerStyles = styled.div`
     .page-wrapper {
@@ -118,6 +119,9 @@ const FoamCornerStyles = styled.div`
         .foam-nav {
             margin-top: 2rem;
             border-bottom: 1px solid #c4cfd7;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
             .foam {
                 width: 138px;
                 height: 45px;
@@ -132,6 +136,20 @@ const FoamCornerStyles = styled.div`
                     font-weight: 600;
                 }
             }
+            #youtube-link-wrapper {
+                justify-self: end;
+                padding-right: 0.5rem;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 0.8rem;
+                align-items: center;
+                font-size: 1.2rem;
+                font-weight: 600;
+                .right-chevron {
+                    font-size: 1.3rem;
+                    padding-bottom: 0.25rem;
+                }
+            }
         }
         .foam-jokes {
             .foam-joke {
@@ -140,6 +158,7 @@ const FoamCornerStyles = styled.div`
                 font-size: 1.5rem;
                 color: var(--black);
                 font-weight: 500;
+                white-space: pre-wrap;
             }
         }
         #first-foam {
@@ -170,6 +189,10 @@ export const FoamCorner = ({ siteImages, allFoam }) => {
                 <div className="foam-nav">
                     <div className="foam">
                         <p>Foam</p>
+                    </div>
+                    <div id="youtube-link-wrapper">
+                        <a href="https://www.youtube.com/playlist?list=PLBB4729D88A16451A" target="_blank">Foam Corner Youtube Playlist</a>
+                        <FiChevronRight className="right-chevron" />
                     </div>
                 </div>
                 <div className="foam-jokes">

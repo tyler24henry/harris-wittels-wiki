@@ -200,6 +200,7 @@ export const Youtube = ({ siteImages, bits }) => {
                     </div>
                     <div className="thumbnails-wrapper">
                         {bits.map((bit, index) => {
+                            console.log({ title: bit.title, thumbnail: bit.thumbnail });
                             return (
                                 <div className="thumbnail-wrapper" key={bit.id} onClick={e => setSelectedVideoIndex(index)}>
                                     <div className="image-wrapper">

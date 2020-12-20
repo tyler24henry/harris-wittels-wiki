@@ -1,26 +1,27 @@
 export const convertMonthToInt = str => {
     let month;
-    if(str === 'Jan'){
+    let strSliced = str.slice(0,3).toLowerCase();
+    if(strSliced === 'jan'){
         month = 0;
-    } else if(str === 'Feb'){
+    } else if(strSliced === 'feb'){
         month = 1;
-    } else if(str === 'Mar'){
+    } else if(strSliced === 'mar'){
         month = 2;
-    } else if(str === 'Apr'){
+    } else if(strSliced === 'apr'){
         month = 3;
-    } else if(str === 'May'){
+    } else if(strSliced === 'may'){
         month = 4;
-    } else if(str === 'Jun'){
+    } else if(strSliced === 'jun'){
         month = 5;
-    } else if(str === 'Jul'){
+    } else if(strSliced === 'jul'){
         month = 6;
-    } else if(str === 'Aug'){
+    } else if(strSliced === 'aug'){
         month = 7;
-    } else if(str === 'Sept'){
+    } else if(strSliced === 'sep'){
         month = 8;
-    } else if(str === 'Oct'){
+    } else if(strSliced === 'oct'){
         month = 9;
-    } else if(str === 'Nov'){
+    } else if(strSliced === 'nov'){
         month = 10;
     } else {
         month = 11;

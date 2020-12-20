@@ -152,9 +152,12 @@ const TwittelsStyles = styled.div`
                 .tweet-details {
                     display: flex;
                     font-size: 1.5rem;
-                    #handle {
+                    #handle, #retweet-name {
                         font-weight: 600;
                         color: var(--black);
+                    }
+                    #retweet-name {
+                        margin-right: 0.7rem;
                     }
                     .verified {
                         color: rgba(29,161,242,1.00);
@@ -168,6 +171,13 @@ const TwittelsStyles = styled.div`
                         font-weight: 300;
                         font-size: 1rem;
                         opacity: 0.6;
+                    }
+                }
+                #replying-to {
+                    margin-top: 0.5rem;
+                    color: #5B7083;
+                    span {
+                        color: rgb(29, 161, 242);
                     }
                 }
                 #content {
@@ -246,12 +256,15 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
                             <Img className="avatar" fluid={tweet.isRetweet ? tweet.retweetAvatar.asset.fluid : harrisAvatar.image.asset.fluid} alt="Avatar" />
                             <div className="tweet">
                                 <div className="tweet-details">
-                                    <p id="handle">{name}</p>
+                                    <p id={tweet.isRetweet ? 'retweet-name' : 'handle'}>{name}</p>
                                     {!tweet.isRetweet && (
                                         <GoVerified className="verified" />
                                     )}
                                     <p id="details">@{handle} <span id="bullet">&bull;</span> {date}</p>
                                 </div>
+                                {tweet.replyingTo && (
+                                    <p id="replying-to">Replying to <span>@{tweet.replyingTo}</span></p>
+                                )}
                                 <p id="content">{tweet.content}</p>
                                 <div className="media-wrapper">
                                     {tweet.image && (

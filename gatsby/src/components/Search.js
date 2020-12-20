@@ -173,9 +173,12 @@ const PodcastAppearancesStyles = styled.div`
                     .tweet-details {
                         display: flex;
                         font-size: 1.5rem;
-                        #handle {
+                        #handle, #retweet-name {
                             font-weight: 600;
                             color: var(--black);
+                        }
+                        #retweet-name {
+                            margin-right: 0.7rem;
                         }
                         .verified {
                             color: rgba(29,161,242,1.00);
@@ -189,6 +192,13 @@ const PodcastAppearancesStyles = styled.div`
                             font-weight: 300;
                             font-size: 1rem;
                             opacity: 0.6;
+                        }
+                    }
+                    #replying-to {
+                        margin-top: 0.5rem;
+                        color: #5B7083;
+                        span {
+                            color: rgb(29, 161, 242);
                         }
                     }
                     #content {
@@ -442,12 +452,14 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
     const [instagramAvatar] = siteImages.filter(image => image.name === 'Instagram Avatar');
     const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
 
+    let harrisImagesSorted = sortByDate([...harrisImages]);
+
     const selectedVideo = bits[selectedVideoIndex];
 
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     let selectedImage;
     if(harrisImages && selectedImageIndex !== null){
-        selectedImage = [...harrisImages][selectedImageIndex];
+        selectedImage = [...harrisImagesSorted][selectedImageIndex];
     }
     const isPrevIndex = selectedImageIndex > 0;
     const isNextIndex = selectedImageIndex + 1 < harrisImages.length;
@@ -535,12 +547,15 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                             <Img className="avatar" fluid={tweet.isRetweet ? tweet.retweetAvatar.asset.fluid : harrisAvatar.image.asset.fluid} alt="Avatar" />
                                             <div className="tweet">
                                                 <div className="tweet-details">
-                                                    <p id="handle">{name}</p>
+                                                    <p id={tweet.isRetweet ? 'retweet-name' : 'handle'}>{name}</p>
                                                     {!tweet.isRetweet && (
                                                         <GoVerified className="verified" />
                                                     )}
                                                     <p id="details">@{handle} <span id="bullet">&bull;</span> {date}</p>
                                                 </div>
+                                                {tweet.replyingTo && (
+                                                    <p id="replying-to">Replying to <span>@{tweet.replyingTo}</span></p>
+                                                )}
                                                 <p id="content">{tweet.content}</p>
                                                 <div className="media-wrapper">
                                                     {tweet.image && (
@@ -563,7 +578,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         )}
                         {selected === 'Instagram' && harrisImages.length > 0 && (
                             <div className="images-wrapper">
-                                {harrisImages.map((harrisImage, index) => {
+                                {harrisImagesSorted.map((harrisImage, index) => {
                                     return (
                                         <div className="image-wrapper" key={harrisImage.id} onClick={e => setSelectedImageIndex(index)}>
                                             <Img className="image" fluid={harrisImage.image.asset.fluid} alt="From Instagram" />
@@ -645,7 +660,9 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                             <button id="exit-btn" type="button" onClick={e => setSelectedImageIndex(null)}>&times;</button>
                         </div>
                         <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
-                        <p id="caption"><span>twittels</span> {selectedImage.caption}</p>
+                         {selectedImage.caption && (
+                            <p id="caption"><span>twittels</span> {selectedImage.caption}</p>
+                        )}
                         <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
                         <button type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>
                         <button type="button" disabled={!isNextIndex} onClick={e => setSelectedImageIndex(selectedImageIndex + 1)}><FiChevronRight className="chevron-right" /></button>

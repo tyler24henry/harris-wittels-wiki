@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+import { sortByDate } from '../utils/dateHelpers';
 
 const ImagesStyles = styled.div`
     .images-page-wrapper {
@@ -233,12 +234,14 @@ const ImageModalWrapperStyles = styled.div`
 
 export const Instagram = ({ instagramAvatar, images }) => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+    let harrisImagesSorted = sortByDate([...images]);
     let selectedImage;
     if(images && selectedImageIndex !== null){
-        selectedImage = [...images][selectedImageIndex];
+        selectedImage = [...harrisImagesSorted][selectedImageIndex];
     }
     const isPrevIndex = selectedImageIndex > 0;
     const isNextIndex = selectedImageIndex + 1 < images.length;
+
     return (
         <>
             <ImagesStyles>
@@ -274,7 +277,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
                         </div>
                     </div>
                     <div className="images-wrapper">
-                        {images.map((harrisImage, index) => {
+                        {harrisImagesSorted.map((harrisImage, index) => {
                             return (
                                 <div className="image-wrapper" key={harrisImage.id} onClick={e => setSelectedImageIndex(index)}>
                                     <Img className="image" fluid={harrisImage.image.asset.fluid} alt="From Instagram" />
@@ -293,7 +296,9 @@ export const Instagram = ({ instagramAvatar, images }) => {
                             <button id="exit-btn" type="button" onClick={e => setSelectedImageIndex(null)}>&times;</button>
                         </div>
                         <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
-                        <p id="caption"><span>twittels</span> {selectedImage.caption}</p>
+                        {selectedImage.caption && (
+                            <p id="caption"><span>twittels</span> {selectedImage.caption}</p>
+                        )}
                         <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
                         <button type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>
                         <button type="button" disabled={!isNextIndex} onClick={e => setSelectedImageIndex(selectedImageIndex + 1)}><FiChevronRight className="chevron-right" /></button>
