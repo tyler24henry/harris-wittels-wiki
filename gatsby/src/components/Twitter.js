@@ -6,6 +6,7 @@ import { FaRetweet } from 'react-icons/fa';
 import ReactPlayer from 'react-player/lazy';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
+import { FiChevronRight } from 'react-icons/fi';
 
 const TwittelsStyles = styled.div`
     .twittels-wrapper {
@@ -111,6 +112,9 @@ const TwittelsStyles = styled.div`
         .tweets-nav {
             margin-top: 2rem;
             border-bottom: 1px solid #c4cfd7;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
             .tweets {
                 width: 138px;
                 height: 45px;
@@ -123,6 +127,20 @@ const TwittelsStyles = styled.div`
                     color: rgba(29,161,242,1.00);
                     font-size: 1.6rem;
                     font-weight: 600;
+                }
+            }
+            #link-wrapper {
+                justify-self: end;
+                padding-right: 0.5rem;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 0.8rem;
+                align-items: center;
+                font-size: 1.2rem;
+                font-weight: 600;
+                .right-chevron {
+                    font-size: 1.3rem;
+                    padding-bottom: 0.25rem;
                 }
             }
         }
@@ -239,6 +257,10 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
                 <div className="tweets-nav">
                     <div className="tweets">
                         <p>Tweets</p>
+                    </div>
+                    <div id="link-wrapper">
+                        <a href="https://twitter.com/twittels" target="_blank">Harris's Twitter</a>
+                        <FiChevronRight className="right-chevron" />
                     </div>
                 </div>
                 {tweetsByDate.map((tweet, index) => {

@@ -85,6 +85,9 @@ const ImagesStyles = styled.div`
         .posts-nav {
             margin-top: 2rem;
             border-bottom: 1px solid #c4cfd7;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
             .posts {
                 width: 138px;
                 height: 45px;
@@ -97,6 +100,20 @@ const ImagesStyles = styled.div`
                     color: #833AB4;
                     font-size: 1.6rem;
                     font-weight: 600;
+                }
+            }
+            #link-wrapper {
+                justify-self: end;
+                padding-right: 0.5rem;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 0.8rem;
+                align-items: center;
+                font-size: 1.2rem;
+                font-weight: 600;
+                .right-chevron {
+                    font-size: 1.3rem;
+                    padding-bottom: 0.25rem;
                 }
             }
         }
@@ -274,6 +291,10 @@ export const Instagram = ({ instagramAvatar, images }) => {
                     <div className="posts-nav">
                         <div className="posts">
                             <p>Posts</p>
+                        </div>
+                        <div id="link-wrapper">
+                            <a href="https://www.instagram.com/twittels/" target="_blank">Harris's Instagram</a>
+                            <FiChevronRight className="right-chevron" />
                         </div>
                     </div>
                     <div className="images-wrapper">
