@@ -152,7 +152,7 @@ export const About = ({ tylerAvatar }) => {
                         <h2>Tyler Henry</h2>
                     </div>
                     <p id="handle">@tyler24henry</p>
-                    <p id="bio">Fav Foam: "I’ve said, “I’ve said it before and I’ll say it again” before, but I’ll say, “I’ve said it before and I’ll say it again” again."</p>
+                    <p id="bio">Fav Foam: "Instead of trying to desalinize the ocean, they should just add pepper."</p>
                     <div id="joined-wrapper">
                         <VscCalendar className="calendar" />
                         <p>Created in December 2020</p>

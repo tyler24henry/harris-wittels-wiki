@@ -479,7 +479,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         <div id="name-wrapper">
                             <h2>Search this site</h2>
                         </div>
-                        <p id="bio">"Waldo asked me to spot him at the gym. Couldn't do it." - Harris tweet on March 3, 2013 (this is the search page, had to include it... because searching for Waldo)</p>
+                        <p id="bio">"Waldo asked me to spot him at the gym. Couldn't do it." - Harris tweet on March 3, 2013</p>
                     </div>
                     <div className="categories-nav">
                         <div className="categories">
