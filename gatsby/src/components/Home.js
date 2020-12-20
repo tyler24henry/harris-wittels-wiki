@@ -1,4 +1,3 @@
-import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
@@ -28,6 +27,10 @@ const HomeStyles = styled.div`
     .masonry-item:hover {
         filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, .3));
     }
+    .masonry-content {
+        width: 193.33px;
+        height: auto;
+    }
     #text {
         background: var(--black);
         color: var(--white);
@@ -36,6 +39,9 @@ const HomeStyles = styled.div`
         padding: 1rem;
         text-align: center;
         width: calc(100% - 2rem);
+        .masonry-content {
+            width: 100%;
+        }
     }
 `;
 
@@ -48,7 +54,9 @@ export const Home = ({ masonryItems }) => {
                         return (
                             <div className="masonry-item" key={item.id} id={item.quote ? 'text' : ''}>
                                 {!item.quote && (
-                                    <img className="masonry-content" src={item.image.asset.fluid.src} alt="Harris Wittels" />
+                                    <div className="masonry-content">
+                                        <Img fluid={item.image.asset.fluid} alt="Harris Wittels" />
+                                    </div>
                                 )}
                                 {item.quote && (
                                     <div className="masonry-content">{item.quote}</div>
