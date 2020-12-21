@@ -139,6 +139,13 @@ export const Home = ({ masonryItems }) => {
     const [upToIndex, setUpToIndex] = useState(25);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
+    useEffect(() => {
+        if (typeof window !== `undefined`) {
+
+        
+        }
+    }, []);
+
     let imagesOnly = [...masonryItems.filter(item => item.quote === null)];
 
     let selectedImage;
@@ -167,52 +174,55 @@ export const Home = ({ masonryItems }) => {
         offset: 400,
       })
 
-    function resizeMasonryItem(item){
-        /* Get the grid object, its row-gap, and the size of its implicit rows */
-        var grid = document.getElementsByClassName('masonry')[0],
-            rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap')),
-            rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-      
-        let rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
-        if(item.querySelector('#quote')){
-            const paddingHeight = 20;
-            rowSpan = Math.ceil((item.querySelector('#quote').getBoundingClientRect().height+rowGap+paddingHeight)/(rowHeight+rowGap));
+      useEffect(() => {
+        if(typeof window !== `undefined`) {
+            function resizeMasonryItem(item){
+                /* Get the grid object, its row-gap, and the size of its implicit rows */
+                var grid = document.getElementsByClassName('masonry')[0],
+                    rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap')),
+                    rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+              
+                let rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
+                if(item.querySelector('#quote')){
+                    const paddingHeight = 20;
+                    rowSpan = Math.ceil((item.querySelector('#quote').getBoundingClientRect().height+rowGap+paddingHeight)/(rowHeight+rowGap));
+                }
+        
+                /* Set the spanning as calculated above (S) */
+                item.style.gridRowEnd = 'span '+rowSpan;
+              }
+            
+              function resizeAllMasonryItems(){
+                // Get all item class objects in one list
+                var allItems = document.getElementsByClassName('masonry-brick');
+              
+                for(var i=0;i<allItems.length;i++){
+                  resizeMasonryItem(allItems[i]);
+                }
+              }
+            
+              function waitForImages() {
+                var allItems = document.getElementsByClassName('masonry-brick');
+                for(var i=0;i<allItems.length;i++){
+                  if(allItems.length > 40){
+                    imagesLoaded( allItems[i], function(instance) {
+                        var item = instance.elements[0];
+                        resizeMasonryItem(item);
+                      });
+                  } else {
+                    var item = allItems[i];
+                    resizeMasonryItem(item);
+                  }
+                }
+              }
+            
+              var masonryEvents = ['load', 'resize'];
+              masonryEvents.forEach( function(event) {
+                window.addEventListener(event, resizeAllMasonryItems);
+              } );
+              waitForImages();
         }
-
-        /* Set the spanning as calculated above (S) */
-        item.style.gridRowEnd = 'span '+rowSpan;
-      }
-    
-      function resizeAllMasonryItems(){
-        // Get all item class objects in one list
-        var allItems = document.getElementsByClassName('masonry-brick');
-      
-        for(var i=0;i<allItems.length;i++){
-          resizeMasonryItem(allItems[i]);
-        }
-      }
-    
-      function waitForImages() {
-        var allItems = document.getElementsByClassName('masonry-brick');
-        for(var i=0;i<allItems.length;i++){
-          if(allItems.length > 40){
-            imagesLoaded( allItems[i], function(instance) {
-                var item = instance.elements[0];
-                resizeMasonryItem(item);
-              });
-          } else {
-            var item = allItems[i];
-            resizeMasonryItem(item);
-          }
-        }
-      }
-    
-      var masonryEvents = ['load', 'resize'];
-      masonryEvents.forEach( function(event) {
-        window.addEventListener(event, resizeAllMasonryItems);
-      } );
-
-      waitForImages();
+      }, [upToIndex]);
 
     return (
         <>
