@@ -81,20 +81,15 @@ const ImageModalWrapperStyles = styled.div`
             grid-template-columns: 1fr;
             align-items: center;
             width: calc(500px - 2rem);
-            padding: 1rem;
+            padding: 1rem 1rem 0 1rem;
             margin: 0 auto;
             #exit-btn {
                 justify-self: end;
-                width: 20px;
+                width: 25px;
                 background: none;
                 border: none;
                 color: #919191;
                 font-size: 2.5rem;
-            }
-            p {
-                font-size: 1.4rem;
-                font-weight: 600;
-                color: var(--black);
             }
         }
         .modal-image {

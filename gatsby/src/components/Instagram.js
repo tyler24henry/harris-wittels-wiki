@@ -66,11 +66,10 @@ const ImagesStyles = styled.div`
             .followers-wrapper {
                 margin-top: 1rem;
                 display: flex;
-                gap: 1.5rem;
                 .item {
                     display: flex;
-                    gap: 0.5rem;
                     align-items: center;
+                    margin-right: 1.5rem;
                     p {
                         color: #5B7083;
                         font-size: 1.5rem;
@@ -78,6 +77,7 @@ const ImagesStyles = styled.div`
                     #number {
                         font-weight: 600;
                         color: var(--black);
+                        margin-right: 0.5rem;
                     }
                 }
             }
@@ -175,7 +175,7 @@ const ImageModalWrapperStyles = styled.div`
             margin: 0 auto;
             #exit-btn {
                 justify-self: end;
-                width: 20px;
+                width: 25px;
                 background: none;
                 border: none;
                 color: #919191;
@@ -314,7 +314,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
                         <div className="modal-header">
                             <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />
                             <p>twittels</p>
-                            <button id="exit-btn" type="button" onClick={e => setSelectedImageIndex(null)}>&times;</button>
+                            <button type="button" id="exit-btn" onClick={e => setSelectedImageIndex(null)}>&times;</button>
                         </div>
                         <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
                         {selectedImage.caption && (

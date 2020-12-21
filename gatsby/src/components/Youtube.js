@@ -15,9 +15,10 @@ const BitsStyles = styled.div`
             grid-template-columns: 1fr;
             justify-items: center;
             align-items: center;
+            overflow: hidden;
             .background-image {
                 width: 100%;
-                height: 100%;
+                height: 200px;
                 object-fit: cover;
             }
         }

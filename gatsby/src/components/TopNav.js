@@ -105,10 +105,12 @@ const NavStyles = styled.nav`
     }
     .contact-about-wrapper {
         display: flex;
-        gap: 2rem;
         @media(max-width: 850px){
             display: none;
         }
+    }
+    #contact {
+        margin-left: 2rem;
     }
 `;
 
@@ -147,7 +149,7 @@ export const TopNav = () => {
                 <p id="tour-guide">"I’ll be your tour guide through the cosmos, sorry."</p>
                 <div className="contact-about-wrapper">
                     <Link to="/about">About</Link>
-                    <Link to="/contact">Contact</Link>
+                    <Link to="/contact" id="contact">Contact</Link>
                 </div>
             </div>
         </NavStyles>

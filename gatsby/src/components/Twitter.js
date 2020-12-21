@@ -93,11 +93,10 @@ const TwittelsStyles = styled.div`
             .followers-wrapper {
                 margin-top: 1rem;
                 display: flex;
-                gap: 1.5rem;
                 .item {
                     display: flex;
-                    gap: 0.5rem;
                     align-items: center;
+                    margin-right: 1.5rem;
                     p {
                         color: #5B7083;
                         font-size: 1.5rem;
@@ -105,6 +104,7 @@ const TwittelsStyles = styled.div`
                     #number {
                         font-weight: 600;
                         color: var(--black);
+                        margin-right: 0.5rem;
                     }
                 }
             }

@@ -371,7 +371,7 @@ const ImageModalWrapperStyles = styled.div`
             margin: 0 auto;
             #exit-btn {
                 justify-self: end;
-                width: 20px;
+                width: 25px;
                 background: none;
                 border: none;
                 color: #919191;
