@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
+import { getIsChrome } from '../utils/detectBrowser';
 
 const HomeStyles = styled.div`
     .masonry-wrapper {
@@ -14,6 +15,10 @@ const HomeStyles = styled.div`
         grid-gap: 5px;
         grid-template-columns: repeat(auto-fill, minmax(196.66px,1fr));
         grid-auto-rows: 0;
+    }
+    .masonry-not-safari {
+        columns: 3;
+        column-gap: 10px;
     }
     .masonry-brick {
         display: inline-block;
@@ -139,12 +144,7 @@ export const Home = ({ masonryItems }) => {
     const [upToIndex, setUpToIndex] = useState(25);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
-    useEffect(() => {
-        if (typeof window !== `undefined`) {
-
-        
-        }
-    }, []);
+    const isChrome = getIsChrome() !== 2;
 
     let imagesOnly = [...masonryItems.filter(item => item.quote === null)];
 
@@ -175,7 +175,7 @@ export const Home = ({ masonryItems }) => {
       })
 
       useEffect(() => {
-        if(typeof window !== `undefined`) {
+        if(typeof window !== `undefined` && !isChrome) {
             function resizeMasonryItem(item){
                 /* Get the grid object, its row-gap, and the size of its implicit rows */
                 var grid = document.getElementsByClassName('masonry')[0],
@@ -224,12 +224,14 @@ export const Home = ({ masonryItems }) => {
         }
       }, [upToIndex]);
 
+      const masonryItemsSliced = isChrome ? [...masonryItems] : [...masonryItems].slice(0,upToIndex);
+
     return (
         <>
             <HomeStyles>
                 <div className="masonry-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
-                    <div className="masonry">
-                        {[...masonryItems].slice(0,upToIndex).map(item => {
+                    <div className={isChrome ? 'masonry-not-safari' : 'masonry'}>
+                        {masonryItemsSliced.map(item => {
                             return (
                                 <div className="masonry-brick" key={item.id} id={item.quote ? 'text' : ''}>
                                     {!item.quote && (
