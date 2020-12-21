@@ -9,10 +9,16 @@ const ImagesStyles = styled.div`
         margin: 0 auto 2rem auto;
         width: 600px;
         border: 1px solid #c4cfd7;
+        @media (max-width: 414px) {
+            width: 100%;
+        }
         .background-image {
             background-color: #833AB4;
             width: 100%;
             height: 200px;
+            @media (max-width: 414px) {
+                height: 150px;
+            }
         }
         .instagram-bio-wrapper {
             padding: 0 1.5rem;
@@ -26,6 +32,11 @@ const ImagesStyles = styled.div`
                     width: 134px;
                     border-radius: 50%;
                     border: 5px solid var(--white);
+                    @media (max-width: 414px) {
+                        margin-top: -55px;
+                        height: 105px;
+                        width: 105px;
+                    }
                 }
                 #following-btn {
                     margin-top: 1rem;
@@ -40,21 +51,24 @@ const ImagesStyles = styled.div`
                     letter-spacing: 0.5px;
                     pointer-events: none;
                     cursor: default;
+                    @media (max-width: 414px) {
+                        height: 32px;
+                        width: 88px;
+                        font-size: 1.3rem;
+                    }
                 }
             }
             #name-wrapper {
                 width: 150px;
                 margin-top: 0.5rem;
                 line-height: 1.3125;
-                display: grid;
-                grid-template-columns: auto 1fr;
-                justify-items: center;
-                align-items: center;
-                gap: 0.2rem;
                 h2 {
                     font-size: 19px;
                     font-weight: 700;
                     letter-spacing: 0.5px;
+                    @media (max-width: 414px) {
+                        font-size: 1.5rem;
+                    }
                 }
             }
             #handle {
@@ -62,6 +76,9 @@ const ImagesStyles = styled.div`
                 font-size: 1.5rem;
                 font-weight: 500;
                 letter-spacing: 0;
+                @media (max-width: 414px) {
+                    font-size: 1.3rem;
+                }
             }
             .followers-wrapper {
                 margin-top: 1rem;
@@ -73,11 +90,17 @@ const ImagesStyles = styled.div`
                     p {
                         color: #5B7083;
                         font-size: 1.5rem;
+                        @media (max-width: 414px) {
+                            font-size: 1.3rem;
+                        }
                     }
                     #number {
                         font-weight: 600;
                         color: var(--black);
                         margin-right: 0.5rem;
+                         @media (max-width: 414px) {
+                            margin-right: 0.35rem;
+                        }
                     }
                 }
             }
@@ -96,10 +119,17 @@ const ImagesStyles = styled.div`
                 justify-items: center;
                 align-items: center;
                 border-bottom: 2px solid #833AB4;
+                @media (max-width: 414px) {
+                    width: 110px;
+                    height: 34px;
+                }
                 p {
                     color: #833AB4;
                     font-size: 1.6rem;
                     font-weight: 600;
+                    @media (max-width: 414px) {
+                        font-size: 1.3rem;
+                    }
                 }
             }
             #link-wrapper {
@@ -111,9 +141,16 @@ const ImagesStyles = styled.div`
                 align-items: center;
                 font-size: 1.2rem;
                 font-weight: 600;
+                @media (max-width: 414px) {
+                    font-size: 1.1rem;
+                }
                 .right-chevron {
                     font-size: 1.3rem;
                     padding-bottom: 0.25rem;
+                    @media (max-width: 414px) {
+                        font-size: 1.2rem;
+                        padding-bottom: 0.1rem;
+                    }
                 }
             }
         }
@@ -124,9 +161,13 @@ const ImagesStyles = styled.div`
             gap: 2rem;
             align-items: center;
             justify-items: center;
+            @media (max-width: 414px) {
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
             .image-wrapper {
-                width: 270px;
-                height: 270px;
+                width: 100%;
+                height: 100%;
                 &:hover {
                     cursor: pointer;
                 }
@@ -156,6 +197,10 @@ const ImageModalWrapperStyles = styled.div`
     grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
+    @media (max-width: 414px) {
+        width: 100vw;
+        height: 100vh;
+    }
     .modal {
         position: relative;
         width: 600px;
@@ -165,6 +210,10 @@ const ImageModalWrapperStyles = styled.div`
         display: grid;
         grid-template-columns: 1fr;
         justify-items: center;
+        @media (max-width: 414px) {
+            padding: 0 2rem 0 2rem;
+            width: calc(100vw - 4rem);
+        }
         .modal-header {
             display: grid;
             grid-template-columns: auto 1fr auto;
@@ -173,6 +222,10 @@ const ImageModalWrapperStyles = styled.div`
             width: calc(500px - 2rem);
             padding: 1rem;
             margin: 0 auto;
+            @media (max-width: 414px) {
+                width: calc(100vw - 6rem);
+                padding: 0 1rem;
+            }
             #exit-btn {
                 justify-self: end;
                 width: 25px;
@@ -196,25 +249,39 @@ const ImageModalWrapperStyles = styled.div`
             width: 500px;
             height: 500px;
             object-fit: cover;
-        }
-        #caption {
-            font-size: 1.4rem;
-            color: var(--black);
-            width: calc(500px - 1rem);
-            margin: 0 auto;
-            margin-top: 1rem;
-            span {
-                padding-right: 0.3rem;
-                font-weight: 600;
+            @media (max-width: 414px) {
+                width: 100%;
+                height: 100%;
             }
         }
-        #date {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #919191;
-            width: calc(500px - 1rem);
-            margin: 0 auto;
-            margin-top: 1rem;
+        .sub-image-wrapper {
+            #caption {
+                font-size: 1.4rem;
+                color: var(--black);
+                width: calc(500px - 1rem);
+                margin: 0 auto;
+                margin-top: 1rem;
+                @media (max-width: 414px) {
+                    width: calc(90vw - 1rem);
+                    margin: 1rem 0 0 0;
+                }
+                span {
+                    padding-right: 0.3rem;
+                    font-weight: 600;
+                }
+            }
+            #date {
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: #919191;
+                width: calc(500px - 1rem);
+                margin: 0 auto;
+                margin-top: 1rem;
+                @media (max-width: 414px) {
+                    width: calc(90vw - 1rem);
+                    margin: 1rem 0 0 0;
+                }
+            }
         }
         button {
             background: none;
@@ -229,6 +296,9 @@ const ImageModalWrapperStyles = styled.div`
             top: 310px;
             color: #919191;
             font-size: 4rem;
+            @media (max-width: 414px) {
+                top: 40%;
+            }
         }
         .chevron-left {
             left: 15px;
@@ -317,10 +387,12 @@ export const Instagram = ({ instagramAvatar, images }) => {
                             <button type="button" id="exit-btn" onClick={e => setSelectedImageIndex(null)}>&times;</button>
                         </div>
                         <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
-                        {selectedImage.caption && (
-                            <p id="caption"><span>twittels</span> {selectedImage.caption}</p>
-                        )}
-                        <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
+                        <div className="sub-image-wrapper">
+                            {selectedImage.caption && (
+                                <p id="caption"><span>twittels</span> {selectedImage.caption}</p>
+                            )}
+                            <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
+                        </div>
                         <button type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>
                         <button type="button" disabled={!isNextIndex} onClick={e => setSelectedImageIndex(selectedImageIndex + 1)}><FiChevronRight className="chevron-right" /></button>
                     </div>

@@ -8,10 +8,16 @@ const TwittelsStyles = styled.div`
         margin: 2rem auto 4rem auto;
         width: 600px;
         border: 1px solid #c4cfd7;
+        @media (max-width: 414px) {
+            width: 100%;
+        }
         .background-image {
             background-color: #364259;
             width: 100%;
             height: 200px;
+            @media (max-width: 414px) {
+                height: 150px;
+            }
         }
         .twitter-bio-wrapper {
             padding: 0 1.5rem;
@@ -25,6 +31,11 @@ const TwittelsStyles = styled.div`
                     width: 134px;
                     border-radius: 50%;
                     border: 5px solid var(--white);
+                    @media (max-width: 414px) {
+                        margin-top: -55px;
+                        height: 105px;
+                        width: 105px;
+                    }
                 }
                 #following-btn {
                     margin-top: 1rem;
@@ -39,6 +50,11 @@ const TwittelsStyles = styled.div`
                     letter-spacing: 0.5px;
                     pointer-events: none;
                     cursor: default;
+                    @media (max-width: 414px) {
+                        height: 32px;
+                        width: 88px;
+                        font-size: 1.3rem;
+                    }
                 }
             }
             #name-wrapper {
@@ -50,10 +66,16 @@ const TwittelsStyles = styled.div`
                 justify-items: center;
                 align-items: center;
                 gap: 0.2rem;
+                @media (max-width: 414px) {
+                   gap: 0;
+                }
                 h2 {
                     font-size: 19px;
                     font-weight: 700;
                     letter-spacing: 0.5px;
+                    @media (max-width: 414px) {
+                        font-size: 1.5rem;
+                    }
                 }
             }
             #handle {
@@ -61,10 +83,16 @@ const TwittelsStyles = styled.div`
                 font-size: 1.5rem;
                 font-weight: 500;
                 letter-spacing: 0;
+                @media (max-width: 414px) {
+                    font-size: 1.3rem;
+                }
             }
             #bio {
                 margin-top: 1rem;
                 font-size: 1.5rem;
+                @media (max-width: 414px) {
+                    font-size: 1.3rem;
+                }
             }
             #joined-wrapper {
                 color: #5B7083;
@@ -74,8 +102,14 @@ const TwittelsStyles = styled.div`
                 display: grid;
                 grid-template-columns: auto 1fr;
                 gap: 1rem;
+                @media (max-width: 414px) {
+                    font-size: 1.3rem;
+                }
                 .calendar {
                     font-size: 1.7rem;
+                    @media (max-width: 414px) {
+                        font-size: 1.5rem;
+                    }
                 }
                 p {
                     padding-top: 0.1rem;
@@ -93,10 +127,17 @@ const TwittelsStyles = styled.div`
                 justify-items: center;
                 align-items: center;
                 border-bottom: 2px solid #364259;
+                @media (max-width: 414px) {
+                    width: 110px;
+                    height: 34px;
+                }
                 p {
                     color: #364259;
                     font-size: 1.6rem;
                     font-weight: 600;
+                    @media (max-width: 414px) {
+                        font-size: 1.3rem;
+                    }
                 }
             }
         }
@@ -105,16 +146,26 @@ const TwittelsStyles = styled.div`
             display: grid;
             grid-template-columns: auto 1fr;
             gap: 1.5rem;
+            @media (max-width: 414px) {
+                padding: 1rem;
+            }
             .avatar {
                 width: 49px;
                 height: 49px;
                 border-radius: 50%;
                 box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.09);
+                @media (max-width: 414px) {
+                    width: 40px;
+                    height: 40px;
+                }
             }
             .tweet {
                 .tweet-details {
                     display: flex;
                     font-size: 1.5rem;
+                    @media (max-width: 414px) {
+                        font-size: 1.1rem;
+                    }
                     #handle {
                         font-weight: 600;
                         color: var(--black);
@@ -127,11 +178,17 @@ const TwittelsStyles = styled.div`
                         font-weight: 300;
                         font-size: 1rem;
                         opacity: 0.6;
+                        @media (max-width: 414px) {
+                            font-size: 0.9rem;
+                        }
                     }
                 }
                 #content {
                     margin-top: 0.5rem;
                     color: var(--black);
+                    @media (max-width: 414px) {
+                        font-size: 1.2rem;
+                    }
                 }
             }
         }

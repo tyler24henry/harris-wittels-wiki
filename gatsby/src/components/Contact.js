@@ -8,10 +8,16 @@ const FoamCornerStyles = styled.div`
         margin: 2rem auto 4rem auto;
         width: 600px;
         border: 1px solid #c4cfd7;
+        @media (max-width: 414px) {
+            width: 100%;
+        }
         .background-image-wrapper {
             width: 100%;
             height: 200px;
             background-color: #25231d;
+            @media (max-width: 414px) {
+                height: 150px;
+            }
         }
         .foam-corner-wrapper {
             padding: 0 1.5rem;
@@ -25,6 +31,11 @@ const FoamCornerStyles = styled.div`
                     width: 134px;
                     border-radius: 50%;
                     border: 5px solid var(--white);
+                    @media (max-width: 414px) {
+                        margin-top: -55px;
+                        height: 105px;
+                        width: 105px;
+                    }
                 }
                 #following-btn {
                     margin-top: 1rem;
@@ -39,26 +50,32 @@ const FoamCornerStyles = styled.div`
                     letter-spacing: 0.5px;
                     pointer-events: none;
                     cursor: default;
+                    @media (max-width: 414px) {
+                        height: 32px;
+                        width: 88px;
+                        font-size: 1.3rem;
+                    }
                 }
             }
             #name-wrapper {
                 width: auto;
                 margin-top: 0.5rem;
                 line-height: 1.3125;
-                display: grid;
-                grid-template-columns: auto 1fr;
-                justify-items: center;
-                align-items: center;
-                gap: 0.2rem;
                 h2 {
                     font-size: 19px;
                     font-weight: 700;
                     letter-spacing: 0.5px;
+                    @media (max-width: 414px) {
+                        font-size: 1.5rem;
+                    }
                 }
             }
             #bio {
                 margin-top: 1rem;
                 font-size: 1.5rem;
+                @media (max-width: 414px) {
+                    font-size: 1.3rem;
+                }
             }
         }
         .foam-nav {
@@ -72,10 +89,17 @@ const FoamCornerStyles = styled.div`
                 justify-items: center;
                 align-items: center;
                 border-bottom: 2px solid #25231d;
+                @media (max-width: 414px) {
+                    width: 110px;
+                    height: 34px;
+                }
                 p {
                     color: #25231d;
                     font-size: 1.6rem;
                     font-weight: 600;
+                    @media (max-width: 414px) {
+                        font-size: 1.3rem;
+                    }
                 }
             }
         }

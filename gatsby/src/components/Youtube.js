@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import ReactPlayer from 'react-player/lazy';
+import smoothscroll from 'smoothscroll-polyfill';
 
 const BitsStyles = styled.div`
     .page-wrapper {
         margin: 0 auto 2rem auto;
         width: 600px;
         border: 1px solid #c4cfd7;
+        @media (max-width: 414px) {
+            width: 100%;
+        }
         .background-image-wrapper {
             width: 100%;
             height: 200px;
@@ -16,10 +20,16 @@ const BitsStyles = styled.div`
             justify-items: center;
             align-items: center;
             overflow: hidden;
+            @media (max-width: 414px) {
+                height: 150px;
+            }
             .background-image {
                 width: 100%;
                 height: 200px;
                 object-fit: cover;
+                @media (max-width: 414px) {
+                    height: 150px;
+                }
             }
         }
         .foam-corner-wrapper {
@@ -35,6 +45,11 @@ const BitsStyles = styled.div`
                     width: 134px;
                     border-radius: 50%;
                     border: 5px solid var(--white);
+                    @media (max-width: 414px) {
+                        margin-top: -55px;
+                        height: 105px;
+                        width: 105px;
+                    }
                 }
                 #following-btn {
                     margin-top: 1rem;
@@ -49,6 +64,11 @@ const BitsStyles = styled.div`
                     letter-spacing: 0.5px;
                     pointer-events: none;
                     cursor: default;
+                    @media (max-width: 414px) {
+                        height: 32px;
+                        width: 88px;
+                        font-size: 1.3rem;
+                    }
                 }
             }
             #name-wrapper {
@@ -64,49 +84,16 @@ const BitsStyles = styled.div`
                     font-size: 19px;
                     font-weight: 700;
                     letter-spacing: 0.5px;
+                    @media (max-width: 414px) {
+                        font-size: 1.5rem;
+                    }
                 }
-            }
-            #handle {
-                color: #5B7083;
-                font-size: 1.5rem;
-                font-weight: 500;
-                letter-spacing: 0;
             }
             #bio {
                 margin-top: 1rem;
                 font-size: 1.5rem;
-            }
-            #joined-wrapper {
-                color: #5B7083;
-                margin-top: 1rem;
-                font-size: 1.5rem;
-                font-weight: 500;
-                display: grid;
-                grid-template-columns: auto 1fr;
-                gap: 1rem;
-                .calendar {
-                    font-size: 1.7rem;
-                }
-                p {
-                    padding-top: 0.1rem;
-                }
-            }
-            .followers-wrapper {
-                margin-top: 1rem;
-                display: flex;
-                gap: 1.5rem;
-                .item {
-                    display: flex;
-                    gap: 0.5rem;
-                    align-items: center;
-                    p {
-                        color: #5B7083;
-                        font-size: 1.5rem;
-                    }
-                    #number {
-                        font-weight: 600;
-                        color: var(--black);
-                    }
+                @media (max-width: 414px) {
+                    font-size: 1.3rem;
                 }
             }
         }
@@ -128,7 +115,7 @@ const BitsStyles = styled.div`
                     grid-template-columns: 1fr;
                     align-items: center;
                     justify-items: center;
-                    width: 560px;
+                    width: calc(100% - 4.2rem);
                     border-radius: 10px;
                     overflow: hidden;
                 }
@@ -139,8 +126,15 @@ const BitsStyles = styled.div`
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
                 gap: 1.5rem;
+                @media (max-width: 414px) {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+                }
                 .thumbnail-wrapper {
                     width: 180px;
+                    @media (max-width: 414px) {
+                        width: 100%;
+                    }
                     &:hover {
                         cursor: pointer;
                     }
@@ -154,14 +148,18 @@ const BitsStyles = styled.div`
                             width: 100%;
                             height: 110px;
                             object-fit: contain;
+                            @media (max-width: 414px) {
+                                height: 85px;
+                            }
                         }
                     }
                     .title {
                         margin-top: 0.5rem;
-                        padding-left: 0.2rem;
-                        font-size: 1.4rem;
+                        padding: 0 0.2rem;
+                        font-size: 1.2rem;
                         font-weight: 600;
                         letter-spacing: 0;
+                        text-align: center;
                     }
                 }
             }
@@ -174,7 +172,16 @@ export const Youtube = ({ siteImages, bits }) => {
     const [bitsAvatar] = siteImages.filter(image => image.name === 'Bits Avatar');
     const [bitsBackground] = siteImages.filter(image => image.name === 'Bits Background');
 
+    useEffect(() => {
+        smoothscroll.polyfill();
+    }, []);
+
     const selectedVideo = bits[selectedVideoIndex];
+
+    const scrollToTop = () => {
+        // document.body.scrollTop = document.documentElement.scrollTop = 430;
+        document.querySelector('#bio').scrollIntoView({ behavior: 'smooth' });
+    }
 
     return (
         <BitsStyles>
@@ -195,14 +202,19 @@ export const Youtube = ({ siteImages, bits }) => {
                 <div className="bits-wrapper">
                     <div className="now-playing-wrapper">
                         <div className="video-player-wrapper">
-                            <ReactPlayer style={{ maxWidth: '560px'}} url={selectedVideo.youtubeUrl} controls light />
+                            <ReactPlayer width='100%' url={selectedVideo.youtubeUrl} controls light />
                         </div>
                         <p><span id="now-playing">Now playing:</span> {selectedVideo.title}</p>
                     </div>
                     <div className="thumbnails-wrapper">
                         {bits.map((bit, index) => {
                             return (
-                                <div className="thumbnail-wrapper" key={bit.id} onClick={e => setSelectedVideoIndex(index)}>
+                                <div className="thumbnail-wrapper" key={bit.id}
+                                    onClick={e => {
+                                        setSelectedVideoIndex(index);
+                                        scrollToTop();
+                                    }}
+                                >
                                     <div className="image-wrapper">
                                         <Img className="thumbnail" fluid={bit.thumbnail.asset.fluid} alt="Thumbnail" />
                                     </div>

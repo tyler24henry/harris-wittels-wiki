@@ -55,9 +55,7 @@ const NavStyles = styled.nav`
         position: relative;
         width: 120px;
         @media (max-width: 414px) {
-            grid-column: 3 / span 1;
-            padding-bottom: 0.1rem;
-            justify-self: end;
+            display: none;
         }
         .search-icon {
             position: absolute;
@@ -98,9 +96,12 @@ const NavStyles = styled.nav`
         font-weight: 500;
         letter-spacing: 0.1rem;
         @media (max-width: 414px) {
-            grid-column: 2 / span 1;
+            grid-column: 2 / span 2;
             grid-row: 1 / span 1;
             padding-top: 0.3rem;
+            text-align: center;
+            font-size: 1.1rem;
+            letter-spacing: 0.05rem;
         }
     }
     .contact-about-wrapper {

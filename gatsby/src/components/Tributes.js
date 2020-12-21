@@ -8,6 +8,9 @@ const TributesStyles = styled.div`
         margin: 0 auto 2rem auto;
         width: 600px;
         border: 1px solid #c4cfd7;
+        @media (max-width: 414px) {
+            width: 100%;
+        }
         .background-image-wrapper {
             width: 100%;
             height: 200px;
@@ -15,11 +18,17 @@ const TributesStyles = styled.div`
             grid-template-columns: 1fr;
             justify-items: center;
             align-items: center;
+            @media (max-width: 414px) {
+                height: 150px;
+            }
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 object-position: 0 61%;
+                @media (max-width: 414px) {
+                    object-position: 0 66%;
+                }
             }
         }
         .foam-corner-wrapper {
@@ -34,6 +43,11 @@ const TributesStyles = styled.div`
                     width: 134px;
                     border-radius: 50%;
                     border: 5px solid var(--white);
+                    @media (max-width: 414px) {
+                        margin-top: -55px;
+                        height: 105px;
+                        width: 105px;
+                    }
                 }
                 #following-btn {
                     margin-top: 1rem;
@@ -48,6 +62,11 @@ const TributesStyles = styled.div`
                     letter-spacing: 0.5px;
                     pointer-events: none;
                     cursor: default;
+                    @media (max-width: 414px) {
+                        height: 32px;
+                        width: 88px;
+                        font-size: 1.3rem;
+                    }
                 }
             }
             #name-wrapper {
@@ -63,42 +82,26 @@ const TributesStyles = styled.div`
                     font-size: 19px;
                     font-weight: 700;
                     letter-spacing: 0.5px;
-                }
-                .verified {
-                    font-size: 19px;
-                    color: #000000;
+                    @media (max-width: 414px) {
+                        font-size: 1.5rem;
+                    }
                 }
             }
             .soundcloud-embed-wrapper {
                 margin-top: 2.5rem;
                 width: 100%;
                 height: 130px;
-                .soundcloud-player {
-
-                }
-            }
-            .followers-wrapper {
-                margin-top: 1rem;
-                display: flex;
-                gap: 1.5rem;
-                .item {
-                    display: flex;
-                    gap: 0.5rem;
-                    align-items: center;
-                    p {
-                        color: #5B7083;
-                        font-size: 1.5rem;
-                    }
-                    #number {
-                        font-weight: 600;
-                        color: var(--black);
-                    }
+                @media (max-width: 414px) {
+                    height: 115px;
                 }
             }
         }
         .foam-nav {
             margin-top: 2rem;
             border-bottom: 1px solid #c4cfd7;
+            @media (max-width: 414px) {
+                margin-top: 3.5rem;
+            }
             .foam {
                 width: 138px;
                 height: 45px;
@@ -107,10 +110,17 @@ const TributesStyles = styled.div`
                 justify-items: center;
                 align-items: center;
                 border-bottom: 2px solid #000000;
+                @media (max-width: 414px) {
+                    width: 110px;
+                    height: 34px;
+                }
                 p {
                     color: #000000;
                     font-size: 1.6rem;
                     font-weight: 600;
+                    @media (max-width: 414px) {
+                        font-size: 1.3rem;
+                    }
                 }
             }
         }
@@ -125,8 +135,15 @@ const TributesStyles = styled.div`
                 grid-template-columns: auto 1fr;
                 gap: 0.8rem;
                 align-items: center;
+                @media (max-width: 414px) {
+                    padding: 1rem 1.25rem;
+                    font-size: 1.2rem;
+                }
                 .caret {
                     font-size: 1.2rem;
+                    @media (max-width: 414px) {
+                        font-size: 1rem;
+                    }
                 }
                 a {
                     color: var(--black); 
