@@ -143,8 +143,14 @@ const ImageModalWrapperStyles = styled.div`
 export const Home = ({ masonryItems }) => {
     const [upToIndex, setUpToIndex] = useState(25);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+    const [isChrome, setIsChrome] = useState(null);
 
-    const isChrome = getIsChrome() !== 2;
+    useEffect(() => {
+        if(typeof window !== `undefined` && typeof navigator !== `undefined`){
+            const isChromeBrowser = getIsChrome() !== 2;
+            setIsChrome(isChromeBrowser);
+        }
+    }, []);
 
     let imagesOnly = [...masonryItems.filter(item => item.quote === null)];
 
@@ -175,7 +181,7 @@ export const Home = ({ masonryItems }) => {
       })
 
       useEffect(() => {
-        if(typeof window !== `undefined` && !isChrome) {
+        if(typeof window !== `undefined` && isChrome === false) {
             function resizeMasonryItem(item){
                 /* Get the grid object, its row-gap, and the size of its implicit rows */
                 var grid = document.getElementsByClassName('masonry')[0],
