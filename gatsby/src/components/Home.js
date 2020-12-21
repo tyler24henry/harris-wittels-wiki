@@ -1,40 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 
 const HomeStyles = styled.div`
     .masonry-wrapper {
         margin: 0 auto 2rem auto;
         width: 600px;
     }
-    #background {
-        pointer-events: none;
-        filter: blur(2px);
-    }
     .masonry {
-        columns: 3;
-        column-gap: 10px;
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: repeat(auto-fill, minmax(196.66px,1fr));
+        grid-auto-rows: 0;
     }
-    .masonry-item {
+    .masonry-brick {
         display: inline-block;
         vertical-align: top;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
-    .masonry-item, .masonry-content {
+    .masonry-brick, .masonry-content {
         border-radius: 4px;
         overflow: hidden;
     }
-    .masonry-item {
+    .masonry-brick {
         filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, .3));
         transition: filter .25s ease-in-out;
     }
-    .masonry-item:hover {
+    .masonry-brick:hover {
         filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, .3));
     }
     .masonry-content {
-        width: 193.33px;
+        width: 196.66px;
         height: auto;
+    }
+    #background {
+        pointer-events: none;
+        filter: blur(2px);
     }
     #image-wrapper {
         &:hover {
@@ -72,7 +75,7 @@ const ImageModalWrapperStyles = styled.div`
         width: 600px;
         height: 100vh;
         background: #f8f7f8;
-        padding: 2rem 2rem 6rem 2rem;
+        padding: 0 2rem;
         display: grid;
         grid-template-columns: 1fr;
         justify-items: center;
@@ -109,6 +112,9 @@ const ImageModalWrapperStyles = styled.div`
             top: 310px;
             color: #919191;
             font-size: 4rem;
+            &:hover {
+                cursor: pointer;
+            }
         }
         .chevron-left {
             left: 15px;
@@ -130,7 +136,9 @@ const ImageModalWrapperStyles = styled.div`
 `;
 
 export const Home = ({ masonryItems }) => {
+    const [upToIndex, setUpToIndex] = useState(25);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+
     let imagesOnly = [...masonryItems.filter(item => item.quote === null)];
 
     let selectedImage;
@@ -139,14 +147,81 @@ export const Home = ({ masonryItems }) => {
     }
     const isPrevIndex = selectedImageIndex > 0;
     const isNextIndex = selectedImageIndex + 1 < imagesOnly.length;
+
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js";
+        
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        }
+    }, []);
+
+    const callback = () => {
+        setUpToIndex(upToIndex + 25);
+    }
+
+    useBottomScrollListener(callback, {
+        offset: 400,
+      })
+
+    function resizeMasonryItem(item){
+        /* Get the grid object, its row-gap, and the size of its implicit rows */
+        var grid = document.getElementsByClassName('masonry')[0],
+            rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap')),
+            rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+      
+        let rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
+        if(item.querySelector('#quote')){
+            const paddingHeight = 20;
+            rowSpan = Math.ceil((item.querySelector('#quote').getBoundingClientRect().height+rowGap+paddingHeight)/(rowHeight+rowGap));
+        }
+
+        /* Set the spanning as calculated above (S) */
+        item.style.gridRowEnd = 'span '+rowSpan;
+      }
+    
+      function resizeAllMasonryItems(){
+        // Get all item class objects in one list
+        var allItems = document.getElementsByClassName('masonry-brick');
+      
+        for(var i=0;i<allItems.length;i++){
+          resizeMasonryItem(allItems[i]);
+        }
+      }
+    
+      function waitForImages() {
+        var allItems = document.getElementsByClassName('masonry-brick');
+        for(var i=0;i<allItems.length;i++){
+          if(allItems.length > 40){
+            imagesLoaded( allItems[i], function(instance) {
+                var item = instance.elements[0];
+                resizeMasonryItem(item);
+              });
+          } else {
+            var item = allItems[i];
+            resizeMasonryItem(item);
+          }
+        }
+      }
+    
+      var masonryEvents = ['load', 'resize'];
+      masonryEvents.forEach( function(event) {
+        window.addEventListener(event, resizeAllMasonryItems);
+      } );
+
+      waitForImages();
+
     return (
         <>
             <HomeStyles>
                 <div className="masonry-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
                     <div className="masonry">
-                        {masonryItems.map(item => {
+                        {[...masonryItems].slice(0,upToIndex).map(item => {
                             return (
-                                <div className="masonry-item" key={item.id} id={item.quote ? 'text' : ''}>
+                                <div className="masonry-brick" key={item.id} id={item.quote ? 'text' : ''}>
                                     {!item.quote && (
                                         <div className="masonry-content" id="image-wrapper"
                                             onClick={e => {
@@ -158,7 +233,7 @@ export const Home = ({ masonryItems }) => {
                                         </div>
                                     )}
                                     {item.quote && (
-                                        <div className="masonry-content">{item.quote}</div>
+                                        <div className="masonry-content" id="quote">{item.quote}</div>
                                     )}
                                 </div>
                             )
