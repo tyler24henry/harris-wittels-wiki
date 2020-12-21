@@ -191,6 +191,8 @@ export const FoamCorner = ({ siteImages, allFoam }) => {
                         <p>Foam</p>
                     </div>
                     <div id="youtube-link-wrapper">
+                        <a href="https://mulaneysbutt.tumblr.com/post/112200710079/the-harriss-foam-corner-joke-masterpost" target="_blank">Mulaney's Butt on Tumblr</a>
+                        <FiChevronRight className="right-chevron" />
                         <a href="https://www.youtube.com/playlist?list=PLBB4729D88A16451A" target="_blank">Foam Corner Youtube Playlist</a>
                         <FiChevronRight className="right-chevron" />
                     </div>
