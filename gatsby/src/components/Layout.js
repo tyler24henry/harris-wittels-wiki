@@ -16,6 +16,8 @@ const SiteBorderStyles = styled.div`
     grid-template-columns: 1fr;
   }
   .left-panel-wrapper {
+    width: 200px;
+    position: relative;
     @media (max-width: 414px) {
         display: none;
     }
@@ -27,6 +29,9 @@ const RightBodyStyles = styled.div`
   min-height: 100vh;
   display: grid;
   grid-template-rows: 60px 1fr;
+  .top-nav-wrapper {
+    height: 60px;
+  }
 `;
 
 const ContentStyles = styled.div`
@@ -56,7 +61,9 @@ export default function Layout({ children }) {
           <LeftPanel />
         </div>
         <RightBodyStyles>
-          <TopNav />
+          <div className="top-nav-wrapper">
+            <TopNav />
+          </div>
           <ContentStyles>
             <div className="children-wrapper">
               {children}

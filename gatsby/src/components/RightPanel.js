@@ -35,6 +35,9 @@ const RightPanelStyles = styled.div`
         @media(max-width: 1080px){
             padding: 2rem 1rem;
         }
+        @media(max-width: 414px){
+            padding: 2rem;
+        }
         .wiki-item {
             display: grid;
             grid-template-columns: 130px 1fr;

@@ -72,7 +72,7 @@ const HomeStyles = styled.div`
         font-weight: 500;
         padding: 1rem;
         text-align: center;
-        width: calc(100% - 2rem);
+        width: calc(100% - 1.7rem);
         @media (max-width: 414px) {
             font-size: 1.2rem;
             width: calc(50vw - 4.5rem);

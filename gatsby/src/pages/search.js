@@ -22,15 +22,15 @@ export default function SearchPage({ data, location }) {
     if(searchTerm){
         const regex = new RegExp(searchTerm.toLowerCase());
         appearances = appearances.filter(appearance => {
-            const match = regex.test(appearance.podcastTitle.toLowerCase()) || regex.test(appearance.episodeTitle.toLowerCase());
+            const match = regex.test(appearance.podcastTitle.toLowerCase()) || regex.test(appearance.episodeTitle.toLowerCase()) || regex.test(appearance.host.toLowerCase());
             return match;
         });
         tweets = tweets.filter(tweet => {
-            const match = regex.test(tweet.content.toLowerCase());
+            const match = regex.test(tweet.content.toLowerCase()) || regex.test(tweet.replyingTo?.toLowerCase()) || regex.test(tweet.retweetName?.toLowerCase()) || regex.test(tweet.retweetHandle?.toLowerCase());
             return match;
         });
         harrisImages = harrisImages.filter(harrisImage => {
-            const match = harrisImage.caption && regex.test(harrisImage.caption.toLowerCase());
+            const match = harrisImage.caption && regex.test(harrisImage.caption?.toLowerCase());
             return match;
         });
         bits = bits.filter(bit => {

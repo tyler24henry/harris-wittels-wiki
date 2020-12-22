@@ -6,13 +6,25 @@ import GeneralContext from './GeneralContext';
 import { FiChevronRight } from 'react-icons/fi';
 
 const LeftPanelStyles = styled.div`
-    position: relative;
     height: 100%;
     width: 200px;
+    overflow-y: scroll;
     background: #f7f7f7;
     border-right: 2px solid #e2e2e2;
+    z-index: 600;
+    position: fixed;
+    left: 0;
+    top: 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    ::-webkit-scrollbar { /* WebKit */
+        width: 0;
+        height: 0;
+    }
     @media (max-width: 414px) {
-        width: 300px;
+        top: 60px;
+        width: 100vw;
+        height: calc(100% - 6rem);
     }
     .close-left-panel-btn {
         display: none;
@@ -58,7 +70,7 @@ const LeftPanelStyles = styled.div`
       height: 90px;
       width: 175px;
       @media (max-width: 414px) {
-            width: 275px;
+            width: 100vw;
         }
     }
     #chevron:before {
@@ -96,7 +108,7 @@ const LeftPanelStyles = styled.div`
         background-color: #ffffff;
         text-align: center;
         @media (max-width: 414px) {
-            width: 300px;
+            width: 100vw;
         }
         .link {
             color: var(--black);
@@ -160,11 +172,11 @@ export const LeftPanel = () => {
             <div className="links">
                 <button type="button" className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}><span>Close panel</span> <FiChevronRight className="chevron-icon" /></button>
                 <Link className="link" id="first-link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast appearances</Link>
-                <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Twitter</Link>
-                <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Instagram</Link>
-                <Link className="link" to="/youtube" onClick={e => setOpenLeftPanel(false)}>Youtube</Link>
-                <Link className="link" to="/foam-corner" onClick={e => setOpenLeftPanel(false)}>Foam</Link>
-                <Link className="link" to="/tributes" onClick={e => setOpenLeftPanel(false)}>Tributes</Link>
+                <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Harris Tweets</Link>
+                <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Harris Instagram Posts</Link>
+                <Link className="link" to="/youtube" onClick={e => setOpenLeftPanel(false)}>Harris on Youtube</Link>
+                <Link className="link" to="/foam-corner" onClick={e => setOpenLeftPanel(false)}>Foam Corner</Link>
+                <Link className="link" to="/tributes" onClick={e => setOpenLeftPanel(false)}>Tributes to Harris</Link>
                 <Link className="link" id="about" to="/about" onClick={e => setOpenLeftPanel(false)}>About</Link>
                 <Link className="link" id="contact" to="/contact" onClick={e => setOpenLeftPanel(false)}>Contact</Link>
                 <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search</Link>

@@ -20,6 +20,12 @@ const NavStyles = styled.nav`
     padding: 0 3rem;
     @media (max-width: 414px) {
         padding: 0 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: calc(100vw - 4rem);
+        z-index: 500;
+        overflow: hidden;
     }
     a {
         color: var(--white);
@@ -36,7 +42,8 @@ const NavStyles = styled.nav`
             grid-template-columns: auto 1fr;
         }
         @media (max-width: 414px) {
-            grid-template-columns: auto 1fr auto;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
         }
     }
     #hamburger-btn {
@@ -97,12 +104,7 @@ const NavStyles = styled.nav`
         font-weight: 500;
         letter-spacing: 0.1rem;
         @media (max-width: 414px) {
-            grid-column: 2 / span 2;
-            grid-row: 1 / span 1;
-            padding-top: 0.3rem;
-            text-align: center;
-            font-size: 1.1rem;
-            letter-spacing: 0.05rem;
+            display: none;
         }
     }
     .contact-about-wrapper {
@@ -113,6 +115,17 @@ const NavStyles = styled.nav`
     }
     #contact {
         margin-left: 2rem;
+    }
+    .mobile-links-wrapper {
+        display: none;
+        @media(max-width: 414px){
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            gap: 1rem;
+            justify-items: center;
+            align-items: center;
+            text-align: center;
+        }
     }
 `;
 
@@ -143,7 +156,7 @@ export const TopNav = () => {
         <>
         <NavStyles>
             <div className="nav-wrapper">
-                <button type="button" id="hamburger-btn" onClick={e => setOpenLeftPanel(true)}><GiHamburgerMenu /></button>
+                <button type="button" id="hamburger-btn" onClick={e => setOpenLeftPanel(!openLeftPanel)}><GiHamburgerMenu /></button>
                 <div className="search-wrapper">
                     <FaSearch className="search-icon" />
                     <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => isEnterPressed(e)} />
@@ -152,6 +165,16 @@ export const TopNav = () => {
                 <div className="contact-about-wrapper">
                     <Link to="/about">About</Link>
                     <Link to="/contact" id="contact">Contact</Link>
+                </div>
+                <div className="mobile-links-wrapper">
+                    <Link className="link" to="/">Home</Link>
+                    <Link className="link" to="/podcast-appearances">Podcasts</Link>
+                    <Link className="link" to="/twitter">Tweets</Link>
+                    <Link className="link" to="/instagram">Instagram</Link>
+                    <Link className="link" to="/youtube">Youtube</Link>
+                    <Link className="link" to="/foam-corner">Foam</Link>
+                    <Link className="link" to="/tributes">Tributes</Link>
+                    <Link className="link" to="/search">Search</Link>
                 </div>
             </div>
         </NavStyles>

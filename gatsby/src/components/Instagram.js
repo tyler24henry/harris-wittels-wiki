@@ -186,7 +186,7 @@ const ImagesStyles = styled.div`
 `;
 
 const ImageModalWrapperStyles = styled.div`
-    z-index: 2;
+    z-index: 700;
     position: fixed;
     top: 0;
     left: 0;
