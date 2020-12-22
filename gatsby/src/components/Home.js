@@ -61,9 +61,6 @@ const HomeStyles = styled.div`
         &:hover {
             cursor: pointer;
         }
-        @media (max-width: 414px) {
-            pointer-events: none;
-        }
     }
     #text {
         background: var(--black);
@@ -84,7 +81,7 @@ const HomeStyles = styled.div`
 `;
 
 const ImageModalWrapperStyles = styled.div`
-    z-index: 2;
+    z-index: 700;
     position: fixed;
     top: 0;
     left: 0;
@@ -95,6 +92,10 @@ const ImageModalWrapperStyles = styled.div`
     grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
+    @media (max-width: 414px) {
+        width: 100vw;
+        overflow: hidden;
+    }
     .modal {
         position: relative;
         width: 600px;
@@ -104,12 +105,22 @@ const ImageModalWrapperStyles = styled.div`
         display: grid;
         grid-template-columns: 1fr;
         justify-items: center;
+        @media (max-width: 414px) {
+            padding: 0 2rem 2rem 2rem;
+            width: calc(100vw - 4rem);
+            height: calc(100vw - 3rem);
+            justify-items: start;
+        }   
         .modal-header {
             display: grid;
             grid-template-columns: 1fr;
             width: calc(500px - 2rem);
             padding: 1rem;
             margin: 0 auto;
+            @media (max-width: 414px) {
+                padding: 0 1rem;
+                width: calc(100vw - 5rem);
+            } 
             #exit-btn {
                 justify-self: end;
                 width: 25px;
@@ -118,42 +129,15 @@ const ImageModalWrapperStyles = styled.div`
                 color: #919191;
                 font-size: 2.5rem;
             }
-            .instagram-avatar {
-                height: 35px;
-                width: 35px;
-                border-radius: 50%;
-            }
-            p {
-                font-size: 1.4rem;
-                font-weight: 600;
-                color: var(--black);
-            }
         }
         .modal-image {
             width: 500px;
             height: 500px;
             object-fit: cover;
-        }
-        .sub-image-wrapper {
-            #caption {
-                font-size: 1.4rem;
-                color: var(--black);
-                width: calc(500px - 1rem);
-                margin: 0 auto;
-                margin-top: 1rem;
-                span {
-                    padding-right: 0.3rem;
-                    font-weight: 600;
-                }
-            }
-            #date {
-                font-size: 1.2rem;
-                font-weight: 500;
-                color: #919191;
-                width: calc(500px - 1rem);
-                margin: 0 auto;
-                margin-top: 1rem;
-            }
+            @media (max-width: 414px) {
+                width: calc(100vw - 4rem);
+                height: calc(100vw - 10rem);
+            } 
         }
         button {
             background: none;
@@ -168,6 +152,11 @@ const ImageModalWrapperStyles = styled.div`
             top: 310px;
             color: #919191;
             font-size: 4rem;
+            @media (max-width: 414px) {
+                top: auto;
+                bottom: 10px;
+                font-size: 3rem;
+            } 
         }
         .chevron-left {
             left: 15px;
