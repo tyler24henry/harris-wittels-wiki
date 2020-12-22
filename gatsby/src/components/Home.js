@@ -86,40 +86,34 @@ const ImageModalWrapperStyles = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    overflow-y: scroll;
+    height: 100vh;
+    overflow-y: hidden;
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
     @media (max-width: 414px) {
         width: 100vw;
-        overflow: hidden;
     }
     .modal {
         position: relative;
         width: 600px;
-        height: 100vh;
+        height: calc(100% - 2rem);
         background: #f8f7f8;
-        padding: 2rem 2rem 6rem 2rem;
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-items: center;
+        padding: 0 2rem 2rem 2rem;
         @media (max-width: 414px) {
-            padding: 0 2rem 2rem 2rem;
             width: calc(100vw - 4rem);
-            height: calc(100vw - 3rem);
-            justify-items: start;
+            height: calc(100vw - 2.5rem);
         }   
         .modal-header {
             display: grid;
             grid-template-columns: 1fr;
-            width: calc(500px - 2rem);
-            padding: 1rem;
+            width: calc(600px - 2rem);
+            padding: 0 1rem 1rem 1rem;
             margin: 0 auto;
             @media (max-width: 414px) {
                 padding: 0 1rem;
-                width: calc(100vw - 5rem);
+                width: calc(100vw - 5.5rem);
             } 
             #exit-btn {
                 justify-self: end;
@@ -127,10 +121,11 @@ const ImageModalWrapperStyles = styled.div`
                 background: none;
                 border: none;
                 color: #919191;
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
         }
         .modal-image {
+            margin: 0 auto;
             width: 500px;
             height: 500px;
             object-fit: cover;
@@ -149,7 +144,7 @@ const ImageModalWrapperStyles = styled.div`
         }
         .chevron-left, .chevron-right {
             position: absolute;
-            top: 310px;
+            top: 270px;
             color: #919191;
             font-size: 4rem;
             @media (max-width: 414px) {

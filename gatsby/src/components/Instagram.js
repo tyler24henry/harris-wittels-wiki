@@ -191,7 +191,7 @@ const ImageModalWrapperStyles = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     overflow-y: scroll;
     display: grid;
     grid-template-columns: 1fr;
@@ -199,40 +199,36 @@ const ImageModalWrapperStyles = styled.div`
     align-items: center;
     @media (max-width: 414px) {
         width: 100vw;
-        height: 100vh;
     }
     .modal {
         position: relative;
         width: 600px;
-        height: 100vh;
+        height: calc(100% - 2rem);
         background: #f8f7f8;
-        padding: 2rem 2rem 6rem 2rem;
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-items: center;
+        padding: 0 2rem 2rem 2rem;
         @media (max-width: 414px) {
-            padding: 0 2rem 0 2rem;
             width: calc(100vw - 4rem);
-        }
+            height: calc(100vw + 4rem);
+            overflow-y: scroll;
+        }   
         .modal-header {
             display: grid;
             grid-template-columns: auto 1fr auto;
             gap: 1rem;
             align-items: center;
-            width: calc(500px - 2rem);
+            width: calc(600px - 10rem);
             padding: 1rem;
             margin: 0 auto;
             @media (max-width: 414px) {
-                width: calc(100vw - 6rem);
-                padding: 0 1rem;
-            }
+                width: calc(100vw - 5.5rem);
+            } 
             #exit-btn {
                 justify-self: end;
                 width: 25px;
                 background: none;
                 border: none;
                 color: #919191;
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             .instagram-avatar {
                 height: 35px;
@@ -246,13 +242,14 @@ const ImageModalWrapperStyles = styled.div`
             }
         }
         .modal-image {
+            margin: 0 auto;
             width: 500px;
             height: 500px;
             object-fit: cover;
             @media (max-width: 414px) {
-                width: 100%;
-                height: 100%;
-            }
+                width: calc(100vw - 4rem);
+                height: calc(100vw - 10rem);
+            } 
         }
         .sub-image-wrapper {
             #caption {
@@ -293,12 +290,13 @@ const ImageModalWrapperStyles = styled.div`
         }
         .chevron-left, .chevron-right {
             position: absolute;
-            top: 310px;
+            top: 270px;
             color: #919191;
             font-size: 4rem;
             @media (max-width: 414px) {
-                top: 40%;
-            }
+                top: 50vw;
+                font-size: 3rem;
+            } 
         }
         .chevron-left {
             left: 15px;
