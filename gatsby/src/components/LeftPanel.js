@@ -44,7 +44,7 @@ const LeftPanelStyles = styled.div`
             &:hover {
                 background-color: #e2e2e2;
             }
-            .chevron-icon {
+            #ex {
                 text-align: right;
                 font-size: 1.5rem;
             }
@@ -170,7 +170,10 @@ export const LeftPanel = () => {
             </div>
             <div id="chevron">hello</div>
             <div className="links">
-                <button type="button" className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}><span>Close panel</span> <FiChevronRight className="chevron-icon" /></button>
+                <div className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}>
+                    <span>Close panel</span>
+                    <span id="x">&times;</span>
+                </div>
                 <Link className="link" id="first-link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast appearances</Link>
                 <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Harris Tweets</Link>
                 <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Harris Instagram Posts</Link>
