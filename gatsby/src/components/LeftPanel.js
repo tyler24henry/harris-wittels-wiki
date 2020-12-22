@@ -29,11 +29,6 @@ const LeftPanelStyles = styled.div`
     .close-left-panel-btn {
         display: none;
         @media (max-width: 414px) {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-            background: none;
-            border: none;
             color: var(--black);
             font-size: 1.2rem;
             letter-spacing: 0.1rem;
@@ -43,10 +38,6 @@ const LeftPanelStyles = styled.div`
             text-align: left;
             &:hover {
                 background-color: #e2e2e2;
-            }
-            #ex {
-                text-align: right;
-                font-size: 1.5rem;
             }
         }
     }
@@ -170,10 +161,7 @@ export const LeftPanel = () => {
             </div>
             <div id="chevron">hello</div>
             <div className="links">
-                <div className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}>
-                    <span>Close panel</span>
-                    <span id="x">&times;</span>
-                </div>
+                <div className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}>Close panel</div>
                 <Link className="link" id="first-link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast appearances</Link>
                 <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Harris Tweets</Link>
                 <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Harris Instagram Posts</Link>
