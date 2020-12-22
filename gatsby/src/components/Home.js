@@ -230,6 +230,7 @@ export const Home = ({ masonryItems }) => {
 
       useEffect(() => {
         if(typeof window !== `undefined` && isChrome === false) {
+            console.log('running');
             function resizeMasonryItem(item){
                 /* Get the grid object, its row-gap, and the size of its implicit rows */
                 var grid = document.getElementsByClassName('masonry')[0],
@@ -276,7 +277,7 @@ export const Home = ({ masonryItems }) => {
               } );
               waitForImages();
         }
-      }, [upToIndex]);
+      }, [upToIndex, isChrome]);
 
       const masonryItemsSliced = isChrome ? [...masonryItems] : [...masonryItems].slice(0,upToIndex);
 

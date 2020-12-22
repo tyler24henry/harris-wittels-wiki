@@ -6,6 +6,7 @@ import GeneralContext from './GeneralContext';
 import { useNavigate } from "@reach/router";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { LeftPanel } from './LeftPanel';
+import { slugify } from '../utils/slugify';
 
 const NavStyles = styled.nav`
     position: relative;
@@ -133,7 +134,7 @@ export const TopNav = () => {
 
     const isEnterPressed = e => {
         if(e.keyCode === 13){
-            navigate(`/search/?s=${search}`);
+            navigate(`/search/?s=${slugify(search)}`);
             setSearch('');
             searchRef.current.blur();
         }

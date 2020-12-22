@@ -132,6 +132,12 @@ const LeftPanelStyles = styled.div`
                 display: block;
             }
         }
+        #search {
+            display: none;
+            @media(max-width: 414px){
+                display: block;
+            }
+        }
     }
     .wiki-wrapper {
         display: none;
@@ -161,6 +167,7 @@ export const LeftPanel = () => {
                 <Link className="link" to="/tributes" onClick={e => setOpenLeftPanel(false)}>Tributes</Link>
                 <Link className="link" id="about" to="/about" onClick={e => setOpenLeftPanel(false)}>About</Link>
                 <Link className="link" id="contact" to="/contact" onClick={e => setOpenLeftPanel(false)}>Contact</Link>
+                <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search</Link>
             </div>
             <div className="wiki-wrapper">
                 <RightPanel />

@@ -5,7 +5,7 @@ import emailjs from 'emailjs-com';
 
 const FoamCornerStyles = styled.div`
     .page-wrapper {
-        margin: 2rem auto 4rem auto;
+        margin: 0 auto 2rem auto;
         width: 600px;
         border: 1px solid #c4cfd7;
         @media (max-width: 414px) {

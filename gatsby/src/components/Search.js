@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
@@ -7,20 +7,66 @@ import { FaRetweet } from 'react-icons/fa';
 import ReactPlayer from 'react-player/lazy';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { AiFillCaretRight } from 'react-icons/ai';
+import smoothscroll from 'smoothscroll-polyfill';
+import { FaSearch } from 'react-icons/fa';
+import { useNavigate } from "@reach/router";
+import { slugify } from '../utils/slugify';
 
 const PodcastAppearancesStyles = styled.div`
     .podcast-appearances-wrapper {
-        margin: 2rem auto 4rem auto;
+        margin: 0 auto 2rem auto;
         width: 600px;
         border: 1px solid #c4cfd7;
+        @media (max-width: 414px) {
+            width: 100%;
+        }
         .background-image {
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-items: center;
+            align-items: center;
+            background-color: var(--black);
             width: 100%;
             height: 200px;
-            img {
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-                object-position: 0 0;
+            @media (max-width: 414px) {
+                height: 150px;
+            }
+            .search-wrapper {
+                z-index: 10;
+                position: relative;
+                width: 80%;
+                margin: 0 auto;
+                padding-bottom: 3rem;
+                .search-icon {
+                    position: absolute;
+                    left: 1px;
+                    top: 4.5px;
+                    font-size: 1.1rem;
+                    color: var(--white);
+                }
+                .search {
+                    padding: 0.1rem 0 0.2rem 2.5rem;
+                    background: none;
+                    border: none;
+                    border-bottom: 1px solid var(--white);
+                    width: calc(100% - 2.5rem);
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    letter-spacing: 0.1rem;
+                    color: var(--white);
+                    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                        color: var(--white);
+                        opacity: 1; /* Firefox */
+                    }
+
+                    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+                        color: var(--white);
+                    }
+
+                    ::-ms-input-placeholder { /* Microsoft Edge */
+                        color: var(--white);
+                    }
+                }
             }
         }
         .page-into-wrapper {
@@ -35,6 +81,11 @@ const PodcastAppearancesStyles = styled.div`
                     width: 134px;
                     border-radius: 50%;
                     border: 5px solid var(--white);
+                    @media (max-width: 414px) {
+                        margin-top: -55px;
+                        height: 105px;
+                        width: 105px;
+                    }
                 }
                 #following-btn {
                     margin-top: 1rem;
@@ -49,6 +100,11 @@ const PodcastAppearancesStyles = styled.div`
                     letter-spacing: 0.5px;
                     pointer-events: none;
                     cursor: default;
+                    @media (max-width: 414px) {
+                        height: 32px;
+                        width: 88px;
+                        font-size: 1.3rem;
+                    }
                 }
             }
             #name-wrapper {
@@ -59,11 +115,17 @@ const PodcastAppearancesStyles = styled.div`
                     font-size: 19px;
                     font-weight: 700;
                     letter-spacing: 0.5px;
+                    @media (max-width: 414px) {
+                        font-size: 1.5rem;
+                    }
                 }
             }
             #bio {
                 margin-top: 1rem;
                 font-size: 1.5rem;
+                @media (max-width: 414px) {
+                    font-size: 1.3rem;
+                }
             }
         }
         .categories-nav {
@@ -72,20 +134,32 @@ const PodcastAppearancesStyles = styled.div`
             .categories {
                 display: grid;
                 grid-template-columns: auto auto auto auto auto auto;
+                @media (max-width: 414px) {
+                    grid-template-columns: repeat(3, 1fr);
+                    justify-items: center;
+                }
                 .category {
                     display: grid;
                     grid-template-columns: 1fr;
                     justify-items: center;
                     align-items: center;
                     height: 30px;
+                    border-bottom: 2px solid var(--white);
                     &:hover {
                         cursor: pointer;
                         border-bottom: 2px solid var(--black);
+                    }
+                    @media (max-width: 414px) {
+                        height: 23px;
                     }
                     p {
                         color: var(--black);;
                         font-size: 1.4rem;
                         font-weight: 600;
+                        @media (max-width: 414px) {
+                            font-size: 1rem;
+                            text-align: center;
+                        }
                         span {
                             font-weight: 500;
                         }
@@ -100,28 +174,31 @@ const PodcastAppearancesStyles = styled.div`
             .no-content-wrapper {
                 p {
                     padding: 1.2rem 1.5rem;
-                    /* border: 1px solid #c4cfd7; */
                     font-size: 1.5rem;
                     color: var(--black);
                     font-weight: 500;
+                    @media (max-width: 414px) {
+                        padding: 1rem 1.25rem;
+                        font-size: 1.2rem;
+                    }
                 }
             }
             .list-of-appearances-wrapper {
-                h2 {
-                    padding: 0 1rem;
-                    font-weight: 600;
-                    font-size: 1.6rem;
-                    letter-spacing: 0.5px;
-                }
                 .header, .podcast {
                     display: grid;
-                    grid-template-columns: 2.5fr 5fr 2fr 1.6fr;
+                    grid-template-columns: 2.5fr 3fr 2.5fr 1.4fr;
                     gap: 0.5rem;
                     align-items: center;
                     padding: 0.5rem 1rem;
                     background: #c4cfd7;
+                    @media (max-width: 414px) {
+                        padding: 0.3rem 0.6rem;
+                    }
                     p {
                         font-size: 1.2rem;
+                        @media (max-width: 414px) {
+                            font-size: 1rem;
+                        }
                     }
                 }
                 .header {
@@ -131,6 +208,9 @@ const PodcastAppearancesStyles = styled.div`
                         font-weight: 600;
                         font-size: 1.1rem;
                         letter-spacing: 0.5px;
+                        @media (max-width: 414px) {
+                            font-size: 0.9rem;
+                        }
                     }
                 }
                 .podcast {
@@ -144,6 +224,9 @@ const PodcastAppearancesStyles = styled.div`
                     }
                     p {
                         font-weight: 400;
+                        @media (max-width: 414px) {
+                            font-size: 1.1rem;
+                        }
                     }
                 }
             }
@@ -153,6 +236,9 @@ const PodcastAppearancesStyles = styled.div`
                 grid-template-columns: auto 1fr;
                 gap: 1.5rem;
                 border-top: 1px solid #c4cfd7;
+                @media (max-width: 414px) {
+                    padding: 1rem;
+                }
                 .retweet {
                     justify-self: end;
                     margin-top: 0.2rem;
@@ -162,17 +248,30 @@ const PodcastAppearancesStyles = styled.div`
                     color: #5b7082;
                     font-weight: 500;
                     margin-bottom: -0.9rem;
+                    @media (max-width: 414px) {
+                        font-size: 1.2rem;
+                    }
                 }
                 .avatar {
                     width: 49px;
                     height: 49px;
                     border-radius: 50%;
                     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.09);
+                    @media (max-width: 414px) {
+                        width: 40px;
+                        height: 40px;
+                    }
                 }
                 .tweet {
+                    width: 100%;
+                    overflow: hidden;
                     .tweet-details {
                         display: flex;
                         font-size: 1.5rem;
+                        flex-wrap: wrap;
+                        @media (max-width: 414px) {
+                            font-size: 1.1rem;
+                        }
                         #handle, #retweet-name {
                             font-weight: 600;
                             color: var(--black);
@@ -183,6 +282,9 @@ const PodcastAppearancesStyles = styled.div`
                         .verified {
                             color: rgba(29,161,242,1.00);
                             margin: 0 0.7rem 0 0.3rem;
+                            @media (max-width: 414px) {
+                                margin: 0 0.4rem 0 0.3rem;
+                            }
                         }
                         #details {
                             color: #5B7083;
@@ -192,11 +294,17 @@ const PodcastAppearancesStyles = styled.div`
                             font-weight: 300;
                             font-size: 1rem;
                             opacity: 0.6;
+                            @media (max-width: 414px) {
+                                font-size: 0.9rem;
+                            }
                         }
                     }
                     #replying-to {
                         margin-top: 0.5rem;
                         color: #5B7083;
+                        @media (max-width: 414px) {
+                            font-size: 1.1rem;
+                        }
                         span {
                             color: rgb(29, 161, 242);
                         }
@@ -204,15 +312,18 @@ const PodcastAppearancesStyles = styled.div`
                     #content {
                         margin-top: 0.5rem;
                         color: var(--black);
+                        @media (max-width: 414px) {
+                            font-size: 1.2rem;
+                        }
                     }
                     .media-wrapper {
                         margin-top: 1rem;
-                        max-width: 506px;
+                        width: 100%;
                         max-height: 285px;
                         border-radius: 10px;
                         overflow: hidden;
                         .image, .video-player {
-                            max-width: 506px;
+                            width: 100%;
                             max-height: 285px;
                             object-fit: cover;
                         }
@@ -229,9 +340,13 @@ const PodcastAppearancesStyles = styled.div`
                 gap: 2rem;
                 align-items: center;
                 justify-items: center;
+                @media (max-width: 414px) {
+                    padding: 1.5rem;
+                    gap: 1.5rem;
+                }
                 .image-wrapper {
-                    width: 270px;
-                    height: 270px;
+                    width: 100%;
+                    height: 100%;
                     &:hover {
                         cursor: pointer;
                     }
@@ -260,7 +375,7 @@ const PodcastAppearancesStyles = styled.div`
                         grid-template-columns: 1fr;
                         align-items: center;
                         justify-items: center;
-                        width: 560px;
+                        width: calc(100% - 4.2rem);
                         border-radius: 10px;
                         overflow: hidden;
                     }
@@ -271,8 +386,15 @@ const PodcastAppearancesStyles = styled.div`
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
                     gap: 1.5rem;
+                    @media (max-width: 414px) {
+                        grid-template-columns: 1fr 1fr;
+                        gap: 1rem;
+                    }
                     .thumbnail-wrapper {
                         width: 180px;
+                        @media (max-width: 414px) {
+                            width: 100%;
+                        }
                         &:hover {
                             cursor: pointer;
                         }
@@ -286,14 +408,18 @@ const PodcastAppearancesStyles = styled.div`
                                 width: 100%;
                                 height: 110px;
                                 object-fit: contain;
+                                @media (max-width: 414px) {
+                                    height: 85px;
+                                }
                             }
                         }
                         .title {
                             margin-top: 0.5rem;
-                            padding-left: 0.2rem;
-                            font-size: 1.4rem;
+                            padding: 0 0.2rem;
+                            font-size: 1.2rem;
                             font-weight: 600;
                             letter-spacing: 0;
+                            text-align: center;
                         }
                     }
                 }
@@ -305,6 +431,11 @@ const PodcastAppearancesStyles = styled.div`
                     font-size: 1.5rem;
                     color: var(--black);
                     font-weight: 500;
+                    white-space: pre-wrap;
+                    @media (max-width: 414px) {
+                        padding: 1rem 1.25rem;
+                        font-size: 1.2rem;
+                    }
                 }
             }
             #first-foam {
@@ -321,8 +452,15 @@ const PodcastAppearancesStyles = styled.div`
                     grid-template-columns: auto 1fr;
                     gap: 0.8rem;
                     align-items: center;
+                    @media (max-width: 414px) {
+                        padding: 1rem 1.25rem;
+                        font-size: 1.2rem;
+                    }
                     .caret {
                         font-size: 1.2rem;
+                        @media (max-width: 414px) {
+                            font-size: 1rem;
+                        }
                     }
                     a {
                         color: var(--black); 
@@ -352,6 +490,10 @@ const ImageModalWrapperStyles = styled.div`
     grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
+    @media (max-width: 414px) {
+        width: 100vw;
+        height: 100vh;
+    }
     .modal {
         position: relative;
         width: 600px;
@@ -361,6 +503,10 @@ const ImageModalWrapperStyles = styled.div`
         display: grid;
         grid-template-columns: 1fr;
         justify-items: center;
+        @media (max-width: 414px) {
+            padding: 0 2rem 0 2rem;
+            width: calc(100vw - 4rem);
+        }
         .modal-header {
             display: grid;
             grid-template-columns: auto 1fr auto;
@@ -369,6 +515,10 @@ const ImageModalWrapperStyles = styled.div`
             width: calc(500px - 2rem);
             padding: 1rem;
             margin: 0 auto;
+            @media (max-width: 414px) {
+                width: calc(100vw - 6rem);
+                padding: 0 1rem;
+            }
             #exit-btn {
                 justify-self: end;
                 width: 25px;
@@ -392,25 +542,39 @@ const ImageModalWrapperStyles = styled.div`
             width: 500px;
             height: 500px;
             object-fit: cover;
-        }
-        #caption {
-            font-size: 1.4rem;
-            color: var(--black);
-            width: calc(500px - 1rem);
-            margin: 0 auto;
-            margin-top: 1rem;
-            span {
-                padding-right: 0.3rem;
-                font-weight: 600;
+            @media (max-width: 414px) {
+                width: 100%;
+                height: 100%;
             }
         }
-        #date {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #919191;
-            width: calc(500px - 1rem);
-            margin: 0 auto;
-            margin-top: 1rem;
+        .sub-image-wrapper {
+            #caption {
+                font-size: 1.4rem;
+                color: var(--black);
+                width: calc(500px - 1rem);
+                margin: 0 auto;
+                margin-top: 1rem;
+                @media (max-width: 414px) {
+                    width: calc(90vw - 1rem);
+                    margin: 1rem 0 0 0;
+                }
+                span {
+                    padding-right: 0.3rem;
+                    font-weight: 600;
+                }
+            }
+            #date {
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: #919191;
+                width: calc(500px - 1rem);
+                margin: 0 auto;
+                margin-top: 1rem;
+                @media (max-width: 414px) {
+                    width: calc(90vw - 1rem);
+                    margin: 1rem 0 0 0;
+                }
+            }
         }
         button {
             background: none;
@@ -425,6 +589,9 @@ const ImageModalWrapperStyles = styled.div`
             top: 310px;
             color: #919191;
             font-size: 4rem;
+            @media (max-width: 414px) {
+                top: 40%;
+            }
         }
         .chevron-left {
             left: 15px;
@@ -451,6 +618,28 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
     const [harrisAvatar] = siteImages.filter(image => image.name === 'Harris Twitter Avatar');
     const [instagramAvatar] = siteImages.filter(image => image.name === 'Instagram Avatar');
     const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
+    const [search, setSearch] = useState('');
+    const searchRef = useRef(null);
+    const navigate = useNavigate();
+
+    const totalNumberResults = appearances.length + tweets.length + harrisImages.length + bits.length + allFoam.length + tributes.length;
+
+    useEffect(() => {
+        smoothscroll.polyfill();
+    }, []);
+
+    const scrollToTop = () => {
+        // document.body.scrollTop = document.documentElement.scrollTop = 430;
+        document.querySelector('.categories').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const isEnterPressed = e => {
+        if(e.keyCode === 13){
+            navigate(`/search/?s=${slugify(search)}`);
+            setSearch('');
+            searchRef.current.blur();
+        }
+    }
 
     let harrisImagesSorted = sortByDate([...harrisImages]);
 
@@ -466,20 +655,30 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
 
     const appearancesSorted = sortByDate([...appearances]);
     const tweetsByDate = sortByDate([...tweets]);
+
+    let searchTermStr = searchTerm ? searchTerm.split('-').join(' ') : '';
+    if(searchTermStr.length > 30){
+        searchTermStr = `${searchTermStr.slice(0,30)}...`;
+    }
+
     return (
         <>
             <PodcastAppearancesStyles>
                 <div className="podcast-appearances-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
-                    <div className="background-image"><img src="https://res.cloudinary.com/tyler24henry/image/upload/v1608335940/harrisvice_dymdej.jpg" alt="Podcast art" /></div>
+                    <div className="background-image">
+                        <div className="search-wrapper">
+                            <FaSearch className="search-icon" />
+                            <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => isEnterPressed(e)} />
+                        </div>
+                    </div>
                     <div className="page-into-wrapper">
                         <div className="avatar-following-grid">
                             <Img className="podcast-avatar" fluid={searchAvatar.image.asset.fluid} alt="Avatar" />
                             <button id="following-btn" type="button">Searchin'</button>
                         </div>
                         <div id="name-wrapper">
-                            <h2>Search this site</h2>
+                            <h2>{searchTerm ? `${totalNumberResults} result${totalNumberResults === 1 ? '' : 's'} found for search term "${searchTermStr}"` : `Search this site`}</h2>
                         </div>
-                        <p id="bio">"Waldo asked me to spot him at the gym. Couldn't do it." - Harris tweet on March 3, 2013</p>
                     </div>
                     <div className="categories-nav">
                         <div className="categories">
@@ -527,7 +726,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         )}
                         {selected === 'Podcast Appearances' && appearances.length === 0 && (
                             <div className="no-content-wrapper">
-                                <p>No podcast appearances found{searchTerm ? ` for search term "${searchTerm}"` : ''}</p>
+                                <p>No podcast appearances found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
                             </div>
                         )}
                         {selected === 'Tweets' && tweets.length > 0 && (
@@ -559,10 +758,10 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                                 <p id="content">{tweet.content}</p>
                                                 <div className="media-wrapper">
                                                     {tweet.image && (
-                                                        <Img className="image" fluid={tweet.image.asset.fluid} alt="Image" />
+                                                        <Img className="image" width='100%' fluid={tweet.image.asset.fluid} alt="Image" />
                                                     )}
                                                     {tweet.youtubeUrl && (
-                                                        <ReactPlayer style={{ maxWidth: '506px', maxHeight: '285px'}} url={tweet.youtubeUrl} controls light />
+                                                        <ReactPlayer width="100%" url={tweet.youtubeUrl} controls light />
                                                     )}
                                                 </div>
                                             </div>  
@@ -573,7 +772,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         )}
                         {selected === 'Tweets' && tweets.length === 0 && (
                             <div className="no-content-wrapper">
-                                <p>No tweets found{searchTerm ? ` for search term "${searchTerm}"` : ''}</p>
+                                <p>No tweets found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
                             </div>
                         )}
                         {selected === 'Instagram' && harrisImages.length > 0 && (
@@ -589,7 +788,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         )}
                         {selected === 'Instagram' && harrisImages.length === 0 && (
                             <div className="no-content-wrapper">
-                                <p>No instagrams found{searchTerm ? ` for search term "${searchTerm}"` : ''}</p>
+                                <p>No instagrams found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
                             </div>
                         )}
                         {selected === 'Youtube' && bits.length > 0 && (
@@ -597,7 +796,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                 {selectedVideo && (
                                     <div className="now-playing-wrapper">
                                         <div className="video-player-wrapper">
-                                            <ReactPlayer style={{ maxWidth: '560px'}} url={selectedVideo.youtubeUrl} controls light />
+                                            <ReactPlayer width='100%' url={selectedVideo.youtubeUrl} controls light />
                                         </div>
                                         <p><span id="now-playing">Now playing:</span> {selectedVideo.title}</p>
                                     </div>
@@ -605,7 +804,12 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                 <div className="thumbnails-wrapper">
                                     {bits.map((bit, index) => {
                                         return (
-                                            <div className="thumbnail-wrapper" key={bit.id} onClick={e => setSelectedVideoIndex(index)}>
+                                            <div className="thumbnail-wrapper" key={bit.id}
+                                                 onClick={e => {
+                                                    setSelectedVideoIndex(index);
+                                                    scrollToTop();
+                                                }}
+                                            >
                                                 <div className="image-wrapper">
                                                     <Img className="thumbnail" fluid={bit.thumbnail.asset.fluid} alt="Thumbnail" />
                                                 </div>
@@ -618,7 +822,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         )}
                         {selected === 'Youtube' && bits.length === 0 && (
                             <div className="no-content-wrapper">
-                                <p>No youtube videos found{searchTerm ? ` for search term "${searchTerm}"` : ''}</p>
+                                <p>No youtube videos found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
                             </div>
                         )}
                         {selected === 'Foam Corner' && allFoam.length > 0 && (
@@ -630,7 +834,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         )}
                         {selected === 'Foam Corner' && allFoam.length === 0 && (
                             <div className="no-content-wrapper">
-                                <p>No foam corner jokes found{searchTerm ? ` for search term "${searchTerm}"` : ''}</p>
+                                <p>No foam corner jokes found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
                             </div>
                         )}
                         {selected === 'Tributes' && tributes.length > 0 && (
@@ -645,7 +849,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         )}
                         {selected === 'Tributes' && tributes.length === 0 && (
                             <div className="no-content-wrapper">
-                                <p>No tributes found{searchTerm ? ` for search term "${searchTerm}"` : ''}</p>
+                                <p>No tributes found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
                             </div>
                         )}
                     </div>
@@ -657,13 +861,15 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         <div className="modal-header">
                             <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />
                             <p>twittels</p>
-                            <button id="exit-btn" type="button" onClick={e => setSelectedImageIndex(null)}>&times;</button>
+                            <button type="button" id="exit-btn" onClick={e => setSelectedImageIndex(null)}>&times;</button>
                         </div>
                         <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
-                         {selectedImage.caption && (
-                            <p id="caption"><span>twittels</span> {selectedImage.caption}</p>
-                        )}
-                        <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
+                        <div className="sub-image-wrapper">
+                            {selectedImage.caption && (
+                                <p id="caption"><span>twittels</span> {selectedImage.caption}</p>
+                            )}
+                            <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
+                        </div>
                         <button type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>
                         <button type="button" disabled={!isNextIndex} onClick={e => setSelectedImageIndex(selectedImageIndex + 1)}><FiChevronRight className="chevron-right" /></button>
                     </div>

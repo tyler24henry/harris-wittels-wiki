@@ -133,6 +133,9 @@ const PodcastAppearancesStyles = styled.div`
                 }
                 p {
                     font-weight: 400;
+                    @media (max-width: 414px) {
+                        font-size: 1.1rem;
+                    }
                 }
             }
         }

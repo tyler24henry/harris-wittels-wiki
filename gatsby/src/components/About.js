@@ -5,7 +5,7 @@ import Img from 'gatsby-image';
 
 const TwittelsStyles = styled.div`
     .twittels-wrapper {
-        margin: 2rem auto 4rem auto;
+        margin: 0 auto 2rem auto;
         width: 600px;
         border: 1px solid #c4cfd7;
         @media (max-width: 414px) {
