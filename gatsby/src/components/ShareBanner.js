@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FacebookShareButton, TwitterShareButton, RedditShareButton, EmailShareButton, PocketShareButton } from 'react-share';
 import { FiTwitter, FiFacebook, FiMail, FiPocket } from 'react-icons/fi';
 import { ImReddit } from 'react-icons/im';
 import styled from 'styled-components';
+import { getIsChrome } from '../utils/detectBrowser';
 
 const ShareBannerStyles = styled.div`
     z-index: 9;
     position: sticky;
     left: 0;
     top: calc(100vh - 6rem);
-    width: ${props => props.homePage ? `calc(100% + 3.1px)` : `100%`};
+    width: ${props => props.homePage && props.isChrome ? `calc(100% + 3.1px)` : props.homePage && !props.isChrome ? `calc(100% + 1.5px)` :  `100%`};
+    opacity: ${props => props.showSocialShare ? '1' : '0'};
+    pointer-events: ${props => props.showSocialShare ? 'all' : 'none'};
     @media(max-width: 414px) {
         top: calc(100vh - 5rem);
-        width: ${props => props.homePage ? `calc(100% - 2px)` : `100%`};
+        width: ${props => props.homePage && props.isChrome ? `calc(100% + 2px)` : props.homePage && !props.isChrome ? `calc(100% + 0.4px)` :  `100%`};
     }
     .share-wrapper {
         display: grid;
@@ -42,6 +45,7 @@ const ShareBannerStyles = styled.div`
             width: 100%;
             height: 100%;
             border-radius: 0;
+            cursor: ${props => props.showSocialShare ? 'pointer' : 'default'};
         }
         #twitter {
             padding-top: 0.5rem;
@@ -62,9 +66,18 @@ const ShareBannerStyles = styled.div`
     }
 `;
 
-export const ShareBanner = ({ title, url, homePage, homePageDidMount }) => {
+export const ShareBanner = ({ title, url, homePage, showSocialShare }) => {
+    const [isChrome, setIsChrome] = useState(null);
+
+    useEffect(() => {
+        if(typeof window !== `undefined` && typeof navigator !== `undefined`){
+            const isChromeBrowser = getIsChrome() !== 2;
+            setIsChrome(isChromeBrowser);
+        }
+    }, []);
+
     return (
-        <ShareBannerStyles homePage={homePage} style={{ opacity: homePage && !homePageDidMount ? '0' : '1'}}>
+        <ShareBannerStyles homePage={homePage} showSocialShare={showSocialShare} isChrome={isChrome}>
             <div className="share-wrapper">
                 <div id="share">Share</div>
                 <TwitterShareButton

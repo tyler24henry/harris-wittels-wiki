@@ -5,6 +5,7 @@ import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 import { getIsChrome } from '../utils/detectBrowser';
 import { ShareBanner } from './ShareBanner';
+import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const HomeStyles = styled.div`
     .masonry-wrapper {
@@ -178,7 +179,7 @@ export const Home = ({ masonryItems }) => {
     const [upToIndex, setUpToIndex] = useState(25);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const [isChrome, setIsChrome] = useState(null);
-    const [didMount, setDidMount] = useState(false);
+    const { showSocialShare } = useShowSocialShare(showSocialShare);
 
     useEffect(() => {
         if(typeof window !== `undefined` && typeof navigator !== `undefined`){
@@ -265,19 +266,13 @@ export const Home = ({ masonryItems }) => {
         }
       }, [upToIndex, isChrome]);
 
-      useEffect(() => {
-        setTimeout(() => {
-            setDidMount(true);
-        }, 3000)
-      }, []);
-
       const masonryItemsSliced = isChrome ? [...masonryItems] : [...masonryItems].slice(0,upToIndex);
 
     return (
         <>
             <HomeStyles>
                 <div className="masonry-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
-                    <ShareBanner title="Harris Wittels Wiki" url="https://www.harriswittels.wiki/" homePage={true} homePageDidMount={didMount} />
+                    <ShareBanner title="Harris Wittels Wiki" url="https://www.harriswittels.wiki/" homePage={true} showSocialShare={showSocialShare} />
                     <div className={isChrome ? 'masonry-not-safari' : 'masonry'}>
                         {masonryItemsSliced.map(item => {
                             return (

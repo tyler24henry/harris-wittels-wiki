@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { AiFillCaretRight } from 'react-icons/ai';
 import { ShareBanner } from './ShareBanner';
+import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const TributesStyles = styled.div`
     .page-wrapper {
@@ -169,10 +170,11 @@ const TributesStyles = styled.div`
 
 export const Tributes = ({ siteImages, tributes }) => {
     const [tributesAvatar] = siteImages.filter(image => image.name === 'Tribute Avatar');
+    const { showSocialShare } = useShowSocialShare(showSocialShare);
     return (
         <TributesStyles>
             <div className="page-wrapper">
-                <ShareBanner title="Harris Wittels Wiki - Tributes to Harris" url="https://www.harriswittels.wiki/tributes" />
+                <ShareBanner title="Harris Wittels Wiki - Tributes to Harris" url="https://www.harriswittels.wiki/tributes" showSocialShare={showSocialShare} />
                 <div className="background-image-wrapper">
                     <img src="https://res.cloudinary.com/tyler24henry/image/upload/v1608259230/weloveyouharris_evmdk0.jpg" alt="Background banner" />
                 </div>

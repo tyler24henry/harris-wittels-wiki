@@ -8,6 +8,7 @@ import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
 import { FiChevronRight } from 'react-icons/fi';
 import { ShareBanner } from './ShareBanner';
+import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const TwittelsStyles = styled.div`
     .twittels-wrapper {
@@ -319,10 +320,11 @@ const TwittelsStyles = styled.div`
 
 export const Twitter = ({ tweets, harrisAvatar }) => {
     const tweetsByDate = sortByDate([...tweets]);
+    const { showSocialShare } = useShowSocialShare(showSocialShare);
     return (
         <TwittelsStyles>
             <div className="twittels-wrapper">
-                <ShareBanner title="Harris Wittels Wiki - Tweets by @twittels" url="https://www.harriswittels.wiki/twitter" />
+                <ShareBanner title="Harris Wittels Wiki - Tweets by @twittels" url="https://www.harriswittels.wiki/twitter" showSocialShare={showSocialShare} />
                 <div className="background-image"></div>
                 <div className="twitter-bio-wrapper">
                     <div className="avatar-following-grid">

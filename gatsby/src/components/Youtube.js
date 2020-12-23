@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import ReactPlayer from 'react-player/lazy';
 import smoothscroll from 'smoothscroll-polyfill';
 import { ShareBanner } from './ShareBanner';
+import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const BitsStyles = styled.div`
     .page-wrapper {
@@ -178,6 +179,7 @@ export const Youtube = ({ siteImages, bits }) => {
     const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
     const [bitsAvatar] = siteImages.filter(image => image.name === 'Bits Avatar');
     const [bitsBackground] = siteImages.filter(image => image.name === 'Bits Background');
+    const { showSocialShare } = useShowSocialShare(showSocialShare);
 
     useEffect(() => {
         smoothscroll.polyfill();
@@ -193,7 +195,7 @@ export const Youtube = ({ siteImages, bits }) => {
     return (
         <BitsStyles>
             <div className="page-wrapper">
-                <ShareBanner title="Harris Wittels Wiki - Youtube Videos" url="https://www.harriswittels.wiki/youtube" />
+                <ShareBanner title="Harris Wittels Wiki - Youtube Videos" url="https://www.harriswittels.wiki/youtube" showSocialShare={showSocialShare} />
                 <div className="background-image-wrapper">
                     <Img className="background-image" fluid={bitsBackground.image.asset.fluid} alt="Avatar" />
                 </div>

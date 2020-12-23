@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { sortByDate } from '../utils/dateHelpers';
 import { ShareBanner } from './ShareBanner';
+import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const ImagesStyles = styled.div`
     .images-page-wrapper {
@@ -330,6 +331,7 @@ const ImageModalWrapperStyles = styled.div`
 
 export const Instagram = ({ instagramAvatar, images }) => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+    const { showSocialShare } = useShowSocialShare(showSocialShare);
     let harrisImagesSorted = sortByDate([...images]);
     let selectedImage;
     if(images && selectedImageIndex !== null){
@@ -342,7 +344,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
         <>
             <ImagesStyles>
                 <div className="images-page-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
-                    <ShareBanner title="Harris Wittels Wiki - Instagram posts by @twittels" url="https://www.harriswittels.wiki/instagram" />
+                    <ShareBanner title="Harris Wittels Wiki - Instagram posts by @twittels" url="https://www.harriswittels.wiki/instagram" showSocialShare={showSocialShare} />
                     <div className="background-image"></div>
                     <div className="instagram-bio-wrapper">
                         <div className="avatar-following-grid">

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight } from 'react-icons/fi';
 import { ShareBanner } from './ShareBanner';
+import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const FoamCornerStyles = styled.div`
     .page-wrapper {
@@ -175,10 +176,11 @@ const FoamCornerStyles = styled.div`
 
 export const FoamCorner = ({ siteImages, allFoam }) => {
     const [foamAvatar] = siteImages.filter(image => image.name === 'Foam Corner Avatar');
+    const { showSocialShare } = useShowSocialShare(showSocialShare);
     return (
         <FoamCornerStyles>
             <div className="page-wrapper">
-                <ShareBanner title="Harris Wittels Wiki - Foam Corner" url="https://www.harriswittels.wiki/foam-corner" />
+                <ShareBanner title="Harris Wittels Wiki - Foam Corner" url="https://www.harriswittels.wiki/foam-corner" showSocialShare={showSocialShare} />
                 <div className="background-image-wrapper">
                     <p>Wheat Thins? Call me when they're Wheat THICKS? Gimme that wheat!</p>
                 </div>

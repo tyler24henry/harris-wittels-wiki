@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
 import { ShareBanner } from './ShareBanner';
+import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const PodcastAppearancesStyles = styled.div`
     .podcast-appearances-wrapper {
@@ -153,13 +154,14 @@ const PodcastAppearancesStyles = styled.div`
 
 export const PodcastAppearances = ({ siteImages, appearances }) => {
     const [podcastAvatar] = siteImages.filter(image => image.name === 'Harris Last Farts Ep');
+    const { showSocialShare } = useShowSocialShare(showSocialShare);
 
     const appearancesSorted = sortByDate([...appearances]);
 
     return (
         <PodcastAppearancesStyles>
             <div className="podcast-appearances-wrapper">
-                <ShareBanner title="Harris Wittels Wiki - Podcast Appearances" url="https://www.harriswittels.wiki/podcast-appearances" />
+                <ShareBanner title="Harris Wittels Wiki - Podcast Appearances" url="https://www.harriswittels.wiki/podcast-appearances" showSocialShare={showSocialShare} />
                 <div className="background-image"><img src="https://res.cloudinary.com/tyler24henry/image/upload/v1608143465/itsgooditsfunky_jofv73.jpg" alt="Podcast art" /></div>
                 <div className="page-into-wrapper">
                     <div className="avatar-following-grid">
