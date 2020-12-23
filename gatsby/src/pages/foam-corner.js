@@ -8,7 +8,7 @@ export default function FoamCornerPage({ data }) {
     const allFoam = data.allFoam.nodes;
     return (
         <>
-            <SEO />
+            <SEO title="Foam Corner" />
             <FoamCorner siteImages={siteImages} allFoam={allFoam} />
         </>
     )

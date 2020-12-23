@@ -8,7 +8,7 @@ export default function TributesPage({ data }) {
     const tributes = data.tributes.nodes;
     return (
         <>
-            <SEO />
+            <SEO title="Tributes" />
             <Tributes siteImages={siteImages} tributes={tributes} />
         </>
     )

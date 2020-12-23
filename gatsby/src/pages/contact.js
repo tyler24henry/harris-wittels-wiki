@@ -7,7 +7,7 @@ export default function ContactPage({ data }) {
     const [contactAvatar] = data.images.nodes.filter(image => image.name === 'Contact Avatar');
     return (
         <>
-            <SEO />
+            <SEO title="Contact" />
             <Contact contactAvatar={contactAvatar} />
         </>
     )

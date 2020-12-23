@@ -7,7 +7,7 @@ export default function HomePage({ data }) {
     const masonryItems = data.masonryItems.nodes;
     return (
         <>
-            <SEO />
+            <SEO title="Home" />
             <Home masonryItems={masonryItems} />
         </>
     )

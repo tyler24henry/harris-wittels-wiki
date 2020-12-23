@@ -49,7 +49,7 @@ export default function SearchPage({ data, location }) {
 
     return (
         <>
-            <SEO />
+            <SEO title="Search" />
             <Search siteImages={siteImages} appearances={appearances} tweets={tweets} harrisImages={harrisImages} bits={bits} allFoam={allFoam} tributes={tributes} searchTerm={searchTerm} />
         </>
     )

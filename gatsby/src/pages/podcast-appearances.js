@@ -8,7 +8,7 @@ export default function PodcastAppearancesPage({ data }) {
     const appearances = data.appearances.nodes;
     return (
         <>
-            <SEO />
+            <SEO title="Podcast Appearances" />
             <PodcastAppearances siteImages={siteImages} appearances={appearances} />
         </>
     )

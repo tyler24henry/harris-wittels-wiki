@@ -8,7 +8,7 @@ export default function YoutubePage({ data }) {
     const bits = data.bits.nodes;
     return (
         <>
-            <SEO />
+            <SEO title="Youtube" />
             <Youtube siteImages={siteImages} bits={bits} />
         </>
     )

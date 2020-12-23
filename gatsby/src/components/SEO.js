@@ -10,17 +10,18 @@ export default function SEO({ children, location, description, title, image }) {
         siteMetadata {
           title
           description
+          twitter
         }
       }
     }
   `);
 
   return (
-    <Helmet>
+    <Helmet titleTemplate={`%s - ${site.siteMetadata.title}`}>
       <html lang="en" />
-      <title>{site.siteMetadata.title}</title>
+      <title>{title}</title>
       {/* Fav Icons */}
-      <link rel="alternate icon" href="/favicon.png" />
+      <link rel="icon" href="/favicon.png" />
       {/* Meta Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta charSet="utf-8" />

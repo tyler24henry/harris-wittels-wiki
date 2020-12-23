@@ -12,7 +12,7 @@ var plugins = [{
       options: {"plugins":[],"trackingId":"UA-142485528-10","head":false,"anonymize":false,"respectDNT":false,"exclude":[],"pageTransitionDelay":0},
     },{
       plugin: require('/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/node_modules/gatsby-plugin-hotjar/gatsby-ssr'),
-      options: {"plugins":[],"includeInDevelopment":true,"id":2165761,"sv":6},
+      options: {"plugins":[],"includeInDevelopment":false,"id":2165761,"sv":6},
     },{
       plugin: require('/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/gatsby-ssr'),
       options: {"plugins":[]},

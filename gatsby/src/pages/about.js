@@ -7,7 +7,7 @@ export default function AboutPage({ data }) {
     const [tylerAvatar] = data.images.nodes.filter(image => image.name === 'Tyler Avatar');
     return (
         <>
-            <SEO />
+            <SEO title="About" />
             <About tylerAvatar={tylerAvatar} />
         </>
     )
