@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import { RightPanel } from './RightPanel';
 import GeneralContext from './GeneralContext';
-import { FiChevronRight } from 'react-icons/fi';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const LeftPanelStyles = styled.div`
     height: 100%;
@@ -29,6 +29,7 @@ const LeftPanelStyles = styled.div`
     .close-left-panel-btn {
         display: none;
         @media (max-width: 414px) {
+            display: block;
             color: var(--black);
             font-size: 1.2rem;
             letter-spacing: 0.1rem;
@@ -61,7 +62,7 @@ const LeftPanelStyles = styled.div`
       height: 90px;
       width: 175px;
       @media (max-width: 414px) {
-            width: 100vw;
+            width: calc(100vw - 24px);
         }
     }
     #chevron:before {
@@ -108,10 +109,7 @@ const LeftPanelStyles = styled.div`
             margin: 0;
             text-transform: uppercase;
         }
-        #first-name {
-            font-size: 1.8rem;
-        }
-        #last-name {
+        #first-name, #last-name {
             font-size: 1.8rem;
         }
     }
@@ -149,6 +147,13 @@ const LeftPanelStyles = styled.div`
             display: block;
         }
     }
+    .search-icon {
+        transform: scaleX(-1) translateY(2px);
+    }
+    #amp-times {
+        padding-left: 0.2rem;
+        padding-bottom: 0.2rem;
+    }
 `;
 
 export const LeftPanel = () => {
@@ -161,7 +166,7 @@ export const LeftPanel = () => {
             </div>
             <div id="chevron">hello</div>
             <div className="links">
-                <div className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}>Close panel</div>
+                <div className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}>Close panel <span id="amp-times">&times;</span></div>
                 <Link className="link" id="first-link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast appearances</Link>
                 <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Harris Tweets</Link>
                 <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Harris Instagram Posts</Link>
@@ -170,7 +175,7 @@ export const LeftPanel = () => {
                 <Link className="link" to="/tributes" onClick={e => setOpenLeftPanel(false)}>Tributes to Harris</Link>
                 <Link className="link" id="about" to="/about" onClick={e => setOpenLeftPanel(false)}>About</Link>
                 <Link className="link" id="contact" to="/contact" onClick={e => setOpenLeftPanel(false)}>Contact</Link>
-                <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search</Link>
+                <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search <AiOutlineSearch className="search-icon" /></Link>
             </div>
             <div className="wiki-wrapper">
                 <RightPanel />

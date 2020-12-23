@@ -170,8 +170,8 @@ export const TopNav = () => {
                     <Link className="link" to="/">Home</Link>
                     <Link className="link" to="/podcast-appearances">Podcasts</Link>
                     <Link className="link" to="/twitter">Tweets</Link>
-                    <Link className="link" to="/instagram">Instagram</Link>
-                    <Link className="link" to="/youtube">Youtube</Link>
+                    <Link className="link" to="/instagram">IG Posts</Link>
+                    <Link className="link" to="/youtube">Videos</Link>
                     <Link className="link" to="/foam-corner">Foam</Link>
                     <Link className="link" to="/tributes">Tributes</Link>
                     <Link className="link" to="/search">Search</Link>

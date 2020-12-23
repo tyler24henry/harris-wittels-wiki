@@ -77,6 +77,9 @@ const FoamCornerStyles = styled.div`
                     font-size: 1.3rem;
                 }
             }
+            #bold {
+                font-weight: 600;
+            }
         }
         .foam-nav {
             margin-top: 2rem;
@@ -186,7 +189,8 @@ export const Contact = ({ contactAvatar }) => {
                     <div id="name-wrapper">
                         <h2>Contact</h2>
                     </div>
-                    <p id="bio">Use the form below to send a message. Thanks, Tyler Henry.</p>
+                    <p id="bio">Hey, this is Tyler Henry. I'd love feedback on the website, I'm sure it's not working well on every browser and device out there. Also, if you have anything to add to the site (pictures, foam corner jokes, podcast appearances, etc.) let me know and I'll add it! Thanks, Tyler Henry.</p>
+                    <p id="bio"><span id="bold">*** Be sure to fill out the entire form</span> (if you're feeling lazy just put a period or number in there, doesn't matter...).</p>
                 </div>
                 <div className="foam-nav">
                     <div className="foam">
@@ -208,7 +212,7 @@ export const Contact = ({ contactAvatar }) => {
                     {success && (
                         <>
                             <div className="contact-form">
-                                <p>Your message has been sent.  Thanks for reaching out!  I'll get back to you as soon as I can. - Tyler Henry</p>
+                                <p>Your message has been sent. Thanks for reaching out! I'll get back to you as soon as I can. - Tyler Henry</p>
                             </div>
                         </>
                     )}
