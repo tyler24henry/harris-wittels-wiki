@@ -2,22 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
-import { ShareBanner } from './ShareBanner';
-import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const PodcastAppearancesStyles = styled.div`
     .podcast-appearances-wrapper {
-        position: relative;
-        margin: -5rem auto 2rem auto;
+        margin: 0 auto 2rem auto;
         width: 600px;
+        border: 1px solid #c4cfd7;
         @media (max-width: 414px) {
             width: 100%;
         }
         .background-image {
-            width: calc(100% - 2px);
+            width: 100%;
             height: 200px;
-            border: 1px solid #c4cfd7;
-            border-bottom: none;
             @media (max-width: 414px) {
                 height: 150px;
                 overflow: hidden;
@@ -35,9 +31,6 @@ const PodcastAppearancesStyles = styled.div`
         }
         .page-into-wrapper {
             padding: 0 1.5rem;
-            border: 1px solid #c4cfd7;
-            border-bottom: none;
-            border-top: none;
             .avatar-following-grid {
                 display: grid;
                 grid-template-columns: auto 1fr;
@@ -97,9 +90,6 @@ const PodcastAppearancesStyles = styled.div`
         }
         .list-of-appearances-wrapper {
             padding-top: 4rem;
-            padding-bottom: 6.5rem;
-            border: 1px solid #c4cfd7;
-            border-top: none;
             @media (max-width: 414px) {
                 margin-top: 3.2rem;
             }
@@ -154,14 +144,12 @@ const PodcastAppearancesStyles = styled.div`
 
 export const PodcastAppearances = ({ siteImages, appearances }) => {
     const [podcastAvatar] = siteImages.filter(image => image.name === 'Harris Last Farts Ep');
-    const { showSocialShare } = useShowSocialShare(showSocialShare);
 
     const appearancesSorted = sortByDate([...appearances]);
 
     return (
         <PodcastAppearancesStyles>
             <div className="podcast-appearances-wrapper">
-                <ShareBanner title="Harris Wittels Wiki - Podcast Appearances" url="https://www.harriswittels.wiki/podcast-appearances" showSocialShare={showSocialShare} />
                 <div className="background-image"><img src="https://res.cloudinary.com/tyler24henry/image/upload/v1608143465/itsgooditsfunky_jofv73.jpg" alt="Podcast art" /></div>
                 <div className="page-into-wrapper">
                     <div className="avatar-following-grid">

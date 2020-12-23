@@ -3,32 +3,25 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { sortByDate } from '../utils/dateHelpers';
-import { ShareBanner } from './ShareBanner';
-import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const ImagesStyles = styled.div`
     .images-page-wrapper {
-        position: relative;
-        margin: -5rem auto 2rem auto;
+        margin: 0 auto 2rem auto;
         width: 600px;
+        border: 1px solid #c4cfd7;
         @media (max-width: 414px) {
             width: 100%;
         }
         .background-image {
             background-color: #833AB4;
-            width: calc(100% - 2px);
+            width: 100%;
             height: 200px;
-            border: 1px solid #c4cfd7;
-            border-bottom: none;
             @media (max-width: 414px) {
                 height: 150px;
             }
         }
         .instagram-bio-wrapper {
             padding: 0 1.5rem;
-            border: 1px solid #c4cfd7;
-            border-bottom: none;
-            border-top: none;
             .avatar-following-grid {
                 display: grid;
                 grid-template-columns: auto 1fr;
@@ -118,8 +111,6 @@ const ImagesStyles = styled.div`
             display: grid;
             grid-template-columns: auto 1fr;
             align-items: center;
-            border: 1px solid #c4cfd7;
-            border-top: none;
             .posts {
                 width: 138px;
                 height: 45px;
@@ -165,14 +156,11 @@ const ImagesStyles = styled.div`
         }
         .images-wrapper {
             padding: 2rem;
-            padding-bottom: 6.5rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
             align-items: center;
             justify-items: center;
-            border: 1px solid #c4cfd7;
-            border-top: none;
             @media (max-width: 414px) {
                 padding: 1.5rem;
                 gap: 1.5rem;
@@ -331,7 +319,6 @@ const ImageModalWrapperStyles = styled.div`
 
 export const Instagram = ({ instagramAvatar, images }) => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
-    const { showSocialShare } = useShowSocialShare(showSocialShare);
     let harrisImagesSorted = sortByDate([...images]);
     let selectedImage;
     if(images && selectedImageIndex !== null){
@@ -344,7 +331,6 @@ export const Instagram = ({ instagramAvatar, images }) => {
         <>
             <ImagesStyles>
                 <div className="images-page-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
-                    <ShareBanner title="Harris Wittels Wiki - Instagram posts by @twittels" url="https://www.harriswittels.wiki/instagram" showSocialShare={showSocialShare} />
                     <div className="background-image"></div>
                     <div className="instagram-bio-wrapper">
                         <div className="avatar-following-grid">

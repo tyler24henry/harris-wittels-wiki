@@ -4,13 +4,10 @@ import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 import { getIsChrome } from '../utils/detectBrowser';
-import { ShareBanner } from './ShareBanner';
-import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const HomeStyles = styled.div`
     .masonry-wrapper {
-        position: relative;
-        margin: -5rem auto 2rem auto;
+        margin: 0 auto 2rem auto;
         width: 600px;
         @media (max-width: 414px) {
             width: calc(100vw - 4rem);
@@ -179,7 +176,6 @@ export const Home = ({ masonryItems }) => {
     const [upToIndex, setUpToIndex] = useState(25);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const [isChrome, setIsChrome] = useState(null);
-    const { showSocialShare } = useShowSocialShare(showSocialShare);
 
     useEffect(() => {
         if(typeof window !== `undefined` && typeof navigator !== `undefined`){
@@ -272,7 +268,6 @@ export const Home = ({ masonryItems }) => {
         <>
             <HomeStyles>
                 <div className="masonry-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
-                    <ShareBanner title="Harris Wittels Wiki" url="https://www.harriswittels.wiki/" homePage={true} showSocialShare={showSocialShare} />
                     <div className={isChrome ? 'masonry-not-safari' : 'masonry'}>
                         {masonryItemsSliced.map(item => {
                             return (

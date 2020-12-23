@@ -2,26 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { AiFillCaretRight } from 'react-icons/ai';
-import { ShareBanner } from './ShareBanner';
-import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const TributesStyles = styled.div`
     .page-wrapper {
-        position: relative;
-        margin: -5rem auto 2rem auto;
+        margin: 0 auto 2rem auto;
         width: 600px;
+        border: 1px solid #c4cfd7;
         @media (max-width: 414px) {
             width: 100%;
         }
         .background-image-wrapper {
-            width: calc(100% - 2px);
+            width: 100%;
             height: 200px;
             display: grid;
             grid-template-columns: 1fr;
             justify-items: center;
             align-items: center;
-            border: 1px solid #c4cfd7;
-            border-bottom: none;
             @media (max-width: 414px) {
                 height: 150px;
             }
@@ -37,9 +33,6 @@ const TributesStyles = styled.div`
         }
         .foam-corner-wrapper {
             padding: 0 1.5rem;
-            border: 1px solid #c4cfd7;
-            border-bottom: none;
-            border-top: none;
             .avatar-following-grid {
                 display: grid;
                 grid-template-columns: auto 1fr;
@@ -105,8 +98,6 @@ const TributesStyles = styled.div`
         }
         .foam-nav {
             padding-top: 2rem;
-            border: 1px solid #c4cfd7;
-            border-top: none;
             @media (max-width: 414px) {
                 padding-top: 3.5rem;
             }
@@ -133,10 +124,6 @@ const TributesStyles = styled.div`
             }
         }
         .tributes {
-            border: 1px solid #c4cfd7;
-            border-bottom: none;
-            border-top: none;
-            padding-bottom: 5rem;
             .tribute {
                 padding: 1.2rem 1.5rem;
                 border-top: 1px solid #c4cfd7;
@@ -170,11 +157,9 @@ const TributesStyles = styled.div`
 
 export const Tributes = ({ siteImages, tributes }) => {
     const [tributesAvatar] = siteImages.filter(image => image.name === 'Tribute Avatar');
-    const { showSocialShare } = useShowSocialShare(showSocialShare);
     return (
         <TributesStyles>
             <div className="page-wrapper">
-                <ShareBanner title="Harris Wittels Wiki - Tributes to Harris" url="https://www.harriswittels.wiki/tributes" showSocialShare={showSocialShare} />
                 <div className="background-image-wrapper">
                     <img src="https://res.cloudinary.com/tyler24henry/image/upload/v1608259230/weloveyouharris_evmdk0.jpg" alt="Background banner" />
                 </div>

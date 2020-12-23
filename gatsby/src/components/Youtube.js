@@ -3,27 +3,23 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import ReactPlayer from 'react-player/lazy';
 import smoothscroll from 'smoothscroll-polyfill';
-import { ShareBanner } from './ShareBanner';
-import { useShowSocialShare } from '../utils/useShowSocialShare';
 
 const BitsStyles = styled.div`
     .page-wrapper {
-        position: relative;
-        margin: -5rem auto 2rem auto;
+        margin: 0 auto 2rem auto;
         width: 600px;
+        border: 1px solid #c4cfd7;
         @media (max-width: 414px) {
             width: 100%;
         }
         .background-image-wrapper {
-            width: calc(100% - 2px);
+            width: 100%;
             height: 200px;
             display: grid;
             grid-template-columns: 1fr;
             justify-items: center;
             align-items: center;
             overflow: hidden;
-            border: 1px solid #c4cfd7;
-            border-bottom: none;
             @media (max-width: 414px) {
                 height: 150px;
             }
@@ -38,8 +34,6 @@ const BitsStyles = styled.div`
         }
         .foam-corner-wrapper {
             padding: 0 1.5rem 4rem 1.5rem;
-            border: 1px solid #c4cfd7;
-            border-top: none;
             .avatar-following-grid {
                 display: grid;
                 grid-template-columns: auto 1fr;
@@ -103,9 +97,6 @@ const BitsStyles = styled.div`
             }
         }
         .bits-wrapper {
-            border: 1px solid #c4cfd7;
-            border-top: none;
-            padding-bottom: 5rem;
             .now-playing-wrapper {
                 padding-top: 2rem;
                 p {
@@ -179,7 +170,6 @@ export const Youtube = ({ siteImages, bits }) => {
     const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
     const [bitsAvatar] = siteImages.filter(image => image.name === 'Bits Avatar');
     const [bitsBackground] = siteImages.filter(image => image.name === 'Bits Background');
-    const { showSocialShare } = useShowSocialShare(showSocialShare);
 
     useEffect(() => {
         smoothscroll.polyfill();
@@ -195,7 +185,6 @@ export const Youtube = ({ siteImages, bits }) => {
     return (
         <BitsStyles>
             <div className="page-wrapper">
-                <ShareBanner title="Harris Wittels Wiki - Youtube Videos" url="https://www.harriswittels.wiki/youtube" showSocialShare={showSocialShare} />
                 <div className="background-image-wrapper">
                     <Img className="background-image" fluid={bitsBackground.image.asset.fluid} alt="Avatar" />
                 </div>
