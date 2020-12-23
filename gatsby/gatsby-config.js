@@ -32,10 +32,16 @@ export default {
       {
         resolve: `gatsby-plugin-hotjar`,
         options: {
-          includeInDevelopment: true, // optional parameter to include script in development
+          includeInDevelopment: false, // optional parameter to include script in development
           id: 2165761,
           sv: 6,
         },
+      },
+      {
+        resolve: `gatsby-plugin-disqus`,
+        options: {
+          shortname: `harris-wittels-wiki`
+        }
       },
     ],
   };

@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { sortByDate } from '../utils/dateHelpers';
 import { useClickOutside } from '../utils/useClickOutside';
+import { Disqus } from 'gatsby-plugin-disqus';
 
 const ImagesStyles = styled.div`
     .images-page-wrapper {
@@ -350,6 +351,12 @@ export const Instagram = ({ instagramAvatar, images }) => {
     const isPrevIndex = selectedImageIndex > 0;
     const isNextIndex = selectedImageIndex + 1 < images.length;
 
+    let disqusConfig = {
+        url: `https://www.harriswittels.wiki/instagram`,
+        identifier: 'harrisWittelsWikiInstagramPage',
+        title: 'Instagram Posts',
+    }
+
     return (
         <>
             <ImagesStyles>
@@ -402,6 +409,9 @@ export const Instagram = ({ instagramAvatar, images }) => {
                             )
                         })}
                     </div>
+                </div>
+                <div className="disqus-wrapper">
+                    <Disqus config={disqusConfig} />
                 </div>
             </ImagesStyles>
             {selectedImageIndex !== null && (

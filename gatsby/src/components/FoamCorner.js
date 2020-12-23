@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight } from 'react-icons/fi';
+import { Disqus } from 'gatsby-plugin-disqus';
 
 const FoamCornerStyles = styled.div`
     .page-wrapper {
@@ -164,6 +165,13 @@ const FoamCornerStyles = styled.div`
 
 export const FoamCorner = ({ siteImages, allFoam }) => {
     const [foamAvatar] = siteImages.filter(image => image.name === 'Foam Corner Avatar');
+
+    let disqusConfig = {
+        url: `https://www.harriswittels.wiki/foam-corner`,
+        identifier: 'harrisWittelsWikiFoamCornerPage',
+        title: 'Foam Corner',
+    }
+
     return (
         <FoamCornerStyles>
             <div className="page-wrapper">
@@ -195,6 +203,9 @@ export const FoamCorner = ({ siteImages, allFoam }) => {
                         <p className="foam-joke" id={index === 0 ? 'first-foam' : ''}>{foam.content}</p>
                     ))}
                 </div>
+            </div>
+            <div className="disqus-wrapper">
+                <Disqus config={disqusConfig} />
             </div>
         </FoamCornerStyles>
     )

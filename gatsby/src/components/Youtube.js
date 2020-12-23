@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import ReactPlayer from 'react-player/lazy';
 import smoothscroll from 'smoothscroll-polyfill';
+import { Disqus } from 'gatsby-plugin-disqus';
 
 const BitsStyles = styled.div`
     .page-wrapper {
@@ -182,6 +183,12 @@ export const Youtube = ({ siteImages, bits }) => {
         document.querySelector('#bio').scrollIntoView({ behavior: 'smooth' });
     }
 
+    let disqusConfig = {
+        url: `https://www.harriswittels.wiki/youtube`,
+        identifier: 'harrisWittelsWikiYoutubePage',
+        title: 'Videos',
+    }
+
     return (
         <BitsStyles>
             <div className="page-wrapper">
@@ -223,6 +230,9 @@ export const Youtube = ({ siteImages, bits }) => {
                         })}
                     </div>
                 </div>
+            </div>
+            <div className="disqus-wrapper">
+                <Disqus config={disqusConfig} />
             </div>
         </BitsStyles>
     )

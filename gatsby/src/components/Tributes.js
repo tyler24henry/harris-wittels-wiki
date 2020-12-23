@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { AiFillCaretRight } from 'react-icons/ai';
+import { Disqus } from 'gatsby-plugin-disqus';
 
 const TributesStyles = styled.div`
     .page-wrapper {
@@ -157,6 +158,12 @@ const TributesStyles = styled.div`
 
 export const Tributes = ({ siteImages, tributes }) => {
     const [tributesAvatar] = siteImages.filter(image => image.name === 'Tribute Avatar');
+
+    let disqusConfig = {
+        url: `https://www.harriswittels.wiki/tributes`,
+        identifier: 'harrisWittelsWikiTributesPage',
+        title: 'Tributes',
+    }
     return (
         <TributesStyles>
             <div className="page-wrapper">
@@ -190,6 +197,9 @@ export const Tributes = ({ siteImages, tributes }) => {
                         </div>
                     ))}
                 </div>
+            </div>
+            <div className="disqus-wrapper">
+                <Disqus config={disqusConfig} />
             </div>
         </TributesStyles>
     )

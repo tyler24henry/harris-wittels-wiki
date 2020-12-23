@@ -5,6 +5,7 @@ import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 import { getIsChrome } from '../utils/detectBrowser';
 import { useClickOutside } from '../utils/useClickOutside';
+import { Disqus } from 'gatsby-plugin-disqus';
 
 const HomeStyles = styled.div`
     .masonry-wrapper {
@@ -78,6 +79,17 @@ const HomeStyles = styled.div`
         .masonry-content {
             width: 100%;
         }
+    }
+    #show {
+        display: block;
+    }
+    #hide {
+        display: none;
+        opacity: 0;
+        pointer-events: none;
+        z-index: -9999;
+        position: absolute;
+        top: -9999px;
     }
 `;
 
@@ -273,6 +285,12 @@ export const Home = ({ masonryItems }) => {
 
       const masonryItemsSliced = isChrome ? [...masonryItems] : [...masonryItems].slice(0,upToIndex);
 
+    let disqusConfig = {
+        url: `https://www.harriswittels.wiki/`,
+        identifier: 'harrisWittelsWikiHomePage',
+        title: 'Harris Wittels Wiki',
+    }
+
     return (
         <>
             <HomeStyles>
@@ -299,6 +317,9 @@ export const Home = ({ masonryItems }) => {
                             )
                         })}
                     </div>
+                </div>
+                <div className="disqus-wrapper" id={(upToIndex >= masonryItems.length || isChrome) ? 'show' : 'hide'}>
+                    <Disqus config={disqusConfig} />
                 </div>
             </HomeStyles>
             {selectedImageIndex !== null && (

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
+import { Disqus } from 'gatsby-plugin-disqus';
 
 const PodcastAppearancesStyles = styled.div`
     .podcast-appearances-wrapper {
@@ -147,6 +148,12 @@ export const PodcastAppearances = ({ siteImages, appearances }) => {
 
     const appearancesSorted = sortByDate([...appearances]);
 
+    let disqusConfig = {
+        url: `https://www.harriswittels.wiki/podcast-appearances`,
+        identifier: 'harrisWittelsWikiPodcastAppearancesPage',
+        title: 'Podcast Appearances',
+    }
+
     return (
         <PodcastAppearancesStyles>
             <div className="podcast-appearances-wrapper">
@@ -180,6 +187,9 @@ export const PodcastAppearances = ({ siteImages, appearances }) => {
                         )
                     })}
                 </div>
+            </div>
+            <div className="disqus-wrapper">
+                <Disqus config={disqusConfig} />
             </div>
         </PodcastAppearancesStyles>
     )

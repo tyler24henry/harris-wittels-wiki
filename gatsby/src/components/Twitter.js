@@ -7,6 +7,7 @@ import ReactPlayer from 'react-player/lazy';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
 import { FiChevronRight } from 'react-icons/fi';
+import { Disqus } from 'gatsby-plugin-disqus';
 
 const TwittelsStyles = styled.div`
     .twittels-wrapper {
@@ -309,6 +310,12 @@ const TwittelsStyles = styled.div`
 
 export const Twitter = ({ tweets, harrisAvatar }) => {
     const tweetsByDate = sortByDate([...tweets]);
+
+    let disqusConfig = {
+        url: `https://www.harriswittels.wiki/twitter`,
+        identifier: 'harrisWittelsWikiTwitterPage',
+        title: '@twittels Tweets',
+    }
     return (
         <TwittelsStyles>
             <div className="twittels-wrapper">
@@ -387,6 +394,9 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
                         )
                     })}
                 </div>
+            </div>
+            <div className="disqus-wrapper">
+                <Disqus config={disqusConfig} />
             </div>
         </TwittelsStyles>
     )

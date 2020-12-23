@@ -60,6 +60,14 @@ const GlobalStyles = createGlobalStyle`
     max-width: 100%;
   }
 
+  .disqus-wrapper {
+    width: 600px;
+    margin: 0 auto;
+    @media (max-width: 414px) {
+        width: 100%;
+    }
+  }
+
 `;
 
 export default GlobalStyles;
