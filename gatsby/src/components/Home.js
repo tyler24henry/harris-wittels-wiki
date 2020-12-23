@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 import { getIsChrome } from '../utils/detectBrowser';
+import { useClickOutside } from '../utils/useClickOutside';
 
 const HomeStyles = styled.div`
     .masonry-wrapper {
@@ -176,6 +177,14 @@ export const Home = ({ masonryItems }) => {
     const [upToIndex, setUpToIndex] = useState(25);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const [isChrome, setIsChrome] = useState(null);
+    const wrapperRef = useRef(null);
+    const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
+
+    useEffect(() => {
+        if(clickedOutside){
+            setSelectedImageIndex(null);
+        }
+    }, [clickedOutside]);
 
     useEffect(() => {
         if(typeof window !== `undefined` && typeof navigator !== `undefined`){
@@ -275,6 +284,7 @@ export const Home = ({ masonryItems }) => {
                                     {!item.quote && (
                                         <div className="masonry-content" id="image-wrapper"
                                             onClick={e => {
+                                                setClickedOutside(false);
                                                 const index = [...imagesOnly].findIndex(image => image.id === item.id);
                                                 setSelectedImageIndex(index);
                                             }}
@@ -293,9 +303,9 @@ export const Home = ({ masonryItems }) => {
             </HomeStyles>
             {selectedImageIndex !== null && (
                 <ImageModalWrapperStyles>
-                    <div className="modal">
+                    <div className="modal" ref={wrapperRef}>
                         <div className="modal-header">
-                            <button id="exit-btn" type="button" onClick={e => setSelectedImageIndex(null)}>&times;</button>
+                            <button id="exit-btn" type="button">&times;</button>
                         </div>
                         <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
                         <button type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>

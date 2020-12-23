@@ -11,6 +11,7 @@ import smoothscroll from 'smoothscroll-polyfill';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from "@reach/router";
 import { slugify } from '../utils/slugify';
+import { useClickOutside } from '../utils/useClickOutside';
 
 const PodcastAppearancesStyles = styled.div`
     .podcast-appearances-wrapper {
@@ -632,6 +633,14 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
     const [search, setSearch] = useState('');
     const searchRef = useRef(null);
     const navigate = useNavigate();
+    const wrapperRef = useRef(null);
+    const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
+
+    useEffect(() => {
+        if(clickedOutside){
+            setSelectedImageIndex(null);
+        }
+    }, [clickedOutside]);
 
     const totalNumberResults = appearances.length + tweets.length + harrisImages.length + bits.length + allFoam.length + tributes.length;
 
@@ -790,7 +799,12 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                             <div className="images-wrapper">
                                 {harrisImagesSorted.map((harrisImage, index) => {
                                     return (
-                                        <div className="image-wrapper" key={harrisImage.id} onClick={e => setSelectedImageIndex(index)}>
+                                        <div className="image-wrapper" key={harrisImage.id}
+                                             onClick={e => {
+                                                setClickedOutside(false);
+                                                setSelectedImageIndex(index);
+                                            }}
+                                        >
                                             <Img className="image" fluid={harrisImage.image.asset.fluid} alt="From Instagram" />
                                         </div>
                                     )
@@ -868,7 +882,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
             </PodcastAppearancesStyles>
             {selectedImageIndex !== null && (
                 <ImageModalWrapperStyles>
-                    <div className="modal">
+                    <div className="modal" ref={wrapperRef}>
                         <div className="modal-header">
                             <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />
                             <p>twittels</p>

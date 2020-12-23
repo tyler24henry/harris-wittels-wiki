@@ -29,7 +29,10 @@ const LeftPanelStyles = styled.div`
     .close-left-panel-btn {
         display: none;
         @media (max-width: 414px) {
-            display: block;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.5rem;
+            align-items: center;
             color: var(--black);
             font-size: 1.2rem;
             letter-spacing: 0.1rem;
@@ -150,10 +153,6 @@ const LeftPanelStyles = styled.div`
     .search-icon {
         transform: scaleX(-1) translateY(2px);
     }
-    #amp-times {
-        padding-left: 0.2rem;
-        padding-bottom: 0.2rem;
-    }
 `;
 
 export const LeftPanel = () => {
@@ -166,8 +165,9 @@ export const LeftPanel = () => {
             </div>
             <div id="chevron">hello</div>
             <div className="links">
-                <div className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}>Close panel <span id="amp-times">&times;</span></div>
-                <Link className="link" id="first-link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast appearances</Link>
+                <div className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}><span>Close panel</span> <span>&times;</span></div>
+                <Link className="link" id="first-link" to="/" onClick={e => setOpenLeftPanel(false)}>Home</Link>
+                <Link className="link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast appearances</Link>
                 <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Harris Tweets</Link>
                 <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Harris Instagram Posts</Link>
                 <Link className="link" to="/youtube" onClick={e => setOpenLeftPanel(false)}>Harris on Youtube</Link>

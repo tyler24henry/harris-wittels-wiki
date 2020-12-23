@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { sortByDate } from '../utils/dateHelpers';
+import { useClickOutside } from '../utils/useClickOutside';
 
 const ImagesStyles = styled.div`
     .images-page-wrapper {
@@ -332,6 +333,15 @@ const ImageModalWrapperStyles = styled.div`
 
 export const Instagram = ({ instagramAvatar, images }) => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+    const wrapperRef = useRef(null);
+    const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
+
+    useEffect(() => {
+        if(clickedOutside){
+            setSelectedImageIndex(null);
+        }
+    }, [clickedOutside]);
+    
     let harrisImagesSorted = sortByDate([...images]);
     let selectedImage;
     if(images && selectedImageIndex !== null){
@@ -381,7 +391,12 @@ export const Instagram = ({ instagramAvatar, images }) => {
                     <div className="images-wrapper">
                         {harrisImagesSorted.map((harrisImage, index) => {
                             return (
-                                <div className="image-wrapper" key={harrisImage.id} onClick={e => setSelectedImageIndex(index)}>
+                                <div className="image-wrapper" key={harrisImage.id}
+                                    onClick={e => {
+                                        setClickedOutside(false);
+                                        setSelectedImageIndex(index);
+                                    }}
+                                >
                                     <Img className="image" fluid={harrisImage.image.asset.fluid} alt="From Instagram" />
                                 </div>
                             )
@@ -391,7 +406,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
             </ImagesStyles>
             {selectedImageIndex !== null && (
                 <ImageModalWrapperStyles>
-                    <div className="modal">
+                    <div className="modal" ref={wrapperRef}>
                         <div className="modal-header">
                             <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />
                             <p>twittels</p>
