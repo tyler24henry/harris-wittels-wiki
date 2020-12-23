@@ -133,7 +133,7 @@ const LeftPanelStyles = styled.div`
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 5;
+    z-index: 15;
     height: 100%;
     width: 300px;
     overflow-y: scroll;

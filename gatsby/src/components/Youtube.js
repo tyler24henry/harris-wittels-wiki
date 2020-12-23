@@ -3,23 +3,26 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import ReactPlayer from 'react-player/lazy';
 import smoothscroll from 'smoothscroll-polyfill';
+import { ShareBanner } from './ShareBanner';
 
 const BitsStyles = styled.div`
     .page-wrapper {
-        margin: 0 auto 2rem auto;
+        position: relative;
+        margin: -5rem auto 2rem auto;
         width: 600px;
-        border: 1px solid #c4cfd7;
         @media (max-width: 414px) {
             width: 100%;
         }
         .background-image-wrapper {
-            width: 100%;
+            width: calc(100% - 2px);
             height: 200px;
             display: grid;
             grid-template-columns: 1fr;
             justify-items: center;
             align-items: center;
             overflow: hidden;
+            border: 1px solid #c4cfd7;
+            border-bottom: none;
             @media (max-width: 414px) {
                 height: 150px;
             }
@@ -34,7 +37,8 @@ const BitsStyles = styled.div`
         }
         .foam-corner-wrapper {
             padding: 0 1.5rem 4rem 1.5rem;
-            border-bottom: 1px solid #c4cfd7;
+            border: 1px solid #c4cfd7;
+            border-top: none;
             .avatar-following-grid {
                 display: grid;
                 grid-template-columns: auto 1fr;
@@ -98,8 +102,11 @@ const BitsStyles = styled.div`
             }
         }
         .bits-wrapper {
+            border: 1px solid #c4cfd7;
+            border-top: none;
+            padding-bottom: 5rem;
             .now-playing-wrapper {
-                margin-top: 2rem;
+                padding-top: 2rem;
                 p {
                     padding: 1rem 3rem 1rem 3rem;
                     color: var(--black);
@@ -186,6 +193,7 @@ export const Youtube = ({ siteImages, bits }) => {
     return (
         <BitsStyles>
             <div className="page-wrapper">
+                <ShareBanner title="Harris Wittels Wiki - Youtube Videos" url="https://www.harriswittels.wiki/youtube" />
                 <div className="background-image-wrapper">
                     <Img className="background-image" fluid={bitsBackground.image.asset.fluid} alt="Avatar" />
                 </div>

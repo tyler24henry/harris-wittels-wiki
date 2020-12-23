@@ -2,17 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight } from 'react-icons/fi';
+import { ShareBanner } from './ShareBanner';
 
 const FoamCornerStyles = styled.div`
     .page-wrapper {
-        margin: 0 auto 2rem auto;
+        position: relative;
+        margin: -5rem auto 2rem auto;
         width: 600px;
-        border: 1px solid #c4cfd7;
         @media (max-width: 414px) {
             width: 100%;
         }
         .background-image-wrapper {
-            width: calc(100% - 6rem);
+            width: calc(100% - 6.2rem);
             height: calc(200px - 6rem);
             padding: 3rem;
             background-color: #25231d;
@@ -21,6 +22,8 @@ const FoamCornerStyles = styled.div`
             justify-items: center;
             align-items: center;
             text-align: center;
+            border: 1px solid #c4cfd7;
+            border-bottom: none;
             @media (max-width: 414px) {
                 height: calc(150px - 6rem);
             }
@@ -36,6 +39,9 @@ const FoamCornerStyles = styled.div`
         }
         .foam-corner-wrapper {
             padding: 0 1.5rem;
+            border: 1px solid #c4cfd7;
+            border-bottom: none;
+            border-top: none;
             .avatar-following-grid {
                 display: grid;
                 grid-template-columns: auto 1fr;
@@ -94,11 +100,14 @@ const FoamCornerStyles = styled.div`
             }
         }
         .foam-nav {
-            margin-top: 2rem;
+            padding-top: 2rem;
             border-bottom: 1px solid #c4cfd7;
             display: grid;
             grid-template-columns: auto 1fr;
             align-items: center;
+            border: 1px solid #c4cfd7;
+            border-top: none;
+            border-bottom: none;
             .foam {
                 width: 138px;
                 height: 45px;
@@ -143,6 +152,8 @@ const FoamCornerStyles = styled.div`
             }
         }
         .foam-jokes {
+            border: 1px solid #c4cfd7;
+            padding-bottom: 6.5rem;
             .foam-joke {
                 padding: 1.2rem 1.5rem;
                 border-top: 1px solid #c4cfd7;
@@ -167,6 +178,7 @@ export const FoamCorner = ({ siteImages, allFoam }) => {
     return (
         <FoamCornerStyles>
             <div className="page-wrapper">
+                <ShareBanner title="Harris Wittels Wiki - Foam Corner" url="https://www.harriswittels.wiki/foam-corner" />
                 <div className="background-image-wrapper">
                     <p>Wheat Thins? Call me when they're Wheat THICKS? Gimme that wheat!</p>
                 </div>

@@ -4,10 +4,12 @@ import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 import { getIsChrome } from '../utils/detectBrowser';
+import { ShareBanner } from './ShareBanner';
 
 const HomeStyles = styled.div`
     .masonry-wrapper {
-        margin: 0 auto 2rem auto;
+        position: relative;
+        margin: -5rem auto 2rem auto;
         width: 600px;
         @media (max-width: 414px) {
             width: calc(100vw - 4rem);
@@ -176,6 +178,7 @@ export const Home = ({ masonryItems }) => {
     const [upToIndex, setUpToIndex] = useState(25);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const [isChrome, setIsChrome] = useState(null);
+    const [didMount, setDidMount] = useState(false);
 
     useEffect(() => {
         if(typeof window !== `undefined` && typeof navigator !== `undefined`){
@@ -214,7 +217,6 @@ export const Home = ({ masonryItems }) => {
 
       useEffect(() => {
         if(typeof window !== `undefined` && isChrome === false) {
-            console.log('running');
             function resizeMasonryItem(item){
                 /* Get the grid object, its row-gap, and the size of its implicit rows */
                 var grid = document.getElementsByClassName('masonry')[0],
@@ -263,12 +265,19 @@ export const Home = ({ masonryItems }) => {
         }
       }, [upToIndex, isChrome]);
 
+      useEffect(() => {
+        setTimeout(() => {
+            setDidMount(true);
+        }, 3000)
+      }, []);
+
       const masonryItemsSliced = isChrome ? [...masonryItems] : [...masonryItems].slice(0,upToIndex);
 
     return (
         <>
             <HomeStyles>
                 <div className="masonry-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
+                    <ShareBanner title="Harris Wittels Wiki" url="https://www.harriswittels.wiki/" homePage={true} homePageDidMount={didMount} />
                     <div className={isChrome ? 'masonry-not-safari' : 'masonry'}>
                         {masonryItemsSliced.map(item => {
                             return (
