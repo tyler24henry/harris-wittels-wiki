@@ -305,7 +305,7 @@ export const Home = ({ masonryItems }) => {
                 <ImageModalWrapperStyles>
                     <div className="modal" ref={wrapperRef}>
                         <div className="modal-header">
-                            <button id="exit-btn" type="button">&times;</button>
+                            <button id="exit-btn" type="button" onClick={e => setSelectedImageIndex(null)}>&times;</button>
                         </div>
                         <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
                         <button type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>
