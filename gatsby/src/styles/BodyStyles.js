@@ -187,9 +187,6 @@ export const BodyStyles = styled.div`
                 justify-items: center;
                 align-items: center;
                 gap: 0.4rem;
-                @media (max-width: 414px) {
-                   gap: 0;
-                }
                 h2 {
                     font-size: 19px;
                     font-weight: 700;
@@ -204,7 +201,6 @@ export const BodyStyles = styled.div`
                     color: rgb(29, 161, 242);
                     @media (max-width: 414px) {
                         font-size: 1.5rem;
-                        margin-left: -2.2rem;
                     }
                 }
             }

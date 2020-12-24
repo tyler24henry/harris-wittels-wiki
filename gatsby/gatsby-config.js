@@ -15,7 +15,6 @@ export default {
       'gatsby-plugin-react-helmet',
       'gatsby-plugin-styled-components',
       `gatsby-plugin-sitemap`,
-      `gatsby-plugin-minify`,
       {
         resolve: `gatsby-plugin-manifest`,
         options: {
