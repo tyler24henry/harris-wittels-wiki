@@ -39,12 +39,13 @@ const NavStyles = styled.nav`
         grid-template-columns: auto 1fr auto;
         gap: 1rem;
         align-items: center;
-        @media(max-width: 850px){
+        @media(max-width: 840px){
             width: 600px;
             margin: 0 auto;
             grid-template-columns: auto 1fr auto;
         }
         @media (max-width: 414px) {
+            width: calc(100vw - 4rem);
             grid-template-columns: auto 1fr;
             gap: 2rem;
         }
