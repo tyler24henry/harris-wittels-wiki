@@ -10,7 +10,6 @@ import { BodyStyles } from '../styles/BodyStyles';
 
 export const VideosStyles = styled.div`
     .now-playing-wrapper {
-        padding-top: 2rem;
         p {
             padding: 1rem 3rem 1rem 3rem;
             color: var(--black);

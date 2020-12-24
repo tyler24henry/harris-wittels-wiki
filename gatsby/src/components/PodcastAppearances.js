@@ -10,7 +10,7 @@ import { BodyStyles } from '../styles/BodyStyles';
 export const PodcastAppearancesListStyles = styled.div`
     margin-top: 4rem;
     @media (max-width: 414px) {
-        margin-top: 0;
+        margin-top: 2.5rem;
     }
     &#search-page {
         margin: 0;
