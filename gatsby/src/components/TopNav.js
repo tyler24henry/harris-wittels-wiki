@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'gatsby';
@@ -7,6 +7,7 @@ import { useNavigate } from "@reach/router";
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { LeftPanel } from './LeftPanel';
 import { slugify } from '../utils/slugify';
+import { useClickOutside } from '../utils/useClickOutside';
 
 const NavStyles = styled.nav`
     position: relative;
@@ -39,7 +40,9 @@ const NavStyles = styled.nav`
         gap: 1rem;
         align-items: center;
         @media(max-width: 850px){
-            grid-template-columns: auto 1fr;
+            width: 600px;
+            margin: 0 auto;
+            grid-template-columns: auto 1fr auto;
         }
         @media (max-width: 414px) {
             grid-template-columns: auto 1fr;
@@ -48,7 +51,7 @@ const NavStyles = styled.nav`
     }
     #hamburger-btn {
         display: none;
-        @media (max-width: 414px) {
+        @media (max-width: 840px) {
             display: block;
             padding: 0;
             background: none;
@@ -62,6 +65,11 @@ const NavStyles = styled.nav`
     .search-wrapper {
         position: relative;
         width: 120px;
+        @media (max-width: 840px) {
+            grid-column: 3 / span 1;
+            justify-self: end;
+            padding-right: 3rem;
+        }
         @media (max-width: 414px) {
             display: none;
         }
@@ -103,6 +111,10 @@ const NavStyles = styled.nav`
         font-size: 1.2rem;
         font-weight: 500;
         letter-spacing: 0.1rem;
+        @media (max-width: 840px) {
+            grid-row: 1 / span 1;
+            grid-column: 2 / span 1;
+        }
         @media (max-width: 414px) {
             display: none;
         }
@@ -135,15 +147,26 @@ const LeftPanelStyles = styled.div`
     top: 0;
     z-index: 15;
     height: 100%;
-    width: 300px;
+    width: 200px;
     overflow-y: scroll;
     border-right: 2px solid #e2e2e2;
+    @media(max-width: 414px){
+        width: 300px;
+    }
 `;
 
 export const TopNav = () => {
     const [search, setSearch, openLeftPanel, setOpenLeftPanel] = useContext(GeneralContext);
     const searchRef = useRef(null);
     const navigate = useNavigate();
+    const wrapperRef = useRef(null);
+    const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
+
+    useEffect(() => {
+        if(clickedOutside){
+            setOpenLeftPanel(false);
+        }
+    }, [clickedOutside]);
 
     const isEnterPressed = e => {
         if(e.keyCode === 13){
@@ -156,7 +179,12 @@ export const TopNav = () => {
         <>
         <NavStyles>
             <div className="nav-wrapper">
-                <button type="button" id="hamburger-btn" onClick={e => setOpenLeftPanel(!openLeftPanel)}><GiHamburgerMenu /></button>
+                <button type="button" id="hamburger-btn"
+                    onClick={e => {
+                        setClickedOutside(false);
+                        setOpenLeftPanel(!openLeftPanel);
+                    }}
+                ><GiHamburgerMenu /></button>
                 <div className="search-wrapper">
                     <FaSearch className="search-icon" />
                     <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => isEnterPressed(e)} />
@@ -179,7 +207,7 @@ export const TopNav = () => {
             </div>
         </NavStyles>
             {openLeftPanel && (
-                <LeftPanelStyles>
+                <LeftPanelStyles ref={wrapperRef}>
                     <LeftPanel />
                 </LeftPanelStyles>
             )}

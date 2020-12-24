@@ -12,13 +12,13 @@ const SiteBorderStyles = styled.div`
   min-height: 100vh;
   display: grid;
   grid-template-columns: 200px 1fr;
-  @media (max-width: 414px) {
+  @media (max-width: 840px) {
     grid-template-columns: 1fr;
   }
   .left-panel-wrapper {
     width: 200px;
     position: relative;
-    @media (max-width: 414px) {
+    @media (max-width: 840px) {
         display: none;
     }
   }

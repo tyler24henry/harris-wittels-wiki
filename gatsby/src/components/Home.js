@@ -5,7 +5,6 @@ import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 import { getIsChrome } from '../utils/detectBrowser';
 import { useClickOutside } from '../utils/useClickOutside';
-import { Disqus } from 'gatsby-plugin-disqus';
 
 const HomeStyles = styled.div`
     .masonry-wrapper {
@@ -100,7 +99,7 @@ const ImageModalWrapperStyles = styled.div`
     left: 0;
     width: 100%;
     height: 100vh;
-    overflow-y: hidden;
+    overflow-y: scroll;
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
@@ -285,11 +284,22 @@ export const Home = ({ masonryItems }) => {
 
       const masonryItemsSliced = isChrome ? [...masonryItems] : [...masonryItems].slice(0,upToIndex);
 
-    let disqusConfig = {
-        url: `https://www.harriswittels.wiki/`,
-        identifier: 'harrisWittelsWikiHomePage',
-        title: 'Harris Wittels Wiki',
-    }
+    // const handleClick = (index) => {
+    //     if(index !== null){
+    //         const identifier = [...imagesOnly][index]?.id;
+    //         navigate(`/#${identifier}`);
+    //     } else {
+    //         navigate(`/`);
+    //     }
+    // }
+
+    // const identifier = [...imagesOnly][selectedImageIndex]?.id;
+
+    // let disqusConfig = {
+    //     url: `https://www.harriswittels.wiki/#${identifier}`,
+    //     identifier,
+    //     title: `Harris Image ${identifier}`,
+    // }
 
     return (
         <>
@@ -318,15 +328,14 @@ export const Home = ({ masonryItems }) => {
                         })}
                     </div>
                 </div>
-                <div className="disqus-wrapper" id={(upToIndex >= masonryItems.length || isChrome) ? 'show' : 'hide'}>
-                    <Disqus config={disqusConfig} />
-                </div>
             </HomeStyles>
             {selectedImageIndex !== null && (
                 <ImageModalWrapperStyles>
                     <div className="modal" ref={wrapperRef}>
                         <div className="modal-header">
-                            <button id="exit-btn" type="button" onClick={e => setSelectedImageIndex(null)}>&times;</button>
+                            <button id="exit-btn" type="button"
+                            onClick={e => setSelectedImageIndex(null)}
+                            >&times;</button>
                         </div>
                         <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
                         <button type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>

@@ -306,27 +306,28 @@ const ImageModalWrapperStyles = styled.div`
             color: #919191;
             font-size: 4rem;
             @media (max-width: 414px) {
-                top: 50vw;
-                font-size: 3rem;
-                background: #4C516D;
+                top: 52vw;
                 border-radius: 50%;
-                color: var(--white);
-                font-size: 2.8rem;
-                padding: 0.4rem 0.3rem 0.4rem 0.2rem;
-                opacity: 0.9;
+                background: #b5b5b6;
+                color: #050608;
+                font-size: 1rem;
+                height: 25px;
+                width: 25px;
+                opacity: 0.8;
             } 
         }
         .chevron-left {
             left: 15px;
             @media (max-width: 414px) {
-                left: 2px;
+                left: 22px;
+                padding-right: 0.2rem;
             }
         }
         .chevron-right {
             right: 15px;
             @media (max-width: 414px) {
-                right: 2px;
-                padding: 0.4rem 0.25rem;
+                right: 22px;
+                padding-left: 0.2rem;
             }
         }
     }
