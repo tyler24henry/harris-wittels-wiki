@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { VscCalendar } from 'react-icons/vsc';
 import { GoVerified } from 'react-icons/go';
@@ -8,6 +8,8 @@ import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
 import { FiChevronRight } from 'react-icons/fi';
 import { Disqus } from 'gatsby-plugin-disqus';
+import { SearchSection } from './SearchSection';
+import GeneralContext from './GeneralContext';
 
 const TwittelsStyles = styled.div`
     .twittels-wrapper {
@@ -28,9 +30,13 @@ const TwittelsStyles = styled.div`
         .twitter-bio-wrapper {
             padding: 0 1.5rem;
             .avatar-following-grid {
+                position: relative;
                 display: grid;
-                grid-template-columns: auto 1fr;
+                grid-template-columns: auto 1fr auto;
                 gap: 1rem;
+                @media (max-width: 414px) {
+                    grid-template-columns: auto 1fr;
+                }
                 .twitter-avatar {
                     margin-top: -72px;
                     height: 134px;
@@ -309,20 +315,31 @@ const TwittelsStyles = styled.div`
 `;
 
 export const Twitter = ({ tweets, harrisAvatar }) => {
-    const tweetsByDate = sortByDate([...tweets]);
+    let tweetsByDate = sortByDate([...tweets]);
+    const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
 
     let disqusConfig = {
         url: `https://www.harriswittels.wiki/twitter`,
         identifier: 'harrisWittelsWikiTwitterPage',
         title: '@twittels Tweets',
     }
+
+    if(searchSection){
+        const regex = new RegExp(searchSection.toLowerCase());
+        tweetsByDate = [...tweetsByDate].filter(item => {
+            const match = regex.test(item.content.toLowerCase()) || regex.test(item.replyingTo?.toLowerCase()) || regex.test(item.retweetName?.toLowerCase()) || regex.test(item.retweetHandle?.toLowerCase());
+            return match;
+        });
+    }
+
     return (
         <TwittelsStyles>
             <div className="twittels-wrapper">
                 <div className="background-image"></div>
                 <div className="twitter-bio-wrapper">
                     <div className="avatar-following-grid">
-                    <Img className="twitter-avatar" fluid={harrisAvatar.image.asset.fluid} alt="Avatar" />
+                        <Img className="twitter-avatar" fluid={harrisAvatar.image.asset.fluid} alt="Avatar" />
+                        <SearchSection section="tweets" />
                         <button id="following-btn" type="button">Tweetin'</button>
                     </div>
                     <div id="name-wrapper">
@@ -393,6 +410,11 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
                             </div>
                         )
                     })}
+                    {tweetsByDate.length === 0 && (
+                        <div className="no-content-wrapper">
+                            <p>No tweets found{searchSection ? ` for search term "${searchSection}"` : ''}</p>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="disqus-wrapper">

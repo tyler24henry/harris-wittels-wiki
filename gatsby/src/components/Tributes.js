@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { AiFillCaretRight } from 'react-icons/ai';
 import { Disqus } from 'gatsby-plugin-disqus';
+import { SearchSection } from './SearchSection';
+import GeneralContext from './GeneralContext';
 
 const TributesStyles = styled.div`
     .page-wrapper {
@@ -35,9 +37,13 @@ const TributesStyles = styled.div`
         .foam-corner-wrapper {
             padding: 0 1.5rem;
             .avatar-following-grid {
+                position: relative;
                 display: grid;
-                grid-template-columns: auto 1fr;
+                grid-template-columns: auto 1fr auto;
                 gap: 1rem;
+                @media (max-width: 414px) {
+                    grid-template-columns: auto 1fr;
+                }
                 .foam-corner-avatar {
                     margin-top: -72px;
                     height: 134px;
@@ -158,12 +164,24 @@ const TributesStyles = styled.div`
 
 export const Tributes = ({ siteImages, tributes }) => {
     const [tributesAvatar] = siteImages.filter(image => image.name === 'Tribute Avatar');
+    const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
 
     let disqusConfig = {
         url: `https://www.harriswittels.wiki/tributes`,
         identifier: 'harrisWittelsWikiTributesPage',
         title: 'Tributes',
     }
+
+    let tributesFiltered = [...tributes];
+
+    if(searchSection){
+        const regex = new RegExp(searchSection.toLowerCase());
+        tributesFiltered = [...tributesFiltered].filter(item => {
+            const match = regex.test(item.title.toLowerCase());
+            return match;
+        });
+    }
+
     return (
         <TributesStyles>
             <div className="page-wrapper">
@@ -173,6 +191,7 @@ export const Tributes = ({ siteImages, tributes }) => {
                 <div className="foam-corner-wrapper">
                     <div className="avatar-following-grid">
                         <Img className="foam-corner-avatar" fluid={tributesAvatar.image.asset.fluid} alt="Avatar" />
+                        <SearchSection section="tributes" />
                         <button id="following-btn" type="button">Missin'</button>
                     </div>
                     <div id="name-wrapper">
@@ -190,7 +209,7 @@ export const Tributes = ({ siteImages, tributes }) => {
                     </div>
                 </div>
                 <div className="tributes">
-                    {tributes.map((tribute, index) => (
+                    {tributesFiltered.map((tribute, index) => (
                         <div className="tribute" id={index === 0 ? 'first-tribute' : ''}>
                             <AiFillCaretRight className="caret" />
                             <a href={tribute.link} target="_blank">{tribute.title}</a>

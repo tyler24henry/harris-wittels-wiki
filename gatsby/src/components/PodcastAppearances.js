@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
 import { Disqus } from 'gatsby-plugin-disqus';
+import { SearchSection } from './SearchSection';
+import GeneralContext from './GeneralContext';
 
 const PodcastAppearancesStyles = styled.div`
     .podcast-appearances-wrapper {
@@ -33,9 +35,13 @@ const PodcastAppearancesStyles = styled.div`
         .page-into-wrapper {
             padding: 0 1.5rem;
             .avatar-following-grid {
+                position: relative;
                 display: grid;
-                grid-template-columns: auto 1fr;
+                grid-template-columns: auto 1fr auto;
                 gap: 1rem;
+                @media (max-width: 414px) {
+                    grid-template-columns: auto 1fr;
+                }
                 .podcast-avatar {
                     margin-top: -72px;
                     height: 134px;
@@ -92,7 +98,7 @@ const PodcastAppearancesStyles = styled.div`
         .list-of-appearances-wrapper {
             padding-top: 4rem;
             @media (max-width: 414px) {
-                margin-top: 3.2rem;
+                margin-top: 0;
             }
             .header, .podcast {
                 display: grid;
@@ -145,13 +151,22 @@ const PodcastAppearancesStyles = styled.div`
 
 export const PodcastAppearances = ({ siteImages, appearances }) => {
     const [podcastAvatar] = siteImages.filter(image => image.name === 'Harris Last Farts Ep');
+    const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
 
-    const appearancesSorted = sortByDate([...appearances]);
+    let appearancesSorted = sortByDate([...appearances]);
 
     let disqusConfig = {
         url: `https://www.harriswittels.wiki/podcast-appearances`,
         identifier: 'harrisWittelsWikiPodcastAppearancesPage',
         title: 'Podcast Appearances',
+    }
+
+    if(searchSection){
+        const regex = new RegExp(searchSection.toLowerCase());
+        appearancesSorted = [...appearancesSorted].filter(appearance => {
+            const match = regex.test(appearance.podcastTitle.toLowerCase()) || regex.test(appearance.episodeTitle.toLowerCase()) || regex.test(appearance.host.toLowerCase());
+            return match;
+        });
     }
 
     return (
@@ -161,6 +176,7 @@ export const PodcastAppearances = ({ siteImages, appearances }) => {
                 <div className="page-into-wrapper">
                     <div className="avatar-following-grid">
                         <Img className="podcast-avatar" fluid={podcastAvatar.image.asset.fluid} alt="Avatar" />
+                        <SearchSection section="podcast appearances" />
                         <button id="following-btn" type="button">Podcastin'</button>
                     </div>
                     <div id="name-wrapper">
@@ -186,6 +202,11 @@ export const PodcastAppearances = ({ siteImages, appearances }) => {
                             </a>
                         )
                     })}
+                    {appearancesSorted.length === 0 && (
+                        <div className="no-content-wrapper" style={{ gridColumn: '1 / span 4'}}>
+                            <p>No podcast appearances found{searchSection ? ` for search term "${searchSection}"` : ''}</p>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="disqus-wrapper">

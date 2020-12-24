@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight } from 'react-icons/fi';
 import { Disqus } from 'gatsby-plugin-disqus';
+import { SearchSection } from './SearchSection';
+import GeneralContext from './GeneralContext';
 
 const FoamCornerStyles = styled.div`
     .page-wrapper {
@@ -38,9 +40,13 @@ const FoamCornerStyles = styled.div`
         .foam-corner-wrapper {
             padding: 0 1.5rem;
             .avatar-following-grid {
+                position: relative;
                 display: grid;
-                grid-template-columns: auto 1fr;
+                grid-template-columns: auto 1fr auto;
                 gap: 1rem;
+                @media (max-width: 414px) {
+                    grid-template-columns: auto 1fr;
+                }
                 .foam-corner-avatar {
                     margin-top: -72px;
                     height: 134px;
@@ -165,11 +171,22 @@ const FoamCornerStyles = styled.div`
 
 export const FoamCorner = ({ siteImages, allFoam }) => {
     const [foamAvatar] = siteImages.filter(image => image.name === 'Foam Corner Avatar');
+    const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
 
     let disqusConfig = {
         url: `https://www.harriswittels.wiki/foam-corner`,
         identifier: 'harrisWittelsWikiFoamCornerPage',
         title: 'Foam Corner',
+    }
+
+    let allFoamFiltered = [...allFoam];
+
+    if(searchSection){
+        const regex = new RegExp(searchSection.toLowerCase());
+        allFoamFiltered = [...allFoamFiltered].filter(foam => {
+            const match = regex.test(foam.content.toLowerCase());
+            return match;
+        });
     }
 
     return (
@@ -181,6 +198,7 @@ export const FoamCorner = ({ siteImages, allFoam }) => {
                 <div className="foam-corner-wrapper">
                     <div className="avatar-following-grid">
                         <Img className="foam-corner-avatar" fluid={foamAvatar.image.asset.fluid} alt="Avatar" />
+                        <SearchSection section="foam corner jokes" />
                         <button id="following-btn" type="button">Foamin'</button>
                     </div>
                     <div id="name-wrapper">
@@ -199,9 +217,14 @@ export const FoamCorner = ({ siteImages, allFoam }) => {
                     </div>
                 </div>
                 <div className="foam-jokes">
-                    {allFoam.map((foam, index) => (
+                    {allFoamFiltered.map((foam, index) => (
                         <p className="foam-joke" id={index === 0 ? 'first-foam' : ''}>{foam.content}</p>
                     ))}
+                    {allFoamFiltered.length === 0 && (
+                        <div className="no-content-wrapper">
+                            <p>No foam corner jokes found{searchSection ? ` for search term "${searchSection}"` : ''}</p>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="disqus-wrapper">

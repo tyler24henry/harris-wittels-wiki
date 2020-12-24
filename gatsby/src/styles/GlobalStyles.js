@@ -67,6 +67,18 @@ const GlobalStyles = createGlobalStyle`
         width: 100%;
     }
   }
+  .no-content-wrapper {
+        p {
+            padding: 1.2rem 1.5rem;
+            font-size: 1.5rem;
+            color: var(--black);
+            font-weight: 600;
+            @media (max-width: 414px) {
+                padding: 1rem 1.25rem;
+                font-size: 1.2rem;
+            }
+        }
+    }
 
 `;
 

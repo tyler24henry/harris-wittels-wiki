@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import ReactPlayer from 'react-player/lazy';
 import smoothscroll from 'smoothscroll-polyfill';
 import { Disqus } from 'gatsby-plugin-disqus';
+import { SearchSection } from './SearchSection';
+import GeneralContext from './GeneralContext';
 
 const BitsStyles = styled.div`
     .page-wrapper {
@@ -36,9 +38,13 @@ const BitsStyles = styled.div`
         .foam-corner-wrapper {
             padding: 0 1.5rem 4rem 1.5rem;
             .avatar-following-grid {
+                position: relative;
                 display: grid;
-                grid-template-columns: auto 1fr;
+                grid-template-columns: auto 1fr auto;
                 gap: 1rem;
+                @media (max-width: 414px) {
+                    grid-template-columns: auto 1fr;
+                }
                 .foam-corner-avatar {
                     margin-top: -72px;
                     height: 134px;
@@ -56,7 +62,7 @@ const BitsStyles = styled.div`
                     justify-self: end;
                     height: 39px;
                     width: 102px;
-                    background-color: #f91100;
+                    background-color: #fb934c;
                     color: var(--white);
                     border-radius: 9999px;
                     font-size: 1.5rem;
@@ -171,6 +177,7 @@ export const Youtube = ({ siteImages, bits }) => {
     const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
     const [bitsAvatar] = siteImages.filter(image => image.name === 'Bits Avatar');
     const [bitsBackground] = siteImages.filter(image => image.name === 'Bits Background');
+    const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
 
     useEffect(() => {
         smoothscroll.polyfill();
@@ -189,6 +196,16 @@ export const Youtube = ({ siteImages, bits }) => {
         title: 'Videos',
     }
 
+    let bitsFiltered = [...bits];
+
+    if(searchSection){
+        const regex = new RegExp(searchSection.toLowerCase());
+        bitsFiltered = [...bitsFiltered].filter(item => {
+            const match = regex.test(item.title.toLowerCase());
+            return match;
+        });
+    }
+
     return (
         <BitsStyles>
             <div className="page-wrapper">
@@ -198,22 +215,25 @@ export const Youtube = ({ siteImages, bits }) => {
                 <div className="foam-corner-wrapper">
                     <div className="avatar-following-grid">
                         <Img className="foam-corner-avatar" fluid={bitsAvatar.image.asset.fluid} alt="Avatar" />
-                        <button id="following-btn" type="button">Youtubin'</button>
+                        <SearchSection section="videos" />
+                        <button id="following-btn" type="button">Watchin'</button>
                     </div>
                     <div id="name-wrapper">
-                        <h2>Bits & Clips From Youtube</h2>
+                        <h2>Videos</h2>
                     </div>
                     <p id="bio">“A lot of people want to do serious stuff with their comedy...but I just think motherfuckers wanna laugh” - Harris Wittels</p>
                 </div>
                 <div className="bits-wrapper">
-                    <div className="now-playing-wrapper">
-                        <div className="video-player-wrapper">
-                            <ReactPlayer width='100%' url={selectedVideo.youtubeUrl} controls light />
+                    {bitsFiltered.length > 0 && (
+                        <div className="now-playing-wrapper">
+                            <div className="video-player-wrapper">
+                                <ReactPlayer width='100%' url={selectedVideo.youtubeUrl} controls light />
+                            </div>
+                            <p><span id="now-playing">Now playing:</span> {selectedVideo.title}</p>
                         </div>
-                        <p><span id="now-playing">Now playing:</span> {selectedVideo.title}</p>
-                    </div>
-                    <div className="thumbnails-wrapper">
-                        {bits.map((bit, index) => {
+                    )}
+                    <div className="thumbnails-wrapper" style={{ marginTop: bitsFiltered.length === 0 && '0', padding: bitsFiltered.length === 0 && '0'}}>
+                        {bitsFiltered.map((bit, index) => {
                             return (
                                 <div className="thumbnail-wrapper" key={bit.id}
                                     onClick={e => {
@@ -228,6 +248,11 @@ export const Youtube = ({ siteImages, bits }) => {
                                 </div>
                             )
                         })}
+                        {bitsFiltered.length === 0 && (
+                            <div className="no-content-wrapper" style={{ gridColumn: '1 / span 3' }}>
+                                <p>No videos found{searchSection ? ` for search term "${searchSection}"` : ''}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

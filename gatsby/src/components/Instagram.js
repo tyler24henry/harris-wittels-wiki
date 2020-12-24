@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { sortByDate } from '../utils/dateHelpers';
 import { useClickOutside } from '../utils/useClickOutside';
 import { Disqus } from 'gatsby-plugin-disqus';
+import { SearchSection } from './SearchSection';
+import GeneralContext from './GeneralContext';
 
 const ImagesStyles = styled.div`
     .images-page-wrapper {
@@ -25,9 +27,13 @@ const ImagesStyles = styled.div`
         .instagram-bio-wrapper {
             padding: 0 1.5rem;
             .avatar-following-grid {
+                position: relative;
                 display: grid;
-                grid-template-columns: auto 1fr;
+                grid-template-columns: auto 1fr auto;
                 gap: 1rem;
+                @media (max-width: 414px) {
+                    grid-template-columns: auto 1fr;
+                }
                 .instagram-avatar {
                     margin-top: -72px;
                     height: 134px;
@@ -336,6 +342,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const wrapperRef = useRef(null);
     const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
+    const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
 
     useEffect(() => {
         if(clickedOutside){
@@ -357,6 +364,14 @@ export const Instagram = ({ instagramAvatar, images }) => {
         title: 'Instagram Posts',
     }
 
+    if(searchSection){
+        const regex = new RegExp(searchSection.toLowerCase());
+        harrisImagesSorted = [...harrisImagesSorted].filter(item => {
+            const match = item.caption && regex.test(item.caption?.toLowerCase());
+            return match;
+        });
+    }
+
     return (
         <>
             <ImagesStyles>
@@ -365,6 +380,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
                     <div className="instagram-bio-wrapper">
                         <div className="avatar-following-grid">
                             <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />
+                            <SearchSection section="instagram posts" />
                             <button id="following-btn" type="button">Grammin'</button>
                         </div>
                         <div id="name-wrapper">
@@ -408,6 +424,11 @@ export const Instagram = ({ instagramAvatar, images }) => {
                                 </div>
                             )
                         })}
+                        {harrisImagesSorted.length === 0 && (
+                            <div className="no-content-wrapper" style={{ gridColumn: '1 / span 2'}}>
+                                <p>No Instagram posts found{searchSection ? ` for search term "${searchSection}"` : ''}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="disqus-wrapper">
