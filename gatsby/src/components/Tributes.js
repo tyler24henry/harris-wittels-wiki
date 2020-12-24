@@ -105,6 +105,7 @@ const TributesStyles = styled.div`
         }
         .foam-nav {
             padding-top: 2rem;
+            border-bottom: 1px solid #c4cfd7;
             @media (max-width: 414px) {
                 padding-top: 3.5rem;
             }
@@ -215,6 +216,11 @@ export const Tributes = ({ siteImages, tributes }) => {
                             <a href={tribute.link} target="_blank">{tribute.title}</a>
                         </div>
                     ))}
+                    {tributesFiltered.length === 0 && (
+                        <div className="no-content-wrapper">
+                            <p>No tributes found{searchSection ? ` for search term "${searchSection}"` : ''}</p>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="disqus-wrapper">

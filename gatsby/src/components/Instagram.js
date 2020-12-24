@@ -186,6 +186,10 @@ const ImagesStyles = styled.div`
                 }
             }
         }
+        #empty {
+            padding: 0;
+            justify-items: start;
+        }
     }
     #background {
         pointer-events: none;
@@ -351,18 +355,6 @@ export const Instagram = ({ instagramAvatar, images }) => {
     }, [clickedOutside]);
     
     let harrisImagesSorted = sortByDate([...images]);
-    let selectedImage;
-    if(images && selectedImageIndex !== null){
-        selectedImage = [...harrisImagesSorted][selectedImageIndex];
-    }
-    const isPrevIndex = selectedImageIndex > 0;
-    const isNextIndex = selectedImageIndex + 1 < images.length;
-
-    let disqusConfig = {
-        url: `https://www.harriswittels.wiki/instagram`,
-        identifier: 'harrisWittelsWikiInstagramPage',
-        title: 'Instagram Posts',
-    }
 
     if(searchSection){
         const regex = new RegExp(searchSection.toLowerCase());
@@ -370,6 +362,19 @@ export const Instagram = ({ instagramAvatar, images }) => {
             const match = item.caption && regex.test(item.caption?.toLowerCase());
             return match;
         });
+    }
+
+    let selectedImage;
+    if(images && selectedImageIndex !== null){
+        selectedImage = [...harrisImagesSorted][selectedImageIndex];
+    }
+    const isPrevIndex = selectedImageIndex > 0;
+    const isNextIndex = selectedImageIndex + 1 < harrisImagesSorted.length;
+
+    let disqusConfig = {
+        url: `https://www.harriswittels.wiki/instagram`,
+        identifier: 'harrisWittelsWikiInstagramPage',
+        title: 'Instagram Posts',
     }
 
     return (
@@ -411,7 +416,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
                             <FiChevronRight className="right-chevron" />
                         </div>
                     </div>
-                    <div className="images-wrapper">
+                    <div className="images-wrapper" id={harrisImagesSorted.length === 0 ? 'empty' : ''}>
                         {harrisImagesSorted.map((harrisImage, index) => {
                             return (
                                 <div className="image-wrapper" key={harrisImage.id}

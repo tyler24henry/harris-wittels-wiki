@@ -183,8 +183,6 @@ export const Youtube = ({ siteImages, bits }) => {
         smoothscroll.polyfill();
     }, []);
 
-    const selectedVideo = bits[selectedVideoIndex];
-
     const scrollToTop = () => {
         // document.body.scrollTop = document.documentElement.scrollTop = 430;
         document.querySelector('#bio').scrollIntoView({ behavior: 'smooth' });
@@ -205,6 +203,8 @@ export const Youtube = ({ siteImages, bits }) => {
             return match;
         });
     }
+
+    const selectedVideo = bitsFiltered.length > 0 && bitsFiltered[selectedVideoIndex];
 
     return (
         <BitsStyles>

@@ -14,6 +14,22 @@ export default {
     plugins: [
       'gatsby-plugin-react-helmet',
       'gatsby-plugin-styled-components',
+      `gatsby-plugin-sitemap`,
+      {
+        resolve: `gatsby-plugin-manifest`,
+        options: {
+          name: `Harris Wittels Wiki`,
+          short_name: `harris-wittels-wiki`,
+          description: `Tribute site for the great Harris Wittels. Browse his podcast appearances, tweets, instagram posts, youtube videos, and more. If you are a fan of Harris's Phone/Foam Corner, you can check out our master list of foam jokes.`,
+          lang: `en`,
+          icon: `static/favicon.png`,
+          start_url: `/`,
+          background_color: `#fefefe`,
+          theme_color: `#020202`,
+          display: `standalone`,
+        },
+      },
+      `gatsby-plugin-offline`,
       {
         resolve: 'gatsby-source-sanity',
         options: {
