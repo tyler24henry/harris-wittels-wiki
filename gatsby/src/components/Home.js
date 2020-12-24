@@ -5,6 +5,7 @@ import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 import { getIsChrome } from '../utils/detectBrowser';
 import { useClickOutside } from '../utils/useClickOutside';
+import { ImageModalWrapperStyles } from '../styles/ImageModalWrapper';
 
 const HomeStyles = styled.div`
     .masonry-wrapper {
@@ -89,98 +90,6 @@ const HomeStyles = styled.div`
         z-index: -9999;
         position: absolute;
         top: -9999px;
-    }
-`;
-
-const ImageModalWrapperStyles = styled.div`
-    z-index: 700;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    overflow-y: scroll;
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    align-items: center;
-    @media (max-width: 414px) {
-        width: 100vw;
-    }
-    .modal {
-        position: relative;
-        width: 600px;
-        height: calc(100% - 2rem);
-        background: #f8f7f8;
-        padding: 0 2rem 2rem 2rem;
-        @media (max-width: 414px) {
-            width: calc(100vw - 4rem);
-            height: calc(100vw - 2.5rem);
-        }   
-        .modal-header {
-            display: grid;
-            grid-template-columns: 1fr;
-            width: calc(600px - 2rem);
-            padding: 0 1rem 1rem 1rem;
-            margin: 0 auto;
-            @media (max-width: 414px) {
-                padding: 0 1rem;
-                width: calc(100vw - 5.5rem);
-            } 
-            #exit-btn {
-                justify-self: end;
-                width: 25px;
-                background: none;
-                border: none;
-                color: #919191;
-                font-size: 3rem;
-            }
-        }
-        .modal-image {
-            margin: 0 auto;
-            width: 500px;
-            height: 500px;
-            object-fit: cover;
-            @media (max-width: 414px) {
-                width: calc(100vw - 4rem);
-                height: calc(100vw - 10rem);
-            } 
-        }
-        button {
-            background: none;
-            border: none;
-            &[disabled]{
-                pointer-events: none;
-                opacity: 0;
-            }
-        }
-        .chevron-left, .chevron-right {
-            position: absolute;
-            top: 270px;
-            color: #919191;
-            font-size: 4rem;
-            @media (max-width: 414px) {
-                top: auto;
-                bottom: 10px;
-                font-size: 3rem;
-            } 
-        }
-        .chevron-left {
-            left: 15px;
-        }
-        .chevron-right {
-            right: 15px;
-        }
-    }
-    #background-tint {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: black;
-        z-index: -1;
-        opacity: 0.5;
     }
 `;
 
@@ -331,15 +240,15 @@ export const Home = ({ masonryItems }) => {
             </HomeStyles>
             {selectedImageIndex !== null && (
                 <ImageModalWrapperStyles>
-                    <div className="modal" ref={wrapperRef}>
+                    <div className="modal" id="masonry-modal" ref={wrapperRef}>
                         <div className="modal-header">
                             <button id="exit-btn" type="button"
                             onClick={e => setSelectedImageIndex(null)}
                             >&times;</button>
                         </div>
                         <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
-                        <button type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>
-                        <button type="button" disabled={!isNextIndex} onClick={e => setSelectedImageIndex(selectedImageIndex + 1)}><FiChevronRight className="chevron-right" /></button>
+                        <button className="masonry-chevron" type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>
+                        <button className="masonry-chevron" type="button" disabled={!isNextIndex} onClick={e => setSelectedImageIndex(selectedImageIndex + 1)}><FiChevronRight className="chevron-right" /></button>
                     </div>
                     <div id="background-tint"></div>
                 </ImageModalWrapperStyles>

@@ -2,112 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import emailjs from 'emailjs-com';
-
-const FoamCornerStyles = styled.div`
-    .page-wrapper {
-        margin: 0 auto 2rem auto;
-        width: 600px;
-        border: 1px solid #c4cfd7;
-        @media (max-width: 414px) {
-            width: 100%;
-        }
-        .background-image-wrapper {
-            width: 100%;
-            height: 200px;
-            background-color: #25231d;
-            @media (max-width: 414px) {
-                height: 150px;
-            }
-        }
-        .foam-corner-wrapper {
-            padding: 0 1.5rem;
-            .avatar-following-grid {
-                display: grid;
-                grid-template-columns: auto 1fr;
-                gap: 1rem;
-                .foam-corner-avatar {
-                    margin-top: -72px;
-                    height: 134px;
-                    width: 134px;
-                    border-radius: 50%;
-                    border: 5px solid var(--white);
-                    @media (max-width: 414px) {
-                        margin-top: -55px;
-                        height: 105px;
-                        width: 105px;
-                    }
-                }
-                #following-btn {
-                    margin-top: 1rem;
-                    justify-self: end;
-                    height: 39px;
-                    width: 102px;
-                    background-color: #25231d;
-                    color: var(--white);
-                    border-radius: 9999px;
-                    font-size: 1.5rem;
-                    font-weight: 600;
-                    letter-spacing: 0.5px;
-                    pointer-events: none;
-                    cursor: default;
-                    @media (max-width: 414px) {
-                        height: 32px;
-                        width: 88px;
-                        font-size: 1.3rem;
-                    }
-                }
-            }
-            #name-wrapper {
-                width: auto;
-                margin-top: 0.5rem;
-                line-height: 1.3125;
-                h2 {
-                    font-size: 19px;
-                    font-weight: 700;
-                    letter-spacing: 0.5px;
-                    @media (max-width: 414px) {
-                        font-size: 1.5rem;
-                    }
-                }
-            }
-            #bio {
-                margin-top: 1rem;
-                font-size: 1.5rem;
-                @media (max-width: 414px) {
-                    font-size: 1.3rem;
-                }
-            }
-            #bold {
-                font-weight: 600;
-            }
-        }
-        .foam-nav {
-            margin-top: 2rem;
-            border-bottom: 1px solid #c4cfd7;
-            .foam {
-                width: 138px;
-                height: 45px;
-                display: grid;
-                grid-template-columns: 1fr;
-                justify-items: center;
-                align-items: center;
-                border-bottom: 2px solid #25231d;
-                @media (max-width: 414px) {
-                    width: 110px;
-                    height: 34px;
-                }
-                p {
-                    color: #25231d;
-                    font-size: 1.6rem;
-                    font-weight: 600;
-                    @media (max-width: 414px) {
-                        font-size: 1.3rem;
-                    }
-                }
-            }
-        }
-    }
-`;
+import { BodyStyles } from '../styles/BodyStyles';
 
 const ContactStyles = styled.div`
     transition: opacity 0.4s;
@@ -173,27 +68,27 @@ export const Contact = ({ contactAvatar }) => {
             setSubject('');
             setMessage('');
             setSuccess(true);
-        }, 2000);
+        }, 1000);
     }
 
     const formFilledOut = name && email && subject && message;
     return (
-        <FoamCornerStyles>
+        <BodyStyles>
             <div className="page-wrapper">
-                <div className="background-image-wrapper"></div>
-                <div className="foam-corner-wrapper">
-                    <div className="avatar-following-grid">
-                        <Img className="foam-corner-avatar" fluid={contactAvatar.image.asset.fluid} alt="Avatar" />
-                        <button id="following-btn" type="button">Contact</button>
+                <div   div className="background-image" id="contact-background"></div>
+                <div className="page-details-wrapper">
+                    <div className="avatar-search-phrase-grid">
+                        <Img className="avatar" fluid={contactAvatar.image.asset.fluid} alt="Avatar" />
+                        <button className="phrase-btn" id="contactin" type="button">Contact</button>
                     </div>
-                    <div id="name-wrapper">
+                    <div id="page-title-wrapper">
                         <h2>Contact</h2>
                     </div>
-                    <p id="bio">Hey, this is Tyler Henry. I'd love feedback on the website, I'm sure it's not working well on every browser and device out there. Also, if you have anything to add to the site (pictures, foam corner jokes, podcast appearances, etc.) let me know and I'll add it! Thanks, Tyler Henry.</p>
-                    <p id="bio"><span id="bold">*** Be sure to fill out the entire form</span> (if you're feeling lazy just put a period or number in there, doesn't matter...).</p>
+                    <p id="description">Hey, this is Tyler Henry. I'd love feedback on the website, I'm sure it's not working well on every browser and device out there. Also, if you have anything to add to the site (pictures, foam corner jokes, podcast appearances, etc.) let me know and I'll add it! Thanks, Tyler Henry.</p>
+                    <p id="description"><span id="bold">*** Be sure to fill out the entire form</span> (if you're feeling lazy just put a period or number in there, doesn't matter...).</p>
                 </div>
-                <div className="foam-nav">
-                    <div className="foam">
+                <div className="mid-page-nav">
+                    <div className="nav-header" id="contact-nav-header">
                         <p>Contact</p>
                     </div>
                 </div>
@@ -218,6 +113,6 @@ export const Contact = ({ contactAvatar }) => {
                     )}
                 </ContactStyles>
             </div>
-        </FoamCornerStyles>
+        </BodyStyles>
     )
 }

@@ -10,307 +10,111 @@ import { FiChevronRight } from 'react-icons/fi';
 import { Disqus } from 'gatsby-plugin-disqus';
 import { SearchSection } from './SearchSection';
 import GeneralContext from './GeneralContext';
+import { BodyStyles } from '../styles/BodyStyles';
 
-const TwittelsStyles = styled.div`
-    .twittels-wrapper {
-        margin: 0 auto 2rem auto;
-        width: 600px;
-        border: 1px solid #c4cfd7;
+export const TweetsWrapper = styled.div`
+    .tweet-wrapper {
+        padding: 1.2rem 1.5rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1.5rem;
+        border-top: 1px solid #c4cfd7;
         @media (max-width: 414px) {
-            width: 100%;
+            padding: 1rem;
         }
-        .background-image {
-            background-color: rgb(29, 161, 242);
-            width: 100%;
-            height: 200px;
+        .retweet {
+            justify-self: end;
+            margin-top: 0.2rem;
+        }
+        .retweet, #retweet-message {
+            font-size: 1.4rem;
+            color: #5b7082;
+            font-weight: 500;
+            margin-bottom: -0.9rem;
             @media (max-width: 414px) {
-                height: 150px;
-            }
-        }
-        .twitter-bio-wrapper {
-            padding: 0 1.5rem;
-            .avatar-following-grid {
-                position: relative;
-                display: grid;
-                grid-template-columns: auto 1fr auto;
-                gap: 1rem;
-                @media (max-width: 414px) {
-                    grid-template-columns: auto 1fr;
-                }
-                .twitter-avatar {
-                    margin-top: -72px;
-                    height: 134px;
-                    width: 134px;
-                    border-radius: 50%;
-                    border: 5px solid var(--white);
-                    @media (max-width: 414px) {
-                        margin-top: -55px;
-                        height: 105px;
-                        width: 105px;
-                    }
-                }
-                #following-btn {
-                    margin-top: 1rem;
-                    justify-self: end;
-                    height: 39px;
-                    width: 102px;
-                    background-color: rgb(29, 161, 242);
-                    color: var(--white);
-                    border-radius: 9999px;
-                    font-size: 1.5rem;
-                    font-weight: 600;
-                    letter-spacing: 0.5px;
-                    pointer-events: none;
-                    cursor: default;
-                    @media (max-width: 414px) {
-                        height: 32px;
-                        width: 88px;
-                        font-size: 1.3rem;
-                    }
-                }
-            }
-            #name-wrapper {
-                width: 150px;
-                margin-top: 0.5rem;
-                line-height: 1.3125;
-                display: grid;
-                grid-template-columns: auto 1fr;
-                justify-items: center;
-                align-items: center;
-                gap: 0.2rem;
-                @media (max-width: 414px) {
-                   gap: 0;
-                }
-                h2 {
-                    font-size: 19px;
-                    font-weight: 700;
-                    letter-spacing: 0.5px;
-                    @media (max-width: 414px) {
-                        font-size: 1.5rem;
-                    }
-                }
-                .verified {
-                    font-size: 19px;
-                    color: rgb(29, 161, 242);
-                    @media (max-width: 414px) {
-                        font-size: 1.5rem;
-                        margin-left: -2.2rem;
-                    }
-                }
-            }
-            #handle {
-                color: #5B7083;
-                font-size: 1.5rem;
-                font-weight: 500;
-                letter-spacing: 0;
-                @media (max-width: 414px) {
-                    font-size: 1.3rem;
-                }
-            }
-            #bio {
-                margin-top: 1rem;
-                font-size: 1.5rem;
-                @media (max-width: 414px) {
-                    font-size: 1.3rem;
-                }
-            }
-            #joined-wrapper {
-                color: #5B7083;
-                margin-top: 1rem;
-                font-size: 1.5rem;
-                font-weight: 500;
-                display: grid;
-                grid-template-columns: auto 1fr;
-                gap: 1rem;
-                @media (max-width: 414px) {
-                    font-size: 1.3rem;
-                }
-                .calendar {
-                    font-size: 1.7rem;
-                    @media (max-width: 414px) {
-                        font-size: 1.5rem;
-                    }
-                }
-                p {
-                    padding-top: 0.1rem;
-                }
-            }
-            .followers-wrapper {
-                margin-top: 1rem;
-                display: flex;
-                .item {
-                    display: flex;
-                    align-items: center;
-                    margin-right: 1.5rem;
-                    p {
-                        color: #5B7083;
-                        font-size: 1.5rem;
-                        @media (max-width: 414px) {
-                            font-size: 1.3rem;
-                        }
-                    }
-                    #number {
-                        font-weight: 600;
-                        color: var(--black);
-                        margin-right: 0.5rem;
-                    }
-                }
-            }
-        }
-        .tweets-nav {
-            padding-top: 2rem;
-            border-bottom: 1px solid #c4cfd7;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            align-items: center;
-            .tweets {
-                width: 138px;
-                height: 45px;
-                display: grid;
-                grid-template-columns: 1fr;
-                justify-items: center;
-                align-items: center;
-                border-bottom: 2px solid rgba(29,161,242,1.00);
-                @media (max-width: 414px) {
-                    width: 110px;
-                    height: 34px;
-                }
-                p {
-                    color: rgba(29,161,242,1.00);
-                    font-size: 1.6rem;
-                    font-weight: 600;
-                    @media (max-width: 414px) {
-                        font-size: 1.3rem;
-                    }
-                }
-            }
-            #link-wrapper {
-                justify-self: end;
-                padding-right: 0.5rem;
-                display: grid;
-                grid-template-columns: auto 1fr;
-                gap: 0.8rem;
-                align-items: center;
                 font-size: 1.2rem;
-                font-weight: 600;
+            }
+        }
+        .avatar {
+            width: 49px;
+            height: 49px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.09);
+            @media (max-width: 414px) {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        .tweet {
+            width: 100%;
+            overflow: hidden;
+            .tweet-details {
+                display: flex;
+                font-size: 1.5rem;
+                flex-wrap: wrap;
                 @media (max-width: 414px) {
                     font-size: 1.1rem;
                 }
-                .right-chevron {
-                    font-size: 1.3rem;
-                    padding-bottom: 0.25rem;
+                #handle, #retweet-name {
+                    font-weight: 600;
+                    color: var(--black);
+                }
+                #retweet-name {
+                    margin-right: 0.7rem;
+                }
+                .verified {
+                    color: rgba(29,161,242,1.00);
+                    margin: 0 0.7rem 0 0.3rem;
                     @media (max-width: 414px) {
-                        font-size: 1.2rem;
-                        padding-bottom: 0.1rem;
+                        margin: 0 0.4rem 0 0.3rem;
                     }
                 }
-            }
-        }
-        .tweets-wrapper {
-            .tweet-wrapper {
-                padding: 1.2rem 1.5rem;
-                display: grid;
-                grid-template-columns: auto 1fr;
-                gap: 1.5rem;
-                border-top: 1px solid #c4cfd7;
-                @media (max-width: 414px) {
-                    padding: 1rem;
-                }
-                .retweet {
-                    justify-self: end;
-                    margin-top: 0.2rem;
-                }
-                .retweet, #retweet-message {
-                    font-size: 1.4rem;
-                    color: #5b7082;
+                #details {
+                    color: #5B7083;
                     font-weight: 500;
-                    margin-bottom: -0.9rem;
-                    @media (max-width: 414px) {
-                        font-size: 1.2rem;
-                    }
                 }
-                .avatar {
-                    width: 49px;
-                    height: 49px;
-                    border-radius: 50%;
-                    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.09);
+                #bullet {
+                    font-weight: 300;
+                    font-size: 1rem;
+                    opacity: 0.6;
                     @media (max-width: 414px) {
-                        width: 40px;
-                        height: 40px;
-                    }
-                }
-                .tweet {
-                    width: 100%;
-                    overflow: hidden;
-                    .tweet-details {
-                        display: flex;
-                        font-size: 1.5rem;
-                        flex-wrap: wrap;
-                        @media (max-width: 414px) {
-                            font-size: 1.1rem;
-                        }
-                        #handle, #retweet-name {
-                            font-weight: 600;
-                            color: var(--black);
-                        }
-                        #retweet-name {
-                            margin-right: 0.7rem;
-                        }
-                        .verified {
-                            color: rgba(29,161,242,1.00);
-                            margin: 0 0.7rem 0 0.3rem;
-                            @media (max-width: 414px) {
-                                margin: 0 0.4rem 0 0.3rem;
-                            }
-                        }
-                        #details {
-                            color: #5B7083;
-                            font-weight: 500;
-                        }
-                        #bullet {
-                            font-weight: 300;
-                            font-size: 1rem;
-                            opacity: 0.6;
-                            @media (max-width: 414px) {
-                                font-size: 0.9rem;
-                            }
-                        }
-                    }
-                    #replying-to {
-                        margin-top: 0.5rem;
-                        color: #5B7083;
-                        @media (max-width: 414px) {
-                            font-size: 1.1rem;
-                        }
-                        span {
-                            color: rgb(29, 161, 242);
-                        }
-                    }
-                    #content {
-                        margin-top: 0.5rem;
-                        color: var(--black);
-                        @media (max-width: 414px) {
-                            font-size: 1.2rem;
-                        }
-                    }
-                    .media-wrapper {
-                        margin-top: 1rem;
-                        width: 100%;
-                        max-height: 285px;
-                        border-radius: 10px;
-                        overflow: hidden;
-                        .image, .video-player {
-                            width: 100%;
-                            max-height: 285px;
-                            object-fit: cover;
-                        }
+                        font-size: 0.9rem;
                     }
                 }
             }
-            #first-tweet {
-                border-top: none;
+            #replying-to {
+                margin-top: 0.5rem;
+                color: #5B7083;
+                @media (max-width: 414px) {
+                    font-size: 1.1rem;
+                }
+                span {
+                    color: rgb(29, 161, 242);
+                }
+            }
+            #content {
+                margin-top: 0.5rem;
+                color: var(--black);
+                @media (max-width: 414px) {
+                    font-size: 1.2rem;
+                }
+            }
+            .media-wrapper {
+                margin-top: 1rem;
+                width: 100%;
+                max-height: 285px;
+                border-radius: 10px;
+                overflow: hidden;
+                .image, .video-player {
+                    width: 100%;
+                    max-height: 285px;
+                    object-fit: cover;
+                }
             }
         }
+    }
+    #first-tweet {
+        border-top: none;
     }
 `;
 
@@ -333,21 +137,21 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
     }
 
     return (
-        <TwittelsStyles>
-            <div className="twittels-wrapper">
-                <div className="background-image"></div>
-                <div className="twitter-bio-wrapper">
-                    <div className="avatar-following-grid">
-                        <Img className="twitter-avatar" fluid={harrisAvatar.image.asset.fluid} alt="Avatar" />
+        <BodyStyles>
+            <div className="page-wrapper">
+                <div className="background-image" id="twitter-background"></div>
+                <div className="page-details-wrapper">
+                    <div className="avatar-search-phrase-grid">
+                        <Img className="avatar" fluid={harrisAvatar.image.asset.fluid} alt="Avatar" />
                         <SearchSection section="tweets" />
-                        <button id="following-btn" type="button">Tweetin'</button>
+                        <button className="phrase-btn" type="button">Tweetin'</button>
                     </div>
-                    <div id="name-wrapper">
+                    <div id="page-title-wrapper">
                         <h2>Harris Wittels</h2>
                         <GoVerified className="verified" />
                     </div>
                     <p id="handle">@twittels</p>
-                    <p id="bio">i love chillin, hangin out, havin fun and just fuckin chillin</p>
+                    <p id="description">i love chillin, hangin out, havin fun and just fuckin chillin</p>
                     <div id="joined-wrapper">
                         <VscCalendar className="calendar" />
                         <p>Joined December 2008</p>
@@ -363,16 +167,16 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
                         </div>
                     </div>
                 </div>
-                <div className="tweets-nav">
-                    <div className="tweets">
+                <div className="mid-page-nav">
+                    <div className="nav-header">
                         <p>Tweets</p>
                     </div>
                     <div id="link-wrapper">
                         <a href="https://twitter.com/twittels" target="_blank">Harris's Twitter</a>
-                        <FiChevronRight className="right-chevron" />
+                        <FiChevronRight className="link-icon" />
                     </div>
                 </div>
-                <div className="tweets-wrapper">
+                <TweetsWrapper>
                     {tweetsByDate.map((tweet, index) => {
                         const date = `${tweet.month} ${tweet.day}, ${tweet.year}`;
                         const name = tweet.isRetweet ? tweet.retweetName : 'Harris Wittels';
@@ -415,11 +219,11 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
                             <p>No tweets found{searchSection ? ` for search term "${searchSection}"` : ''}</p>
                         </div>
                     )}
-                </div>
+                </TweetsWrapper>
             </div>
             <div className="disqus-wrapper">
                 <Disqus config={disqusConfig} />
             </div>
-        </TwittelsStyles>
+        </BodyStyles>
     )
 }
