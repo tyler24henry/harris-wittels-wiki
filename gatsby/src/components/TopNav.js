@@ -91,6 +91,8 @@ const NavStyles = styled.nav`
             background: none;
             border: none;
             border-bottom: 1px solid var(--white);
+            border-radius: none;
+            overflow: none;
             width: 120px;
             font-size: 1.2rem;
             font-weight: 500;

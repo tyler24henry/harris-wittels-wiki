@@ -38,8 +38,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   button {
-    background: var(--blue);
-    color: white;
+    background: none;
+    color: var(--black);
     border: 0;
     padding: 0.6rem 1rem;
     border-radius: 2px;
@@ -50,11 +50,6 @@ const GlobalStyles = createGlobalStyle`
   input:focus {outline:0;}
   textarea:focus {outline:0;}
   select:focus {outline:0;}
-
-  .gatsby-image-wrapper img[src*=base64\\,] {
-    image-rendering: -moz-crisp-edges;
-    image-rendering: pixelated;
-  }
 
   img {
     max-width: 100%;
@@ -79,6 +74,22 @@ const GlobalStyles = createGlobalStyle`
             }
         }
     }
+    input[type=text] {   
+      /* Remove First */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      /* Then Style */
+      background: transparent;
+      border-radius: 0;
+      outline: none;    
+  }
+
+  .gatsby-image-wrapper img[src*=base64\\,] {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: pixelated;
+  }
 
 `;
 
