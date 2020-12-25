@@ -20,6 +20,7 @@ import { VideosStyles } from './Youtube';
 import { TributesStyles } from './Tributes';
 import { FoamJokesStyles } from './FoamCorner';
 import { ImageModalWrapperStyles } from '../styles/ImageModalWrapper';
+import { useIsChrome } from '../utils/useIsChrome';
 
 const SearchPageWrapper = styled.div`
     .categories-nav {
@@ -91,6 +92,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
     const navigate = useNavigate();
     const wrapperRef = useRef(null);
     const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
+    const { isChrome } = useIsChrome();
 
     useEffect(() => {
         if(clickedOutside){
@@ -340,7 +342,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                 </div>
             </BodyStyles>
             {selectedImageIndex !== null && (
-                <ImageModalWrapperStyles>
+                <ImageModalWrapperStyles id={isChrome ? 'non-safari' : 'safari'}>
                     <div className="modal" ref={wrapperRef}>
                         <div className="modal-header">
                             <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />
@@ -352,7 +354,13 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                             {selectedImage.caption && (
                                 <p id="caption"><span>twittels</span> {selectedImage.caption}</p>
                             )}
-                            <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
+                            <div className="date-link-wrapper">
+                                <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
+                                <div id="link-wrapper">
+                                    <a href={selectedImage.link} target="_blank">Original link</a>
+                                    <FiChevronRight className="link-icon" />
+                                </div>
+                            </div>
                         </div>
                         <button type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>
                         <button type="button" disabled={!isNextIndex} onClick={e => setSelectedImageIndex(selectedImageIndex + 1)}><FiChevronRight className="chevron-right" /></button>

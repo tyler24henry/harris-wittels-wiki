@@ -23,6 +23,9 @@ const RightPanelStyles = styled.div`
             background: #f7f7f7;
             border-bottom: none;
         }
+        @media(max-width: 414px) {
+            background: #161616;
+        }
         .wiki-avatar {
             width: 100%;
             max-width: 300px;

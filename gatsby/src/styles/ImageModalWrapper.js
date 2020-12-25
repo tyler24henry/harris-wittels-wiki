@@ -181,6 +181,15 @@ export const ImageModalWrapperStyles = styled.div`
             }
         }
     }
+    &#safari {
+        .modal {
+            .modal-image {
+                @media(max-width: 414px){
+                    width: calc(90vw - 1.5rem);
+                }
+            }
+        }
+    }
     #masonry-modal {
         @media (max-width: 414px) {
             width: calc(100vw - 4rem);
@@ -194,8 +203,8 @@ export const ImageModalWrapperStyles = styled.div`
             align-items: start;
             @media (max-width: 414px) {
                 width: auto;
-                padding: 0 1rem;
-            } 
+                padding: 0 0.5rem;
+            }  
         }
     }
     #background-tint {

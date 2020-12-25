@@ -12,8 +12,8 @@ export default {
       twitter: '@tyler24henry',
     },
     plugins: [
-      'gatsby-plugin-react-helmet',
       'gatsby-plugin-styled-components',
+      'gatsby-plugin-react-helmet',
       `gatsby-plugin-sitemap`,
       {
         resolve: `gatsby-plugin-manifest`,

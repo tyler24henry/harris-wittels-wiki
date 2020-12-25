@@ -1,8 +1,8 @@
 var plugins = [{
-      plugin: require('/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
+      plugin: require('/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/node_modules/gatsby-plugin-styled-components/gatsby-ssr'),
       options: {"plugins":[]},
     },{
-      plugin: require('/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/node_modules/gatsby-plugin-styled-components/gatsby-ssr'),
+      plugin: require('/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/node_modules/gatsby-plugin-react-helmet/gatsby-ssr'),
       options: {"plugins":[]},
     },{
       plugin: require('/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/node_modules/gatsby-plugin-sitemap/gatsby-ssr'),

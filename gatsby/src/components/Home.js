@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { useBottomScrollListener } from 'react-bottom-scroll-listener';
-import { getIsChrome } from '../utils/detectBrowser';
 import { useClickOutside } from '../utils/useClickOutside';
 import { ImageModalWrapperStyles } from '../styles/ImageModalWrapper';
+import { useIsChrome } from '../utils/useIsChrome';
 
 const HomeStyles = styled.div`
     .masonry-wrapper {
@@ -96,7 +96,7 @@ const HomeStyles = styled.div`
 export const Home = ({ masonryItems }) => {
     const [upToIndex, setUpToIndex] = useState(25);
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
-    const [isChrome, setIsChrome] = useState(null);
+    const { isChrome } = useIsChrome();
     const wrapperRef = useRef(null);
     const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
 
@@ -105,13 +105,6 @@ export const Home = ({ masonryItems }) => {
             setSelectedImageIndex(null);
         }
     }, [clickedOutside]);
-
-    useEffect(() => {
-        if(typeof window !== `undefined` && typeof navigator !== `undefined`){
-            const isChromeBrowser = getIsChrome() !== 2;
-            setIsChrome(isChromeBrowser);
-        }
-    }, []);
 
     let imagesOnly = [...masonryItems.filter(item => item.quote === null)];
 
@@ -239,7 +232,7 @@ export const Home = ({ masonryItems }) => {
                 </div>
             </HomeStyles>
             {selectedImageIndex !== null && (
-                <ImageModalWrapperStyles>
+                <ImageModalWrapperStyles id={isChrome ? 'non-safari' : 'safari'}>
                     <div className="modal" id="masonry-modal" ref={wrapperRef}>
                         <div className="modal-header">
                             <button id="exit-btn" type="button"

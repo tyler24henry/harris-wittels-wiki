@@ -9,6 +9,7 @@ import { SearchSection } from './SearchSection';
 import GeneralContext from './GeneralContext';
 import { BodyStyles } from '../styles/BodyStyles';
 import { ImageModalWrapperStyles } from '../styles/ImageModalWrapper';
+import { useIsChrome } from '../utils/useIsChrome';
 
 export const ImagesWrapperStyles = styled.div`
     padding: 2rem;
@@ -47,6 +48,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
     const wrapperRef = useRef(null);
     const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
     const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
+    const { isChrome } = useIsChrome();
 
     useEffect(() => {
         if(clickedOutside){
@@ -141,7 +143,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
                 </div>
             </BodyStyles>
             {selectedImageIndex !== null && (
-                <ImageModalWrapperStyles>
+                <ImageModalWrapperStyles id={isChrome ? 'non-safari' : 'safari'}>
                     <div className="modal" ref={wrapperRef}>
                         <div className="modal-header">
                             <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />
