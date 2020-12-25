@@ -203,7 +203,12 @@ export const TopNav = () => {
                         setOpenLeftPanel(!openLeftPanel);
                     }}
                 ><GiHamburgerMenu /></button>
-                <Link to="/" id="harris-wittels">Harris Wittels</Link>
+                <div id="harris-wittels"
+                    onClick={e => {
+                        setClickedOutside(false);
+                        setOpenLeftPanel(!openLeftPanel);
+                    }}
+                >Harris Wittels</div>
                 <div className="search-wrapper" id={isChrome ? 'non-safari' : 'safari'}>
                     <FaSearch className="search-icon" />
                     <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => isEnterPressed(e)} />
