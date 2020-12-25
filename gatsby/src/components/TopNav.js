@@ -126,6 +126,7 @@ const NavStyles = styled.nav`
             letter-spacing: 1px;
             justify-self: center;
             text-decoration: none;
+            padding-top: 0.2rem;
             &:hover {
                 text-decoration: none;
             }
