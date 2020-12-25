@@ -309,19 +309,17 @@ export const BodyStyles = styled.div`
                 padding-right: 0.5rem;
                 display: grid;
                 grid-template-columns: auto 1fr;
-                gap: 0.8rem;
+                gap: 0.2rem;
                 align-items: center;
-                font-size: 1.2rem;
+                font-size: 1.3rem;
                 font-weight: 600;
                 @media (max-width: 414px) {
-                    font-size: 1.1rem;
+                    font-size: 1.2rem;
                 }
                 .link-icon {
-                    font-size: 1.3rem;
-                    padding-bottom: 0.25rem;
+                    font-size: 1.4rem;
                     @media (max-width: 414px) {
-                        font-size: 1.2rem;
-                        padding-bottom: 0.1rem;
+                        font-size: 1.3rem;
                     }
                 }
             }

@@ -22,6 +22,11 @@ export default {
             type: 'number',
         },
         {
+            name: 'link',
+            title: 'Link',
+            type: 'string',
+        },
+        {
             name: 'content',
             title: 'Content',
             type: 'text',

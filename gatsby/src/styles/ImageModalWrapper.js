@@ -82,16 +82,41 @@ export const ImageModalWrapperStyles = styled.div`
                     font-weight: 600;
                 }
             }
-            #date {
-                font-size: 1.2rem;
-                font-weight: 500;
-                color: #919191;
+            .date-link-wrapper {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 0.5rem;
+                align-items: center;
                 width: calc(500px - 1rem);
                 margin: 0 auto;
                 margin-top: 1rem;
                 @media (max-width: 414px) {
                     width: calc(90vw - 1rem);
                     margin: 1rem 0 0 0;
+                }
+            }
+            #date {
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: #919191;
+            }
+            #link-wrapper {
+                justify-self: end;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 0.2rem;
+                align-items: center;
+                font-size: 1.3rem;
+                font-weight: 600;
+                @media (max-width: 414px) {
+                    font-size: 1.2rem;
+                }
+                .link-icon {
+                    font-size: 1.4rem;
+                    @media (max-width: 414px) {
+                        font-size: 1.3rem;
+                        padding-bottom: 0.2rem;
+                    }
                 }
             }
         }

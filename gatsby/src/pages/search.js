@@ -90,6 +90,7 @@ export const query = graphql`
                 day
                 year
                 content
+                link
                 image {
                     asset {
                         fluid {

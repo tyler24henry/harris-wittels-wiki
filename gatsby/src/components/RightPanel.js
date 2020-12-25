@@ -6,9 +6,9 @@ import Img from 'gatsby-image';
 const RightPanelStyles = styled.div`
     height: 100%;
     width: auto;
-    background: #f7f7f7;
-    border-left: 2px solid #e2e2e2;
+    padding-top: 2rem;
     @media(max-width: 1080px){
+        padding-top: 0;
         border: none;
     }
     .harris-img-wrapper {
@@ -17,23 +17,27 @@ const RightPanelStyles = styled.div`
         justify-items: center;
         border-bottom: 2px solid #e2e2e2;
         box-shadow: 1px 1px 3px #e2e2e2;
-        background: #ffffff;
+        background: #161616;
+        border-radius: 4px 4px 0 4px;
          @media(max-width: 1080px){
             background: #f7f7f7;
             border-bottom: none;
         }
         .wiki-avatar {
             width: 100%;
+            max-width: 300px;
         }
     }
     .wiki-wrapper {
-        margin-top: 1rem;
+        background: #f7f7f7;
+        border-left: 2px solid #e2e2e2;
+        border-bottom: 2px solid #e2e2e2;
         padding: 2rem;
         display: grid;
         grid-template-columns: 1fr;
         gap: 1.5rem;
         @media(max-width: 1080px){
-            padding: 2rem 1rem;
+            padding: 1rem 1rem 2rem 1rem;
         }
         @media(max-width: 414px){
             padding: 2rem;
@@ -84,6 +88,9 @@ const RightPanelStyles = styled.div`
                     &:hover {
                         text-decoration: none;
                     }
+                }
+                #link {
+                    color: #0745ad;
                 }
             }
         }

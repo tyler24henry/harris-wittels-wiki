@@ -153,7 +153,13 @@ export const Instagram = ({ instagramAvatar, images }) => {
                             {selectedImage.caption && (
                                 <p id="caption"><span>twittels</span> {selectedImage.caption}</p>
                             )}
-                            <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
+                            <div className="date-link-wrapper">
+                                <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
+                                <div id="link-wrapper">
+                                    <a href={selectedImage.link} target="_blank">Original link</a>
+                                    <FiChevronRight className="link-icon" />
+                                </div>
+                            </div>
                         </div>
                         <button type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>
                         <button type="button" disabled={!isNextIndex} onClick={e => setSelectedImageIndex(selectedImageIndex + 1)}><FiChevronRight className="chevron-right" /></button>

@@ -5,7 +5,7 @@ import { sortByDate } from '../utils/dateHelpers';
 import { GoVerified } from 'react-icons/go';
 import { FaRetweet } from 'react-icons/fa';
 import ReactPlayer from 'react-player/lazy';
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+import { FiChevronRight, FiChevronLeft, FiExternalLink } from 'react-icons/fi';
 import { AiFillCaretRight } from 'react-icons/ai';
 import smoothscroll from 'smoothscroll-polyfill';
 import { FaSearch } from 'react-icons/fa';
@@ -228,6 +228,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                                             <GoVerified className="verified" />
                                                         )}
                                                         <p id="details">@{handle} <span id="bullet">&bull;</span> {date}</p>
+                                                        <a className="original-link" href={tweet.link} target="_blank"><FiExternalLink /></a>
                                                     </div>
                                                     {tweet.replyingTo && (
                                                         <p id="replying-to">Replying to <span>@{tweet.replyingTo}</span></p>

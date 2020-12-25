@@ -6,7 +6,7 @@ import { FaRetweet } from 'react-icons/fa';
 import ReactPlayer from 'react-player/lazy';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
-import { FiChevronRight } from 'react-icons/fi';
+import { FiChevronRight, FiExternalLink } from 'react-icons/fi';
 import { Disqus } from 'gatsby-plugin-disqus';
 import { SearchSection } from './SearchSection';
 import GeneralContext from './GeneralContext';
@@ -49,6 +49,8 @@ export const TweetsWrapper = styled.div`
             width: 100%;
             overflow: hidden;
             .tweet-details {
+                position: relative;
+                width: 100%;
                 display: flex;
                 font-size: 1.5rem;
                 flex-wrap: wrap;
@@ -80,6 +82,12 @@ export const TweetsWrapper = styled.div`
                     @media (max-width: 414px) {
                         font-size: 0.9rem;
                     }
+                }
+                .original-link {
+                    color: #5B7083;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
                 }
             }
             #replying-to {
@@ -197,6 +205,7 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
                                             <GoVerified className="verified" />
                                         )}
                                         <p id="details">@{handle} <span id="bullet">&bull;</span> {date}</p>
+                                        <a className="original-link" href={tweet.link} target="_blank"><FiExternalLink /></a>
                                     </div>
                                     {tweet.replyingTo && (
                                         <p id="replying-to">Replying to <span>@{tweet.replyingTo}</span></p>
