@@ -123,7 +123,7 @@ export const BodyStyles = styled.div`
                 position: relative;
                 display: grid;
                 grid-template-columns: auto 1fr auto;
-                gap: 1rem;
+                grid-gap: 1rem;
                 @media (max-width: 414px) {
                     grid-template-columns: auto 1fr;
                 }
@@ -187,7 +187,7 @@ export const BodyStyles = styled.div`
                 grid-template-columns: auto 1fr;
                 justify-items: center;
                 align-items: center;
-                gap: 0.4rem;
+                grid-gap: 0.4rem;
                 h2 {
                     font-size: 19px;
                     font-weight: 700;
@@ -231,7 +231,7 @@ export const BodyStyles = styled.div`
                 font-weight: 500;
                 display: grid;
                 grid-template-columns: auto 1fr;
-                gap: 1rem;
+                grid-gap: 1rem;
                 @media (max-width: 414px) {
                     font-size: 1.3rem;
                 }
@@ -310,7 +310,7 @@ export const BodyStyles = styled.div`
                 padding-right: 0.5rem;
                 display: grid;
                 grid-template-columns: auto 1fr;
-                gap: 0.2rem;
+                grid-gap: 0.2rem;
                 align-items: center;
                 font-size: 1.3rem;
                 font-weight: 600;

@@ -18,7 +18,7 @@ export const PodcastAppearancesListStyles = styled.div`
     .header, .podcast {
         display: grid;
         grid-template-columns: 2.5fr 3fr 2.5fr 1.4fr;
-        gap: 0.5rem;
+        grid-gap: 0.5rem;
         align-items: center;
         padding: 0.5rem 1rem;
         background: #c4cfd7;

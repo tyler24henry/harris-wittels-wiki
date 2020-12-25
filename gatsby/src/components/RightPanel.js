@@ -38,14 +38,14 @@ const RightPanelStyles = styled.div`
         padding: 2rem;
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        grid-gap: 1.5rem;
         @media(max-width: 1080px){
             padding: 1rem 1rem 2rem 1rem;
         }
         .wiki-item {
             display: grid;
             grid-template-columns: 130px 1fr;
-            gap: 1rem;
+            grid-gap: 1rem;
             @media(max-width: 1220px){
                 grid-template-columns: 110px 1fr;
             }
@@ -74,7 +74,7 @@ const RightPanelStyles = styled.div`
             .values-wrapper {
                 display: grid;
                 grid-template-columns: 1fr;
-                gap: 0.5rem;
+                grid-gap: 0.5rem;
                 .caret {
                     font-size: 1rem;
                     padding-top: 0.3rem;

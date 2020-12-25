@@ -38,7 +38,7 @@ const NavStyles = styled.nav`
     .nav-wrapper {
         display: grid;
         grid-template-columns: auto 1fr auto;
-        gap: 1rem;
+        grid-gap: 1rem;
         align-items: center;
         @media(max-width: 840px){
             width: 600px;

@@ -16,7 +16,7 @@ const ContactStyles = styled.div`
         margin-top: 1rem;
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        grid-gap: 1.5rem;
         justify-items: start;
         border-radius: 8px;
         input[type="text"], input[type="email"], textarea {

@@ -17,7 +17,7 @@ export const TweetsWrapper = styled.div`
         padding: 1.2rem 1.5rem;
         display: grid;
         grid-template-columns: auto 1fr;
-        gap: 1.5rem;
+        grid-gap: 1.5rem;
         border-top: 1px solid #c4cfd7;
         @media (max-width: 414px) {
             padding: 1rem;

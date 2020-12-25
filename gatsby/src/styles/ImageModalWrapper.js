@@ -29,7 +29,7 @@ export const ImageModalWrapperStyles = styled.div`
         .modal-header {
             display: grid;
             grid-template-columns: auto 1fr auto;
-            gap: 1rem;
+            grid-gap: 1rem;
             align-items: center;
             width: calc(600px - 10rem);
             padding: 1rem;
@@ -85,7 +85,7 @@ export const ImageModalWrapperStyles = styled.div`
             .date-link-wrapper {
                 display: grid;
                 grid-template-columns: auto 1fr;
-                gap: 0.5rem;
+                grid-gap: 0.5rem;
                 align-items: center;
                 width: calc(500px - 1rem);
                 margin: 0 auto;
@@ -104,7 +104,7 @@ export const ImageModalWrapperStyles = styled.div`
                 justify-self: end;
                 display: grid;
                 grid-template-columns: auto 1fr;
-                gap: 0.2rem;
+                grid-gap: 0.2rem;
                 align-items: center;
                 font-size: 1.3rem;
                 font-weight: 600;
@@ -199,7 +199,7 @@ export const ImageModalWrapperStyles = styled.div`
             grid-template-columns: 1fr;
             width: calc(600px - 2rem);
             padding: 0 1rem 1rem 1rem;
-            gap: 0;
+            grid-gap: 0;
             align-items: start;
             @media (max-width: 414px) {
                 width: auto;

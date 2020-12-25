@@ -37,10 +37,10 @@ export const VideosStyles = styled.div`
         padding: 1.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 1.5rem;
+        grid-gap: 1.5rem;
         @media (max-width: 414px) {
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            grid-gap: 1rem;
         }
         .thumbnail-wrapper {
             width: 180px;

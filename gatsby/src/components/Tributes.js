@@ -16,7 +16,7 @@ export const TributesStyles = styled.div`
         font-weight: 500;
         display: grid;
         grid-template-columns: auto 1fr;
-        gap: 0.8rem;
+        grid-gap: 0.8rem;
         align-items: center;
         @media (max-width: 414px) {
             padding: 1rem 1.25rem;

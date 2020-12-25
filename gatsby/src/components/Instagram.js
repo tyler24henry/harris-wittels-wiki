@@ -15,12 +15,12 @@ export const ImagesWrapperStyles = styled.div`
     padding: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-gap: 2rem;
     align-items: center;
     justify-items: center;
     @media (max-width: 414px) {
         padding: 1.5rem;
-        gap: 1.5rem;
+        grid-gap: 1.5rem;
     }
     .image-wrapper {
         width: 100%;
