@@ -47,18 +47,6 @@ export const BodyStyles = styled.div`
                     object-position: 0 -50px;
                 }
             }
-            #tributes-background {
-                object-position: 0 61%;
-                @media (max-width: 414px) {
-                    object-position: 0 66%;
-                }
-            }
-            .youtube-background {
-                object-position: 50% 50%;
-                @media (max-width: 414px) {
-                    object-position: 50% 50%;
-                }
-            }
             .search-wrapper {
                 z-index: 10;
                 position: relative;
@@ -108,6 +96,19 @@ export const BodyStyles = styled.div`
         }
         #contact-background {
             background-color: #25231d;
+        }
+        #tributes-background {
+            object-position: 0 61%;
+            @media (max-width: 414px) {
+                object-position: 60% 61%;
+                transform: translateY(-30px);
+            }
+        }
+        .youtube-background {
+            object-position: 50% 50%;
+            @media (max-width: 414px) {
+                object-position: 50% 50%;
+            }
         }
         #search-background {
             background-color: var(--black);

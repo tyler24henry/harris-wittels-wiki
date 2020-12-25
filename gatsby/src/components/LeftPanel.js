@@ -19,6 +19,7 @@ const LeftPanelStyles = styled.div`
     ::-webkit-scrollbar { /* WebKit */
         width: 0;
         height: 0;
+        display: none;
     }
     @media (max-width: 414px) {
         width: 65vw;

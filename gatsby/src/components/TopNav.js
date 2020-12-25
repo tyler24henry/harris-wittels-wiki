@@ -115,7 +115,7 @@ const NavStyles = styled.nav`
     }
     #safari {
         .search-icon {
-            top: 4.25px;
+            top: 3.5px;
         }
     }
     #harris-wittels {
@@ -126,9 +126,10 @@ const NavStyles = styled.nav`
             letter-spacing: 1px;
             justify-self: center;
             text-decoration: none;
-            padding-top: 0.2rem;
+            padding-top: 0.1rem;
             &:hover {
                 text-decoration: none;
+                cursor: pointer;
             }
         }
     }
