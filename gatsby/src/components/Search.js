@@ -230,7 +230,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                                             <GoVerified className="verified" />
                                                         )}
                                                         <p id="details">@{handle} <span id="bullet">&bull;</span> {date}</p>
-                                                        <a className="original-link" href={tweet.link} target="_blank"><FiExternalLink /></a>
+                                                        <a className="original-link" href={tweet.link} title="Link to original tweet" target="_blank"><FiExternalLink /></a>
                                                     </div>
                                                     {tweet.replyingTo && (
                                                         <p id="replying-to">Replying to <span>@{tweet.replyingTo}</span></p>
@@ -357,7 +357,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                             <div className="date-link-wrapper">
                                 <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
                                 <div id="link-wrapper">
-                                    <a href={selectedImage.link} target="_blank">Original link</a>
+                                    <a href={selectedImage.link} title="Link to original Instagram post" target="_blank">Original link</a>
                                     <FiChevronRight className="link-icon" />
                                 </div>
                             </div>

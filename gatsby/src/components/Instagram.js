@@ -158,7 +158,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
                             <div className="date-link-wrapper">
                                 <p id="date">{selectedImage.month} {selectedImage.day}, {selectedImage.year}</p>
                                 <div id="link-wrapper">
-                                    <a href={selectedImage.link} target="_blank">Original link</a>
+                                    <a href={selectedImage.link} title="Link to original Instagram post" target="_blank">Original link</a>
                                     <FiChevronRight className="link-icon" />
                                 </div>
                             </div>

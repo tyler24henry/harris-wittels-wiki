@@ -205,7 +205,7 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
                                             <GoVerified className="verified" />
                                         )}
                                         <p id="details">@{handle} <span id="bullet">&bull;</span> {date}</p>
-                                        <a className="original-link" href={tweet.link} target="_blank"><FiExternalLink /></a>
+                                        <a className="original-link" href={tweet.link} title="Link to original tweet" target="_blank"><FiExternalLink /></a>
                                     </div>
                                     {tweet.replyingTo && (
                                         <p id="replying-to">Replying to <span>@{tweet.replyingTo}</span></p>

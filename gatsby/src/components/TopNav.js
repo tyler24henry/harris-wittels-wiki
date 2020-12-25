@@ -8,6 +8,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { LeftPanel } from './LeftPanel';
 import { slugify } from '../utils/slugify';
 import { useClickOutside } from '../utils/useClickOutside';
+import { useIsChrome } from '../utils/useIsChrome';
 
 const NavStyles = styled.nav`
     position: relative;
@@ -112,6 +113,11 @@ const NavStyles = styled.nav`
             }
         }
     }
+    #safari {
+        .search-icon {
+            top: 4.25px;
+        }
+    }
     #harris-wittels {
         display: none;
         @media (max-width: 414px) {
@@ -171,6 +177,7 @@ export const TopNav = () => {
     const wrapperRef = useRef(null);
     const hamburgerRef = useRef(null);
     const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
+    const { isChrome } = useIsChrome();
 
     useEffect(() => {
         if(openLeftPanel && clickedOutside){
@@ -197,7 +204,7 @@ export const TopNav = () => {
                     }}
                 ><GiHamburgerMenu /></button>
                 <Link to="/" id="harris-wittels">Harris Wittels</Link>
-                <div className="search-wrapper">
+                <div className="search-wrapper" id={isChrome ? 'non-safari' : 'safari'}>
                     <FaSearch className="search-icon" />
                     <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => isEnterPressed(e)} />
                 </div>
