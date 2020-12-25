@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import { RightPanel } from './RightPanel';
 import GeneralContext from './GeneralContext';
-import { AiOutlineSearch } from 'react-icons/ai';
 
 const LeftPanelStyles = styled.div`
     height: 100%;
@@ -22,28 +21,8 @@ const LeftPanelStyles = styled.div`
         height: 0;
     }
     @media (max-width: 414px) {
-        top: 60px;
-        width: 100vw;
-        height: calc(100% - 6rem);
-    }
-    .close-left-panel-btn {
-        display: none;
-        @media (max-width: 414px) {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 0.5rem;
-            align-items: center;
-            color: var(--black);
-            font-size: 1.2rem;
-            letter-spacing: 0.1rem;
-            padding: 1rem 2rem;
-            border-bottom: 1px solid #e2e2e2;
-            transition: all 0.4s;
-            text-align: left;
-            &:hover {
-                background-color: #e2e2e2;
-            }
-        }
+        width: 65vw;
+        z-index: 1001;
     }
     .link {
         color: var(--black);
@@ -65,7 +44,7 @@ const LeftPanelStyles = styled.div`
       height: 90px;
       width: 175px;
       @media (max-width: 414px) {
-            width: calc(100vw - 24px);
+            width: calc(65vw - 24px);
         }
     }
     #chevron:before {
@@ -103,7 +82,7 @@ const LeftPanelStyles = styled.div`
         background-color: #ffffff;
         text-align: center;
         @media (max-width: 414px) {
-            width: 100vw;
+            width: 65vw;
         }
         .link {
             color: var(--black);
@@ -150,9 +129,6 @@ const LeftPanelStyles = styled.div`
             display: block;
         }
     }
-    .search-icon {
-        transform: scaleX(-1) translateY(2px);
-    }
 `;
 
 export const LeftPanel = () => {
@@ -163,19 +139,18 @@ export const LeftPanel = () => {
                 <Link className="link" id="first-name" to="/" onClick={e => setOpenLeftPanel(false)}>Harris</Link>
                 <Link className="link" id="last-name" to="/" onClick={e => setOpenLeftPanel(false)}>Wittels</Link>
             </div>
-            <div id="chevron">hello</div>
+            <div id="chevron"></div>
             <div className="links">
-                <div className="close-left-panel-btn" onClick={e => setOpenLeftPanel(false)}><span>Close panel</span> <span>&times;</span></div>
                 <Link className="link" id="first-link" to="/" onClick={e => setOpenLeftPanel(false)}>Home</Link>
                 <Link className="link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast appearances</Link>
-                <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Harris Tweets</Link>
-                <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Harris Instagram Posts</Link>
-                <Link className="link" to="/youtube" onClick={e => setOpenLeftPanel(false)}>Harris on Youtube</Link>
+                <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Tweets</Link>
+                <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Instagram Posts</Link>
+                <Link className="link" to="/youtube" onClick={e => setOpenLeftPanel(false)}>Videos</Link>
                 <Link className="link" to="/foam-corner" onClick={e => setOpenLeftPanel(false)}>Foam Corner</Link>
-                <Link className="link" to="/tributes" onClick={e => setOpenLeftPanel(false)}>Tributes to Harris</Link>
+                <Link className="link" to="/tributes" onClick={e => setOpenLeftPanel(false)}>Tributes</Link>
                 <Link className="link" id="about" to="/about" onClick={e => setOpenLeftPanel(false)}>About</Link>
                 <Link className="link" id="contact" to="/contact" onClick={e => setOpenLeftPanel(false)}>Contact</Link>
-                <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search <AiOutlineSearch className="search-icon" /></Link>
+                <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search</Link>
             </div>
             <div className="wiki-wrapper">
                 <RightPanel />

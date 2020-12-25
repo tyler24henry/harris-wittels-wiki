@@ -45,9 +45,9 @@ const NavStyles = styled.nav`
             grid-template-columns: auto 1fr auto;
         }
         @media (max-width: 414px) {
-            width: calc(100vw - 4rem);
-            grid-template-columns: auto 1fr;
-            gap: 2rem;
+            grid-template-columns: auto auto 1fr;
+            width: calc(100vw - 7rem);
+            margin: 0;
         }
     }
     #hamburger-btn {
@@ -62,6 +62,9 @@ const NavStyles = styled.nav`
             padding-top: 0.7rem;
             padding-left: 0.3rem;
         }
+        @media(max-width: 414px){
+            padding-top: 0.4rem;
+        }
     }
     .search-wrapper {
         position: relative;
@@ -72,7 +75,9 @@ const NavStyles = styled.nav`
             padding-right: 3rem;
         }
         @media (max-width: 414px) {
-            display: none;
+            padding-right: 0;
+            padding-bottom: 0.4rem;
+            width: 25vw;
         }
         .search-icon {
             position: absolute;
@@ -103,8 +108,17 @@ const NavStyles = styled.nav`
                 color: var(--white);
             }
             @media (max-width: 414px) {
-                width: 90px;
+                width: 25vw;
             }
+        }
+    }
+    #harris-wittels {
+        display: none;
+        @media (max-width: 414px) {
+            display: block;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            justify-self: center;
         }
     }
     #tour-guide {
@@ -129,17 +143,6 @@ const NavStyles = styled.nav`
     #contact {
         margin-left: 2rem;
     }
-    .mobile-links-wrapper {
-        display: none;
-        @media(max-width: 414px){
-            display: grid;
-            grid-template-columns: repeat(4, auto);
-            gap: 1rem;
-            justify-items: center;
-            align-items: center;
-            text-align: center;
-        }
-    }
 `;
 
 const LeftPanelStyles = styled.div`
@@ -152,7 +155,8 @@ const LeftPanelStyles = styled.div`
     overflow-y: scroll;
     border-right: 2px solid #e2e2e2;
     @media(max-width: 414px){
-        width: 300px;
+        width: 65vw;
+        z-index: 1001;
     }
 `;
 
@@ -161,10 +165,11 @@ export const TopNav = () => {
     const searchRef = useRef(null);
     const navigate = useNavigate();
     const wrapperRef = useRef(null);
+    const hamburgerRef = useRef(null);
     const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
 
     useEffect(() => {
-        if(clickedOutside){
+        if(openLeftPanel && clickedOutside){
             setOpenLeftPanel(false);
         }
     }, [clickedOutside]);
@@ -176,16 +181,18 @@ export const TopNav = () => {
             searchRef.current.blur();
         }
     }
+
     return (
         <>
         <NavStyles>
             <div className="nav-wrapper">
-                <button type="button" id="hamburger-btn"
+                <button type="button" id="hamburger-btn" ref={hamburgerRef}
                     onClick={e => {
                         setClickedOutside(false);
                         setOpenLeftPanel(!openLeftPanel);
                     }}
                 ><GiHamburgerMenu /></button>
+                <h2 id="harris-wittels">Harris Wittels</h2>
                 <div className="search-wrapper">
                     <FaSearch className="search-icon" />
                     <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => isEnterPressed(e)} />
@@ -194,16 +201,6 @@ export const TopNav = () => {
                 <div className="contact-about-wrapper">
                     <Link to="/about">About</Link>
                     <Link to="/contact" id="contact">Contact</Link>
-                </div>
-                <div className="mobile-links-wrapper">
-                    <Link className="link" to="/">Home</Link>
-                    <Link className="link" to="/podcast-appearances">Podcasts</Link>
-                    <Link className="link" to="/twitter">Tweets</Link>
-                    <Link className="link" to="/instagram">IG Posts</Link>
-                    <Link className="link" to="/youtube">Videos</Link>
-                    <Link className="link" to="/foam-corner">Foam</Link>
-                    <Link className="link" to="/tributes">Tributes</Link>
-                    <Link className="link" to="/search">Search</Link>
                 </div>
             </div>
         </NavStyles>

@@ -42,9 +42,6 @@ const RightPanelStyles = styled.div`
         @media(max-width: 1080px){
             padding: 1rem 1rem 2rem 1rem;
         }
-        @media(max-width: 414px){
-            padding: 2rem;
-        }
         .wiki-item {
             display: grid;
             grid-template-columns: 130px 1fr;
@@ -63,7 +60,7 @@ const RightPanelStyles = styled.div`
                 margin-top: 1rem;
             }
             @media(max-width: 414px){
-                grid-template-columns: 130px 1fr;
+                grid-template-columns: 90px 1fr;
             }
             p, a {
                 font-size: 1.4rem;

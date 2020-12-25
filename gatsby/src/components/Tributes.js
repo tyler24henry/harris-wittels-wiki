@@ -85,7 +85,7 @@ export const Tributes = ({ siteImages, tributes }) => {
                 </div>
                 <TributesStyles>
                     {tributesFiltered.map((tribute, index) => (
-                        <div className="tribute" id={index === 0 ? 'first-tribute' : ''}>
+                        <div className="tribute" id={index === 0 ? 'first-tribute' : ''} key={tribute.id}>
                             <AiFillCaretRight className="caret" />
                             <a href={tribute.link} target="_blank">{tribute.title}</a>
                         </div>
