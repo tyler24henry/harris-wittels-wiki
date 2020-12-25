@@ -63,7 +63,7 @@ const NavStyles = styled.nav`
             padding-left: 0.3rem;
         }
         @media(max-width: 414px){
-            padding-top: 0.4rem;
+            padding-top: 0.3rem;
         }
     }
     .search-wrapper {
@@ -119,6 +119,10 @@ const NavStyles = styled.nav`
             font-size: 1.4rem;
             letter-spacing: 1px;
             justify-self: center;
+            text-decoration: none;
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
     #tour-guide {
@@ -192,7 +196,7 @@ export const TopNav = () => {
                         setOpenLeftPanel(!openLeftPanel);
                     }}
                 ><GiHamburgerMenu /></button>
-                <h2 id="harris-wittels">Harris Wittels</h2>
+                <Link to="/" id="harris-wittels">Harris Wittels</Link>
                 <div className="search-wrapper">
                     <FaSearch className="search-icon" />
                     <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => isEnterPressed(e)} />
