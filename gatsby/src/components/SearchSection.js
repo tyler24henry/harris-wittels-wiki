@@ -10,7 +10,7 @@ const SearchSectionStyles = styled.div`
     justify-self: center;
     margin-top: 2rem;
     @media(max-width: 414px){
-        width: 110px;
+        width: 30vw;
         position: absolute;
         right: 0;
         top: 41.5px;

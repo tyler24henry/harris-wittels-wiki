@@ -25,7 +25,7 @@ const NavStyles = styled.nav`
         position: fixed;
         top: 0;
         left: 0;
-        width: calc(100vw - 4rem);
+        width: calc(100% - 4rem);
         z-index: 500;
         overflow: hidden;
     }
@@ -130,7 +130,7 @@ const NavStyles = styled.nav`
             display: block;
             justify-self: end;
             padding: 0;
-            padding-top: 0.4rem;
+            padding-top: 0.35rem;
         }
         .search-icon-mobile {
             color: var(--white);
@@ -148,7 +148,6 @@ const NavStyles = styled.nav`
             letter-spacing: 1px;
             justify-self: center;
             text-decoration: none;
-            padding-top: 0.1rem;
             &:hover {
                 text-decoration: none;
                 cursor: pointer;
