@@ -64,7 +64,8 @@ const NavStyles = styled.nav`
             padding-left: 0.3rem;
         }
         @media(max-width: 414px){
-            padding-top: 0.3rem;
+            padding:0;
+            height:18px;
         }
     }
     .search-wrapper {
@@ -144,10 +145,11 @@ const NavStyles = styled.nav`
         display: none;
         @media (max-width: 414px) {
             display: block;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             letter-spacing: 1px;
             justify-self: center;
             text-decoration: none;
+            padding-bottom: 0;
             &:hover {
                 text-decoration: none;
                 cursor: pointer;

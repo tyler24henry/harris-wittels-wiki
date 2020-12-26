@@ -8,27 +8,41 @@ const FourOhFourStyles = styled.div`
     justify-items: center;
     text-align: center;
     h2 {
-        margin-top: -4rem;
+        margin-top: -2rem;
         font-size: 20rem;
         font-weight: 600;
         height: 22rem;
-        color: #64ffda;
+        color: var(--black);
         letter-spacing: 1rem;
+        @media(max-width: 414px){
+            margin-top: -4rem;
+            font-size: 16rem;
+        }
     }
     p {
         font-size: 3.5rem;
         font-weight: 300;
-        color: white;
+        color: var(--black);
+        @media(max-width: 414px){
+            font-size: 3rem;
+            margin-top: -4rem;
+        }
     }
     a {
         margin-top: 5rem;
         font-size: 2rem;
-        color: #64ffda;
-        border: 1px solid #64ffda;
+        color: var(--black);
+        border: 1px solid var(--black);
         border-radius: 4px;
         padding: 1.2rem 2rem;
+        transition: all 0.4s;
         &:hover {
-            background-color: var(--greenTint);
+            background-color: var(--black);
+            color: var(--white);
+            text-decoration: none;
+        }
+        @media(max-width: 414px){
+            margin-top: 2.5rem;
         }
     }
 `;

@@ -18,7 +18,7 @@ export const About = ({ tylerAvatar }) => {
                     </div>
                     <p id="handle">@tyler24henry</p>
                     <p id="description">This is a website for people who connected with Harris's story and comedy. Or for people to discover him for the first time. I hope you enjoy it!</p>
-                    <p id="description">If there's something that could be added (foam corner joke, tweet, etc.) send me a message on the <Link to="/contact">contact page</Link>.</p>
+                    <p id="description">If there's something that could be added (foam corner joke, video, article, etc.) send me a message on the <Link to="/contact">contact page</Link>.</p>
                 </div>
             </div>
         </BodyStyles>

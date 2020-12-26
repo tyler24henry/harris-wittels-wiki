@@ -123,13 +123,6 @@ const LeftPanelStyles = styled.div`
             }
         }
     }
-    .wiki-wrapper {
-        display: none;
-        @media(max-width: 1080px){
-            margin-top: 4rem;
-            display: block;
-        }
-    }
 `;
 
 export const LeftPanel = () => {
@@ -152,9 +145,6 @@ export const LeftPanel = () => {
                 <Link className="link" id="about" to="/about" onClick={e => setOpenLeftPanel(false)}>About</Link>
                 <Link className="link" id="contact" to="/contact" onClick={e => setOpenLeftPanel(false)}>Contact</Link>
                 <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search</Link>
-            </div>
-            <div className="wiki-wrapper">
-                <RightPanel />
             </div>
         </LeftPanelStyles>
     )
