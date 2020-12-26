@@ -61,10 +61,33 @@ export const ImageModalWrapperStyles = styled.div`
             width: 500px;
             height: 500px;
             object-fit: cover;
+            filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, .3));
             @media (max-width: 414px) {
                 width: calc(100vw - 4rem);
                 height: calc(100vw - 10rem);
             } 
+        }
+        .modal-image-wrapper {
+            position: relative;
+            height: 500px;
+            width: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            @media (max-width: 414px) {
+                width: calc(100vw - 4rem);
+                height: calc(100vw - 10rem);
+            } 
+            .modal-image {
+                max-height: 100%;
+                max-width: 100%;
+                width: auto;
+                height: auto;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                object-fit: contain;
+                filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, .3));
+            }
         }
         .sub-image-wrapper {
             #caption {
@@ -183,9 +206,9 @@ export const ImageModalWrapperStyles = styled.div`
     }
     &#safari {
         .modal {
-            .modal-image {
+            .modal-image-wrapper {
                 @media(max-width: 414px){
-                    width: calc(90vw - 1.5rem);
+                    max-width: calc(90vw - 1.5rem);
                 }
             }
         }

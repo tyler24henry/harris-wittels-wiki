@@ -186,23 +186,6 @@ export const Home = ({ masonryItems }) => {
 
       const masonryItemsSliced = isChrome ? [...masonryItems] : [...masonryItems].slice(0,upToIndex);
 
-    // const handleClick = (index) => {
-    //     if(index !== null){
-    //         const identifier = [...imagesOnly][index]?.id;
-    //         navigate(`/#${identifier}`);
-    //     } else {
-    //         navigate(`/`);
-    //     }
-    // }
-
-    // const identifier = [...imagesOnly][selectedImageIndex]?.id;
-
-    // let disqusConfig = {
-    //     url: `https://www.harriswittels.wiki/#${identifier}`,
-    //     identifier,
-    //     title: `Harris Image ${identifier}`,
-    // }
-
     return (
         <>
             <HomeStyles>
@@ -239,7 +222,9 @@ export const Home = ({ masonryItems }) => {
                             onClick={e => setSelectedImageIndex(null)}
                             >&times;</button>
                         </div>
-                        <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
+                        <div className="modal-image-wrapper">
+                            <Img className="modal-image" fluid={selectedImage.image.asset.fluid} alt="From Instagram" />
+                        </div>
                         <button className="masonry-chevron" type="button" disabled={!isPrevIndex} onClick={e => setSelectedImageIndex(selectedImageIndex - 1)}><FiChevronLeft className="chevron-left" /></button>
                         <button className="masonry-chevron" type="button" disabled={!isNextIndex} onClick={e => setSelectedImageIndex(selectedImageIndex + 1)}><FiChevronRight className="chevron-right" /></button>
                     </div>

@@ -175,14 +175,13 @@ const LeftPanelStyles = styled.div`
         grid-template-columns: auto 1fr;
         grid-gap: 1.5rem;
         align-items: end;
-        height: 100%;
+        height: 25px;
         @media(max-width: 414px){
             grid-gap: 1rem;
             width: calc(65vw - 2rem);
             margin: 0 auto;
-            height: 25px;
             bottom: auto;
-            top: calc(100vh - 92px);
+            top: calc(100vh - 80px);
         }
         #share {
             position: relative;
