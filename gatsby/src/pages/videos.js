@@ -1,15 +1,15 @@
 import React from 'react';
-import { Youtube } from '../components/Youtube';
+import { Videos } from '../components/Videos';
 import SEO from '../components/SEO';
 import { graphql } from 'gatsby';
 
-export default function YoutubePage({ data }) {
+export default function VideosPage({ data }) {
     const siteImages = data.images.nodes;
     const bits = data.bits.nodes;
     return (
         <>
-            <SEO title="Youtube" />
-            <Youtube siteImages={siteImages} bits={bits} />
+            <SEO title="Videos" />
+            <Videos siteImages={siteImages} bits={bits} />
         </>
     )
 }

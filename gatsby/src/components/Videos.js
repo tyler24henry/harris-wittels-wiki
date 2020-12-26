@@ -80,9 +80,12 @@ export const VideosStyles = styled.div`
             }
         }
     }
+    &#search-page { 
+        padding-top: 2rem;
+    }
 `;
 
-export const Youtube = ({ siteImages, bits }) => {
+export const Videos = ({ siteImages, bits }) => {
     const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
     const [bitsAvatar] = siteImages.filter(image => image.name === 'Bits Avatar');
     const [bitsBackground] = siteImages.filter(image => image.name === 'Bits Background');
@@ -98,8 +101,8 @@ export const Youtube = ({ siteImages, bits }) => {
     }
 
     let disqusConfig = {
-        url: `https://www.harriswittels.wiki/youtube`,
-        identifier: 'harrisWittelsWikiYoutubePage',
+        url: `https://www.harriswittels.wiki/videos`,
+        identifier: 'harrisWittelsWikiVideosPage',
         title: 'Videos',
     }
 

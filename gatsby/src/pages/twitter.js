@@ -8,7 +8,7 @@ export default function TwitterPage({ data }) {
     const [harrisAvatar] = data.images.nodes.filter(image => image.name === 'Harris Twitter Avatar');
     return (
         <>
-            <SEO title="Twitter" />
+            <SEO title="Harris's Tweets" />
             <Twitter tweets={tweets} harrisAvatar={harrisAvatar} />
         </>
     )

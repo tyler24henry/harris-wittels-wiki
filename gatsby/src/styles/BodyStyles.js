@@ -217,6 +217,9 @@ export const BodyStyles = styled.div`
             #description {
                 margin-top: 1rem;
                 font-size: 1.5rem;
+                a {
+                    font-weight: 600;
+                }
                 @media (max-width: 414px) {
                     font-size: 1.3rem;
                 }
@@ -274,6 +277,9 @@ export const BodyStyles = styled.div`
                     height: 115px;
                 }
             }
+        }
+        #about-page {
+            padding-bottom: 2rem;
         }
         #youtube-wrapper {
             padding: 0 1.5rem 4rem 1.5rem;

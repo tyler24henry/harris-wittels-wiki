@@ -17,7 +17,7 @@ export default function SEO({ children, location, description, title, image }) {
   `);
 
   return (
-    <Helmet titleTemplate={`%s - ${site.siteMetadata.title}`}>
+    <Helmet>
       <html lang="en" />
       <title>{title}</title>
       {/* Fav Icons */}

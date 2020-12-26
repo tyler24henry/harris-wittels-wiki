@@ -7,7 +7,7 @@ export default {
     siteMetadata: {
       title: `Harris Wittels`,
       siteUrl: 'https://www.harriswittels.wiki/',
-      description: `Tribute site for the great Harris Wittels. Browse his podcast appearances, tweets, instagram posts, youtube videos, and more. If you are a fan of Harris's Phone/Foam Corner, you can check out our master list of foam jokes.`,
+      description: `Tribute site for the great Harris Wittels. Browse his podcast appearances, tweets, instagram posts, videos, and more. If you are a fan of Harris's Phone/Foam Corner, you can check out our master list of foam jokes.`,
       image: '/favicon.png',
       twitter: '@tyler24henry',
     },
@@ -20,7 +20,7 @@ export default {
         options: {
           name: `Harris Wittels Wiki`,
           short_name: `harris-wittels-wiki`,
-          description: `Tribute site for the great Harris Wittels. Browse his podcast appearances, tweets, instagram posts, youtube videos, and more. If you are a fan of Harris's Phone/Foam Corner, you can check out our master list of foam jokes.`,
+          description: `Tribute site for the great Harris Wittels. Browse his podcast appearances, tweets, instagram posts,  videos, and more. If you are a fan of Harris's Phone/Foam Corner, you can check out our master list of foam jokes.`,
           lang: `en`,
           icon: `static/favicon.png`,
           start_url: `/`,

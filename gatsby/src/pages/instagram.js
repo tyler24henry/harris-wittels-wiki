@@ -8,7 +8,7 @@ export default function InstagramPage({ data }) {
     const images = data.harrisImages.nodes;
     return (
         <>
-            <SEO title="Instagram" />
+            <SEO title="Instagram Posts" />
             <Instagram instagramAvatar={instagramAvatar} images={images} />
         </>
     )

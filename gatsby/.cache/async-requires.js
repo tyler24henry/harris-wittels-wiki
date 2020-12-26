@@ -13,6 +13,6 @@ exports.components = {
   "component---src-pages-search-js": () => import("./../../../src/pages/search.js" /* webpackChunkName: "component---src-pages-search-js" */),
   "component---src-pages-tributes-js": () => import("./../../../src/pages/tributes.js" /* webpackChunkName: "component---src-pages-tributes-js" */),
   "component---src-pages-twitter-js": () => import("./../../../src/pages/twitter.js" /* webpackChunkName: "component---src-pages-twitter-js" */),
-  "component---src-pages-youtube-js": () => import("./../../../src/pages/youtube.js" /* webpackChunkName: "component---src-pages-youtube-js" */)
+  "component---src-pages-videos-js": () => import("./../../../src/pages/videos.js" /* webpackChunkName: "component---src-pages-videos-js" */)
 }
 

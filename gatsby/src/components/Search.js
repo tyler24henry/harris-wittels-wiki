@@ -16,7 +16,7 @@ import { BodyStyles } from '../styles/BodyStyles';
 import { TweetsWrapper } from './Twitter';
 import { PodcastAppearancesListStyles } from './PodcastAppearances';
 import { ImagesWrapperStyles } from './Instagram';
-import { VideosStyles } from './Youtube';
+import { VideosStyles } from './Videos';
 import { TributesStyles } from './Tributes';
 import { FoamJokesStyles } from './FoamCorner';
 import { ImageModalWrapperStyles } from '../styles/ImageModalWrapper';
@@ -170,7 +170,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                 <div className="category" id={selected === 'Instagram' ? 'selected' : ''} onClick={e => setSelected('Instagram')}>
                                     <p>Grams <span>({harrisImages.length})</span></p>
                                 </div>
-                                <div className="category" id={selected === 'Youtube' ? 'selected' : ''} onClick={e => setSelected('Youtube')}>
+                                <div className="category" id={selected === 'Videos' ? 'selected' : ''} onClick={e => setSelected('Videos')}>
                                     <p>Videos <span>({bits.length})</span></p>
                                 </div>
                                 <div className="category" id={selected === 'Foam Corner' ? 'selected' : ''} onClick={e => setSelected('Foam Corner')}>
@@ -276,8 +276,8 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                     <p>No instagrams found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
                                 </div>
                             )}
-                            {selected === 'Youtube' && bits.length > 0 && (
-                                <VideosStyles>
+                            {selected === 'Videos' && bits.length > 0 && (
+                                <VideosStyles id="search-page">
                                     {selectedVideo && (
                                         <div className="now-playing-wrapper">
                                             <div className="video-player-wrapper">
@@ -305,9 +305,9 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                     </div>
                                 </VideosStyles>
                             )}
-                            {selected === 'Youtube' && bits.length === 0 && (
+                            {selected === 'Videos' && bits.length === 0 && (
                                 <div className="no-content-wrapper">
-                                    <p>No youtube videos found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
+                                    <p>No videos found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
                                 </div>
                             )}
                             {selected === 'Foam Corner' && allFoam.length > 0 && (

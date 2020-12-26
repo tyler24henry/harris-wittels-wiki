@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'gatsby';
@@ -47,7 +47,7 @@ const NavStyles = styled.nav`
         }
         @media (max-width: 414px) {
             grid-template-columns: auto auto 1fr;
-            width: calc(100vw - 7rem);
+            width: calc(100% - 1rem);
             margin: 0;
         }
     }
@@ -75,12 +75,10 @@ const NavStyles = styled.nav`
             justify-self: end;
             padding-right: 3rem;
         }
-        @media (max-width: 414px) {
-            padding-right: 0;
-            padding-bottom: 0.4rem;
-            width: 25vw;
+        @media(max-width: 414px){
+            display: none;
         }
-        .search-icon {
+        .search-icon, .search-icon-safari {
             position: absolute;
             left: 1px;
             top: 4px;
@@ -115,16 +113,38 @@ const NavStyles = styled.nav`
             }
         }
     }
-    #safari {
-        .search-icon {
-            top: 3.5px;
+    #show-search {
+        @media (max-width: 414px) {
+            display: block;
+            padding-right: 2.5rem;
+            padding-bottom: 0.4rem;
+            width: 25vw;
         }
+    }
+    .search-icon-safari {
+        top: 3.5px;
+    }
+    .search-btn {
+        display: none;
+        @media(max-width: 414px){
+            display: block;
+            justify-self: end;
+            padding: 0;
+            padding-top: 0.4rem;
+        }
+        .search-icon-mobile {
+            color: var(--white);
+            font-size: 1.4rem;
+        }
+    }
+    #hide-search-btn {
+        display: none;
     }
     #harris-wittels {
         display: none;
         @media (max-width: 414px) {
             display: block;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             letter-spacing: 1px;
             justify-self: center;
             text-decoration: none;
@@ -182,6 +202,7 @@ export const TopNav = () => {
     const hamburgerRef = useRef(null);
     const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
     const { isChrome } = useIsChrome();
+    const [showSearchMobile, setShowSearchMobile] = useState(false);
 
     useEffect(() => {
         if(openLeftPanel && clickedOutside){
@@ -213,10 +234,11 @@ export const TopNav = () => {
                         setOpenLeftPanel(!openLeftPanel);
                     }}
                 >Harris Wittels</div>
-                <div className="search-wrapper" id={isChrome ? 'non-safari' : 'safari'}>
-                    <FaSearch className="search-icon" />
+                <div className="search-wrapper" id={showSearchMobile ? 'show-search' : ''}>
+                    <FaSearch className={isChrome ? 'search-icon' : 'search-icon-safari'} />
                     <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => isEnterPressed(e)} />
                 </div>
+                <button type="button" className="search-btn" id={showSearchMobile ? 'hide-search-btn' : ''} onClick={e => setShowSearchMobile(true)}><FaSearch className="search-icon-mobile" /></button>
                 <p id="tour-guide">"I’ll be your tour guide through the cosmos, sorry."</p>
                 <div className="contact-about-wrapper">
                     <Link to="/about">About</Link>

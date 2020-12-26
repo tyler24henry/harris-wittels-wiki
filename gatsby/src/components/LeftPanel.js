@@ -146,7 +146,7 @@ export const LeftPanel = () => {
                 <Link className="link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast appearances</Link>
                 <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Tweets</Link>
                 <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Instagram Posts</Link>
-                <Link className="link" to="/youtube" onClick={e => setOpenLeftPanel(false)}>Videos</Link>
+                <Link className="link" to="/videos" onClick={e => setOpenLeftPanel(false)}>Videos</Link>
                 <Link className="link" to="/foam-corner" onClick={e => setOpenLeftPanel(false)}>Foam Corner</Link>
                 <Link className="link" to="/tributes" onClick={e => setOpenLeftPanel(false)}>Tributes</Link>
                 <Link className="link" id="about" to="/about" onClick={e => setOpenLeftPanel(false)}>About</Link>

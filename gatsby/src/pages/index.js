@@ -7,7 +7,7 @@ export default function HomePage({ data }) {
     const masonryItems = data.masonryItems.nodes;
     return (
         <>
-            <SEO title="Tribute Site" />
+            <SEO title="Harris Wittels Tribute Site" />
             <Home masonryItems={masonryItems} />
         </>
     )

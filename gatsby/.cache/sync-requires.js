@@ -16,6 +16,6 @@ exports.components = {
   "component---src-pages-search-js": hot(preferDefault(require("/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/src/pages/search.js"))),
   "component---src-pages-tributes-js": hot(preferDefault(require("/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/src/pages/tributes.js"))),
   "component---src-pages-twitter-js": hot(preferDefault(require("/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/src/pages/twitter.js"))),
-  "component---src-pages-youtube-js": hot(preferDefault(require("/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/src/pages/youtube.js")))
+  "component---src-pages-videos-js": hot(preferDefault(require("/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/src/pages/videos.js")))
 }
 
