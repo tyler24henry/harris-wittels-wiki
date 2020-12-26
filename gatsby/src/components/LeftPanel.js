@@ -181,6 +181,7 @@ const LeftPanelStyles = styled.div`
             width: calc(65vw - 2rem);
             margin: 0 auto;
             height: 25px;
+            top: calc(100vh - 50px);
         }
         #share {
             position: relative;
