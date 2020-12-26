@@ -15,7 +15,7 @@ const FourOhFourStyles = styled.div`
         color: var(--black);
         letter-spacing: 1rem;
         @media(max-width: 414px){
-            margin-top: -4rem;
+            margin-top: 0;
             font-size: 16rem;
         }
     }

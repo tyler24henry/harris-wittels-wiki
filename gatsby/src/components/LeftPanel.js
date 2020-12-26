@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { RightPanel } from './RightPanel';
 import GeneralContext from './GeneralContext';
+
+import { FacebookShareButton, TwitterShareButton, RedditShareButton, PocketShareButton } from 'react-share';
+import { FaGetPocket, FaRedditAlien } from 'react-icons/fa';
+import { AiOutlineTwitter, AiFillFacebook } from 'react-icons/ai'
 
 const LeftPanelStyles = styled.div`
     height: 100%;
@@ -23,19 +26,9 @@ const LeftPanelStyles = styled.div`
     }
     @media (max-width: 414px) {
         width: 65vw;
+        height: 100vh;
         z-index: 1001;
-    }
-    .link {
-        color: var(--black);
-        font-size: 1.2rem;
-        letter-spacing: 0.1rem;
-        padding: 1rem;
-        &:hover {
-            text-decoration: none;
-        }
-        @media (max-width: 414px) {
-            padding: 1rem 2rem;
-        }
+        overflow: hidden;
     }
     #chevron {
       position: relative;
@@ -45,7 +38,7 @@ const LeftPanelStyles = styled.div`
       height: 90px;
       width: 175px;
       @media (max-width: 414px) {
-            width: calc(65vw - 24px);
+            display: none;
         }
     }
     #chevron:before {
@@ -83,7 +76,7 @@ const LeftPanelStyles = styled.div`
         background-color: #ffffff;
         text-align: center;
         @media (max-width: 414px) {
-            width: 65vw;
+            display: none;
         }
         .link {
             color: var(--black);
@@ -96,10 +89,22 @@ const LeftPanelStyles = styled.div`
             font-size: 1.8rem;
         }
     }
+    .link, .share-wrapper {
+        color: var(--black);
+        font-size: 1.2rem;
+        letter-spacing: 0.1rem;
+        padding: 1rem;
+        &:hover {
+            text-decoration: none;
+        }
+    }
     .links {
         padding: 4rem 0;
         display: grid;
         grid-template-columns: 1fr;
+        @media (max-width: 414px) {
+            padding: 0;
+        }
         a {
             border-top: 1px solid #e2e2e2;
             transition: all 0.4s;
@@ -123,10 +128,41 @@ const LeftPanelStyles = styled.div`
             }
         }
     }
+    .share-wrapper {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 1.5rem;
+        @media(max-width: 414px){
+            left: 15px;
+            bottom: 5px;
+            padding: 0;
+        }
+        #share {
+            position: relative;
+            color: var(--black);
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.1rem;
+        }
+        .share-icons {
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            grid-gap: 1.5rem;
+            align-items: center;
+            font-size: 1.6rem;
+            color: var(--black);
+        }
+    }
 `;
 
 export const LeftPanel = () => {
     const [search, setSearch, openLeftPanel, setOpenLeftPanel] = useContext(GeneralContext);
+    const url = "https://www.harriswittels.wiki";
+    const title = "Harris Wittels Tribute Site";
     return (
         <LeftPanelStyles>
             <div className="site-name">
@@ -145,6 +181,39 @@ export const LeftPanel = () => {
                 <Link className="link" id="about" to="/about" onClick={e => setOpenLeftPanel(false)}>About</Link>
                 <Link className="link" id="contact" to="/contact" onClick={e => setOpenLeftPanel(false)}>Contact</Link>
                 <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search</Link>
+            </div>
+            <div className="share-wrapper">
+                <p id="share">Share</p>
+                <div className="share-icons">
+                    <TwitterShareButton
+                        url={url}
+                        title={title}
+                        className="share-button"
+                    >
+                        <AiOutlineTwitter id="twitter" />
+                    </TwitterShareButton>
+                    <FacebookShareButton
+                        url={url}
+                        title={title}
+                        className="share-button"
+                    >
+                        <AiFillFacebook />
+                    </FacebookShareButton>
+                    <RedditShareButton
+                        url={url}
+                        title={title}
+                        className="share-button"
+                    >
+                        <FaRedditAlien />
+                    </RedditShareButton>
+                    <PocketShareButton
+                        url={url}
+                        title={title}
+                        className="share-button"
+                    >
+                        <FaGetPocket id="pocket" />
+                    </PocketShareButton>
+                </div>
             </div>
         </LeftPanelStyles>
     )
