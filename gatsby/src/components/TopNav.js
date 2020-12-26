@@ -195,6 +195,7 @@ const LeftPanelStyles = styled.div`
         overflow: hidden;
         z-index: 1001;
         background: #f7f7f7;
+        border-right: none;
     }
 `;
 
