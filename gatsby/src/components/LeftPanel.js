@@ -169,7 +169,7 @@ const LeftPanelStyles = styled.div`
     .share-wrapper {
         position: fixed;
         left: 0;
-        top: calc(100vh - 30px);
+        bottom: 0;
         padding: 0 1rem;
         display: grid;
         grid-template-columns: auto 1fr;
@@ -181,7 +181,8 @@ const LeftPanelStyles = styled.div`
             width: calc(65vw - 2rem);
             margin: 0 auto;
             height: 25px;
-            top: calc(100vh - 75px);
+            bottom: auto;
+            top: calc(100vh - 100px);
         }
         #share {
             position: relative;
