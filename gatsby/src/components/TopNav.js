@@ -181,7 +181,7 @@ const NavStyles = styled.nav`
 `;
 
 const LeftPanelStyles = styled.div`
-    position: fixed;
+    /* position: fixed;
     left: 0;
     top: 0;
     z-index: 15;
@@ -196,7 +196,7 @@ const LeftPanelStyles = styled.div`
         z-index: 1001;
         background: #f7f7f7;
         border-right: none;
-    }
+    } */
 `;
 
 export const TopNav = () => {

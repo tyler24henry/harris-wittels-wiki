@@ -27,11 +27,11 @@ const LeftPanelStyles = styled.div`
     }
     @media (max-width: 414px) {
         width: 65vw;
-        height: calc(100vh - 1rem);
+        height: 100vh;
         overflow: hidden;
         z-index: 1001;
         display: grid;
-        grid-template-rows: 60px auto 1fr;
+        grid-template-rows: 60px 1fr;
         border-right: none;
     }
     #chevron {
@@ -140,10 +140,12 @@ const LeftPanelStyles = styled.div`
         @media (max-width: 414px) {
             padding: 2rem 0 0 0;
             border-right: 2px solid #e2e2e2;
+            display: block;
         }
         a {
             border-top: 1px solid #e2e2e2;
             transition: all 0.4s;
+            display: block;
             &:hover {
                 background-color: #e2e2e2;
             }
@@ -165,9 +167,9 @@ const LeftPanelStyles = styled.div`
         }
     }
     .share-wrapper {
-        position: absolute;
+        position: fixed;
         left: 0;
-        bottom: 0;
+        top: calc(100vh - 30px);
         padding: 0 1rem;
         display: grid;
         grid-template-columns: auto 1fr;
@@ -175,19 +177,16 @@ const LeftPanelStyles = styled.div`
         align-items: end;
         height: 100%;
         @media(max-width: 414px){
-            position: relative;
-            left: auto;
-            bottom: auto;
-            padding-bottom: 0.5rem;
-            align-self: end;
             grid-gap: 1rem;
-            border-right: 2px solid #e2e2e2;
+            width: calc(65vw - 2rem);
+            margin: 0 auto;
+            height: 25px;
         }
         #share {
             position: relative;
             color: var(--black);
             font-size: 1.2rem;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 0.1rem;
             padding-bottom: 0.4rem;
         }
