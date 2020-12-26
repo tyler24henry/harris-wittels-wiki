@@ -27,7 +27,7 @@ const LeftPanelStyles = styled.div`
     }
     @media (max-width: 414px) {
         width: 65vw;
-        height: 100vh;
+        height: calc(100vh - 1rem);
         overflow: hidden;
         z-index: 1001;
         display: grid;
@@ -102,7 +102,7 @@ const LeftPanelStyles = styled.div`
             align-items: center;
             height: 60px;
             padding: 0 1rem 0 2rem;
-            background: var(--black);
+            background: #161616;
         }
         #hamburger-btn {
             padding: 0;
@@ -189,7 +189,7 @@ const LeftPanelStyles = styled.div`
             font-size: 1.2rem;
             font-weight: 600;
             letter-spacing: 0.1rem;
-            padding-bottom: 0.3rem;
+            padding-bottom: 0.4rem;
         }
         .share-icons {
             display: grid;
