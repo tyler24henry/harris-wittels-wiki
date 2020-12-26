@@ -191,7 +191,10 @@ const LeftPanelStyles = styled.div`
     border-right: 2px solid #e2e2e2;
     @media(max-width: 414px){
         width: 65vw;
+        height: 100vh;
+        overflow: hidden;
         z-index: 1001;
+        background: #f7f7f7;
     }
 `;
 

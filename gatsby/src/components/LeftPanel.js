@@ -26,9 +26,11 @@ const LeftPanelStyles = styled.div`
     }
     @media (max-width: 414px) {
         width: 65vw;
-        height: 100vh;
-        z-index: 1001;
+        height: calc(100vh - 3rem);
         overflow: hidden;
+        z-index: 1001;
+        display: grid;
+        grid-template-rows: auto 1fr;
     }
     #chevron {
       position: relative;
@@ -132,14 +134,17 @@ const LeftPanelStyles = styled.div`
         position: absolute;
         left: 0;
         bottom: 0;
+        height: 25px;
         padding: 0 1rem;
         display: grid;
         grid-template-columns: auto 1fr;
         grid-gap: 1.5rem;
+        align-items: center;
         @media(max-width: 414px){
-            left: 15px;
-            bottom: 5px;
-            padding: 0;
+            position: relative;
+            left: auto;
+            bottom: auto;
+            align-self: end;
         }
         #share {
             position: relative;
@@ -147,6 +152,7 @@ const LeftPanelStyles = styled.div`
             font-size: 1.2rem;
             font-weight: 600;
             letter-spacing: 0.1rem;
+            padding-bottom: 0.3rem;
         }
         .share-icons {
             display: grid;
