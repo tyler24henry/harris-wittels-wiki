@@ -181,6 +181,7 @@ export const BodyStyles = styled.div`
                 }
             }
             #page-title-wrapper {
+                width: 100%;
                 margin-top: 0.5rem;
                 line-height: 1.3125;
                 display: grid;
@@ -285,6 +286,7 @@ export const BodyStyles = styled.div`
             padding: 0 1.5rem 4rem 1.5rem;
         }
         .mid-page-nav {
+            width: 100%;
             padding-top: 2rem;
             border-bottom: 1px solid #c4cfd7;
             display: grid;
@@ -320,6 +322,7 @@ export const BodyStyles = styled.div`
                 align-items: center;
                 font-size: 1.3rem;
                 font-weight: 600;
+                text-align: center;
                 @media (max-width: 414px) {
                     font-size: 1.2rem;
                 }
