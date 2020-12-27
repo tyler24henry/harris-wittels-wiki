@@ -189,7 +189,7 @@ export const BodyStyles = styled.div`
                 justify-items: center;
                 align-items: center;
                 grid-gap: 0.4rem;
-                h2 {
+                h1, h2 {
                     font-size: 19px;
                     font-weight: 700;
                     letter-spacing: 0.5px;

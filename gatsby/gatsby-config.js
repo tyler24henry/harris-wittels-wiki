@@ -5,11 +5,11 @@ dotenv.config({ path: '.env' });
 export default {
     pathPrefix: '/',
     siteMetadata: {
-      title: `Harris Wittels`,
+      title: `Harris Wittels Tribute Site`,
       siteUrl: 'https://www.harriswittels.wiki/',
-      description: `Tribute site for the great Harris Wittels. Browse his podcast appearances, tweets, instagram posts, videos, and more. If you are a fan of Harris's Phone/Foam Corner, you can check out our master list of foam jokes.`,
+      description: `Tribute site for Harris Wittels. Browse his podcast appearances, tweets, phone/foam corner jokes, and more. Share how his story and comedy affected your life.`,
       image: '/favicon.png',
-      twitter: '@tyler24henry',
+      twitter: '@ty24henry',
     },
     plugins: [
       'gatsby-plugin-styled-components',
@@ -18,9 +18,9 @@ export default {
       {
         resolve: `gatsby-plugin-manifest`,
         options: {
-          name: `Harris Wittels Wiki`,
+          name: `Harris Wittels Tribute Site`,
           short_name: `harris-wittels-wiki`,
-          description: `Tribute site for the great Harris Wittels. Browse his podcast appearances, tweets, instagram posts,  videos, and more. If you are a fan of Harris's Phone/Foam Corner, you can check out our master list of foam jokes.`,
+          description: `Tribute site for Harris Wittels. Browse his podcast appearances, tweets, phone/foam corner jokes, and more. Share how his story and comedy affected your life.`,
           lang: `en`,
           icon: `static/favicon.png`,
           start_url: `/`,

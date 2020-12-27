@@ -181,22 +181,7 @@ const NavStyles = styled.nav`
 `;
 
 const LeftPanelStyles = styled.div`
-    /* position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 15;
-    height: 100%;
-    width: 200px;
-    overflow-y: scroll;
-    border-right: 2px solid #e2e2e2;
-    @media(max-width: 414px){
-        width: 65vw;
-        height: 100vh;
-        overflow: hidden;
-        z-index: 1001;
-        background: #f7f7f7;
-        border-right: none;
-    } */
+
 `;
 
 export const TopNav = () => {
@@ -233,12 +218,7 @@ export const TopNav = () => {
                         setOpenLeftPanel(!openLeftPanel);
                     }}
                 ><GiHamburgerMenu /></button>
-                <div id="harris-wittels"
-                    onClick={e => {
-                        setClickedOutside(false);
-                        setOpenLeftPanel(!openLeftPanel);
-                    }}
-                >Harris Wittels</div>
+                <Link to="/" id="harris-wittels">Harris Wittels</Link>
                 <div className="search-wrapper" id={showSearchMobile ? 'show-search' : ''}>
                     <FaSearch className={isChrome ? 'search-icon' : 'search-icon-safari'} />
                     <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => isEnterPressed(e)} />

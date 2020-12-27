@@ -91,7 +91,7 @@ export const Instagram = ({ instagramAvatar, images }) => {
                             <button className="phrase-btn" id="grammin" type="button">Grammin'</button>
                         </div>
                         <div id="page-title-wrapper">
-                            <h2>harris wittels</h2>
+                            <h1>harris wittels</h1>
                         </div>
                         <p id="handle">@twittels</p>
                         <div className="followers-wrapper">

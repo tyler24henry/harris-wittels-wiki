@@ -215,7 +215,7 @@ export const LeftPanel = () => {
             <div id="chevron"></div>
             <div className="hamburger-wrapper">
                 <button type="button" id="hamburger-btn" onClick={e => setOpenLeftPanel(false)}><GiHamburgerMenu /></button>
-                <div id="harris-wittels" onClick={e => setOpenLeftPanel(false)}>Harris Wittels</div>
+                <Link to="/" id="harris-wittels" onClick={e => setOpenLeftPanel(false)}>Harris Wittels</Link>
             </div>
             <div className="links">
                 <Link className="link" id="first-link" to="/" onClick={e => setOpenLeftPanel(false)}>Home</Link>

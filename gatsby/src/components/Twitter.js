@@ -155,7 +155,7 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
                         <button className="phrase-btn" type="button">Tweetin'</button>
                     </div>
                     <div id="page-title-wrapper">
-                        <h2>Harris Wittels</h2>
+                        <h1>Harris Wittels</h1>
                         <GoVerified className="verified" />
                     </div>
                     <p id="handle">@twittels</p>

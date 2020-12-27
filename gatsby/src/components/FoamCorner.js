@@ -58,7 +58,7 @@ export const FoamCorner = ({ siteImages, allFoam }) => {
                         <button className="phrase-btn" id="foamin" type="button">Foamin'</button>
                     </div>
                     <div id="page-title-wrapper">
-                        <h2>Foam Corner</h2>
+                        <h1>Foam Corner</h1>
                     </div>
                     <p id="description">“We’ve never had an edition of Harris’s Foam Corner where you didn’t have at least eight terrible ones.” - Scott Aukerman</p>
                     <p id="description">"Okay, here it goes..." - Harris Wittels</p>

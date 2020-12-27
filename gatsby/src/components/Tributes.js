@@ -70,7 +70,7 @@ export const Tributes = ({ siteImages, tributes }) => {
                         <button className="phrase-btn" id="missin" type="button">Missin'</button>
                     </div>
                     <div id="page-title-wrapper">
-                        <h2>Tributes to Harris</h2>
+                        <h1>Tributes to Harris</h1>
                     </div>
                     <div className="soundcloud-embed-wrapper">
                         <iframe id="soundcloud-player" style={{border: 'none', height: '130px', width: '100%'}} scrolling="no" allow="autoplay" 

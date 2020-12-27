@@ -155,7 +155,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                             <button className="phrase-btn" id="searchin" type="button">Searchin'</button>
                         </div>
                         <div id="page-title-wrapper">
-                            <h2>{searchTerm ? `${totalNumberResults} result${totalNumberResults === 1 ? '' : 's'} found for search term "${searchTermStr}"` : `Search this site`}</h2>
+                            <h1>{searchTerm ? `${totalNumberResults} result${totalNumberResults === 1 ? '' : 's'} found for search term "${searchTermStr}"` : `Search this site`}</h1>
                         </div>
                     </div>
                     <SearchPageWrapper>

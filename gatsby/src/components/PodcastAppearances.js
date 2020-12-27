@@ -93,7 +93,7 @@ export const PodcastAppearances = ({ siteImages, appearances }) => {
                         <button className="phrase-btn" id="podcastin" type="button">Podcastin'</button>
                     </div>
                     <div id="page-title-wrapper">
-                        <h2>Podcast Appearances</h2>
+                        <h1>Podcast Appearances</h1>
                     </div>
                     <p id="description">"How’s it going everybody? This is Harris Wittels. I’ll be your tour guide through the cosmos today, sorry." - Harris Wittels, episode 1 of Analyze Phish</p>
                 </div>

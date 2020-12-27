@@ -7,7 +7,7 @@ const FourOhFourStyles = styled.div`
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
-    h2 {
+    h1 {
         margin-top: -2rem;
         font-size: 20rem;
         font-weight: 600;
@@ -50,7 +50,7 @@ const FourOhFourStyles = styled.div`
 export const FourOhFour = () => {
     return (
         <FourOhFourStyles>
-            <h2>404</h2>
+            <h1>404</h1>
             <p>Page not found</p>
             <Link to="/">Go home</Link>
         </FourOhFourStyles>

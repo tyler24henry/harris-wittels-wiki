@@ -56,7 +56,7 @@ export const About = ({ tylerAvatar }) => {
                         <button className="phrase-btn" id="aboutin" type="button">About</button>
                     </div>
                     <div id="page-title-wrapper">
-                        <h2>Tyler Henry</h2>
+                        <h1>Tyler Henry</h1>
                     </div>
                     <p id="description">This is a website for people who connected with Harris's story and comedy. Or for people to discover him for the first time. I hope you enjoy it!</p>
                     <p id="description">If there's something that could be added (foam corner joke, video, article, etc.) send me a message on the <Link to="/contact">contact page</Link>.</p>

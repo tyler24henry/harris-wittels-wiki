@@ -82,7 +82,7 @@ export const Contact = ({ contactAvatar }) => {
                         <button className="phrase-btn" id="contactin" type="button">Contact</button>
                     </div>
                     <div id="page-title-wrapper">
-                        <h2>Contact</h2>
+                        <h1>Contact</h1>
                     </div>
                     <p id="description">Hey, this is Tyler Henry. I'd love feedback on the website, I'm sure it's not working well on every browser and device out there. Also, if you have anything to add to the site (pictures, foam corner jokes, podcast appearances, etc.) let me know and I'll add it! Thanks, Tyler Henry.</p>
                     <p id="description"><span id="bold">*** Be sure to fill out the entire form</span> (if you're feeling lazy just put a period or number in there, doesn't matter...).</p>

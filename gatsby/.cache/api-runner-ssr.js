@@ -9,7 +9,7 @@ var plugins = [{
       options: {"plugins":[],"output":"/sitemap.xml","createLinkInHead":true},
     },{
       plugin: require('/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
-      options: {"plugins":[],"name":"Harris Wittels Wiki","short_name":"harris-wittels-wiki","description":"Tribute site for the great Harris Wittels. Browse his podcast appearances, tweets, instagram posts,  videos, and more. If you are a fan of Harris's Phone/Foam Corner, you can check out our master list of foam jokes.","lang":"en","icon":"static/favicon.png","start_url":"/","background_color":"#fefefe","theme_color":"#020202","display":"standalone","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"e9eb27c279e7806d6adddfef8efae788"},
+      options: {"plugins":[],"name":"Harris Wittels Tribute Site","short_name":"harris-wittels-wiki","description":"Tribute site for Harris Wittels. Browse his podcast appearances, tweets, phone/foam corner jokes, and more. Share how his story and comedy affected your life.","lang":"en","icon":"static/favicon.png","start_url":"/","background_color":"#fefefe","theme_color":"#020202","display":"standalone","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"e9eb27c279e7806d6adddfef8efae788"},
     },{
       plugin: require('/Users/tylerhenry/Desktop/harris-wittels-wiki/gatsby/node_modules/gatsby-plugin-offline/gatsby-ssr'),
       options: {"plugins":[]},

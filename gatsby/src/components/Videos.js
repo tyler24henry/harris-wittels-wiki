@@ -131,7 +131,7 @@ export const Videos = ({ siteImages, bits }) => {
                         <button className="phrase-btn" id="watchin" type="button">Watchin'</button>
                     </div>
                     <div id="page-title-wrapper">
-                        <h2>Videos</h2>
+                        <h1>Videos</h1>
                     </div>
                     <p id="description">“A lot of people want to do serious stuff with their comedy...but I just think motherfuckers wanna laugh” - Harris Wittels</p>
                 </div>
