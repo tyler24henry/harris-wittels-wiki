@@ -326,6 +326,9 @@ export const BodyStyles = styled.div`
                 @media (max-width: 414px) {
                     font-size: 1.2rem;
                 }
+                a {
+                    width: 100%;
+                }
                 .link-icon {
                     font-size: 1.4rem;
                     @media (max-width: 414px) {
