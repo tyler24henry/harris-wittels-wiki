@@ -152,7 +152,7 @@ export const FanPosts = ({ siteImages, fanPosts }) => {
                                     <div className="comment-wrapper">
                                         <AiOutlineComment className="comment-icon" />
                                         <CommentCount
-                                            shortname={process.env.GATSBY_DISQUS_SHORTNAME}
+                                            shortname="harris-wittels-wiki"
                                             config={disqusConfig}
                                         >
                                             <span>0 Comments</span>

@@ -88,7 +88,7 @@ export default function FanPost ({ data }) {
             </div>
             <div className="disqus-wrapper">
             <DiscussionEmbed
-                shortname={process.env.GATSBY_DISQUS_SHORTNAME}
+                shortname="harris-wittels-wiki"
                 config={disqusConfig}
             />
             </div>
