@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
@@ -21,6 +21,12 @@ import { TributesStyles } from './Tributes';
 import { FoamJokesStyles } from './FoamCorner';
 import { ImageModalWrapperStyles } from '../styles/ImageModalWrapper';
 import { useIsChrome } from '../utils/useIsChrome';
+import { VscCalendar } from 'react-icons/vsc';
+import { AiOutlineComment } from 'react-icons/ai';
+import { CommentCount } from 'disqus-react';
+import GeneralContext from './GeneralContext';
+import { FanPostsStyles } from './FanPosts';
+import { Link } from 'gatsby';
 
 const SearchPageWrapper = styled.div`
     .categories-nav {
@@ -28,9 +34,11 @@ const SearchPageWrapper = styled.div`
         border-bottom: 1px solid #c4cfd7;
         .categories {
             display: grid;
-            grid-template-columns: auto auto auto auto auto auto;
+            grid-template-columns: repeat(7, auto);
+            @media(max-width: 600px){
+                grid-template-columns: repeat(4, auto);
+            }
             @media (max-width: 414px) {
-                grid-template-columns: repeat(3, 1fr);
                 justify-items: center;
             }
             .category {
@@ -38,6 +46,7 @@ const SearchPageWrapper = styled.div`
                 grid-template-columns: 1fr;
                 justify-items: center;
                 align-items: center;
+                text-align: center;
                 height: 30px;
                 border-bottom: 2px solid var(--white);
                 &:hover {
@@ -81,13 +90,14 @@ const SearchPageWrapper = styled.div`
     }
 `;
 
-export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, allFoam, tributes, searchTerm }) => {
+export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, allFoam, tributes, fanPosts, searchTerm }) => {
+    const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
     const [selected, setSelected] = useState('Podcast Appearances');
     const [searchAvatar] = siteImages.filter(image => image.name === 'Search Avatar');
     const [harrisAvatar] = siteImages.filter(image => image.name === 'Harris Twitter Avatar');
     const [instagramAvatar] = siteImages.filter(image => image.name === 'Instagram Avatar');
     const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
-    const [search, setSearch] = useState('');
+    const [searchPage, setSearchPage] = useState('');
     const searchRef = useRef(null);
     const navigate = useNavigate();
     const wrapperRef = useRef(null);
@@ -113,8 +123,8 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
 
     const isEnterPressed = e => {
         if(e.keyCode === 13){
-            navigate(`/search/?s=${slugify(search)}`);
-            setSearch('');
+            navigate(`/search/?s=${slugify(searchPage)}`);
+            setSearchPage('');
             searchRef.current.blur();
         }
     }
@@ -133,6 +143,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
 
     const appearancesSorted = sortByDate([...appearances]);
     const tweetsByDate = sortByDate([...tweets]);
+    const fanPostsByDate = sortByDate([...fanPosts]);
 
     let searchTermStr = searchTerm ? searchTerm.split('-').join(' ') : '';
     if(searchTermStr.length > 30){
@@ -146,7 +157,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                     <div className="background-image" id="search-background">
                         <div className="search-wrapper">
                             <FaSearch className="search-icon" />
-                            <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => isEnterPressed(e)} />
+                            <input type="text" ref={searchRef} className="search" autoComplete="off" placeholder="Search" name="search" value={searchPage} onChange={e => setSearchPage(e.target.value)} onKeyDown={e => isEnterPressed(e)} />
                         </div>
                     </div>
                     <div className="page-details-wrapper">
@@ -162,7 +173,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         <div className="categories-nav">
                             <div className="categories">
                                 <div className="category" id={selected === 'Podcast Appearances' ? 'selected' : ''} onClick={e => setSelected('Podcast Appearances')}>
-                                    <p>Podcast apps <span>({appearances.length})</span></p>
+                                    <p>Pods <span>({appearances.length})</span></p>
                                 </div>
                                 <div className="category" id={selected === 'Tweets' ? 'selected' : ''} onClick={e => setSelected('Tweets')}>
                                     <p>Tweets <span>({tweets.length})</span></p>
@@ -171,13 +182,16 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                     <p>Grams <span>({harrisImages.length})</span></p>
                                 </div>
                                 <div className="category" id={selected === 'Videos' ? 'selected' : ''} onClick={e => setSelected('Videos')}>
-                                    <p>Videos <span>({bits.length})</span></p>
+                                    <p>Vids <span>({bits.length})</span></p>
                                 </div>
                                 <div className="category" id={selected === 'Foam Corner' ? 'selected' : ''} onClick={e => setSelected('Foam Corner')}>
                                     <p>Foams <span>({allFoam.length})</span></p>
                                 </div>
                                 <div className="category" id={selected === 'Tributes' ? 'selected' : ''} onClick={e => setSelected('Tributes')}>
                                     <p>Tributes <span>({tributes.length})</span></p>
+                                </div>
+                                <div className="category" id={selected === 'Fan Posts' ? 'selected' : ''} onClick={e => setSelected('Fan Posts')}>
+                                    <p>Fan Posts <span>({fanPosts.length})</span></p>
                                 </div>
                             </div>
                         </div>
@@ -335,6 +349,58 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                             {selected === 'Tributes' && tributes.length === 0 && (
                                 <div className="no-content-wrapper">
                                     <p>No tributes found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
+                                </div>
+                            )}
+                            {selected === 'Fan Posts' && fanPosts.length > 0 && (
+                                <FanPostsStyles>
+                                    <div className="posts">
+                                        {fanPostsByDate.map((fanPost, index) => {
+                                            const date = `${fanPost.month} ${fanPost.day}, ${fanPost.year}`;
+                                            let name = fanPost.firstName;
+                                            if(fanPost.lastName){
+                                                name = `${fanPost.firstName} ${fanPost.lastName}`;
+                                            }
+                                            const url = `https://www.harriswittels.wiki/fan-post/${fanPost.slug.current}`;
+                                            const identifier = fanPost.id;
+                                            const title = fanPost.title;
+                                            return (
+                                                <Link to={`/fan-post/${fanPost.slug.current}`} className="post" id={index === 0 ? 'first-post' : ''} key={fanPost.id}>
+                                                    <div>
+                                                        <h3 className="title">{fanPost.title}</h3>
+                                                        <div className="details-wrapper">
+                                                            <VscCalendar className="calendar" />
+                                                            <p className="details">{date} by {name}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="comment-wrapper">
+                                                        <AiOutlineComment className="comment-icon" />
+                                                        {!openLeftPanel && !search && !searchPage && (
+                                                            <CommentCount
+                                                                shortname='harris-wittels-wiki'
+                                                                config={
+                                                                    {
+                                                                        url,
+                                                                        identifier,
+                                                                        title,	
+                                                                    }
+                                                                }
+                                                            >
+                                                                <span>0 Comments</span>
+                                                            </CommentCount>
+                                                        )}
+                                                        {(openLeftPanel || search || searchPage) && (
+                                                            <span># Comments</span>
+                                                        )}
+                                                    </div>
+                                                </Link>
+                                            )
+                                        })}
+                                    </div>
+                                </FanPostsStyles>
+                            )}
+                            {selected === 'Fan Posts' && fanPosts.length === 0 && (
+                                <div className="no-content-wrapper">
+                                    <p>No fan posts found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
                                 </div>
                             )}
                         </div>

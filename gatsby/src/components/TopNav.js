@@ -36,15 +36,11 @@ const NavStyles = styled.nav`
         letter-spacing: 0.1rem;
     }
     .nav-wrapper {
+        width: 100%;
         display: grid;
         grid-template-columns: auto 1fr auto;
         grid-gap: 1rem;
         align-items: center;
-        @media(max-width: 840px){
-            width: 600px;
-            margin: 0 auto;
-            grid-template-columns: auto 1fr auto;
-        }
         @media (max-width: 414px) {
             grid-template-columns: auto auto 1fr;
             width: calc(100% - 1rem);
@@ -158,6 +154,7 @@ const NavStyles = styled.nav`
     }
     #tour-guide {
         justify-self: center;
+        text-align: center;
         font-size: 1.2rem;
         font-weight: 500;
         letter-spacing: 0.1rem;

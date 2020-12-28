@@ -11,6 +11,7 @@ export default function SearchPage({ data, location }) {
     let bits = data.bits.nodes;
     let allFoam = data.allFoam.nodes;
     let tributes = data.tributes.nodes;
+    let fanPosts = data.fanPosts.nodes;
 
     let searchTerm = location ? location.search : null;
     if(searchTerm.length > 1 && searchTerm.charAt(2) === '='){
@@ -45,12 +46,16 @@ export default function SearchPage({ data, location }) {
             const match = regex.test(tribute.title.toLowerCase());
             return match;
         });
+        fanPosts = fanPosts.filter(post => {
+            const match = regex.test(post.title.toLowerCase()) || regex.test(post.firstName.toLowerCase()) || regex.test(post.lastName.toLowerCase());
+            return match;
+        });
     }
 
     return (
         <>
             <SEO title="Search" />
-            <Search siteImages={siteImages} appearances={appearances} tweets={tweets} harrisImages={harrisImages} bits={bits} allFoam={allFoam} tributes={tributes} searchTerm={searchTerm} />
+            <Search siteImages={siteImages} appearances={appearances} tweets={tweets} harrisImages={harrisImages} bits={bits} allFoam={allFoam} tributes={tributes} fanPosts={fanPosts} searchTerm={searchTerm} />
         </>
     )
 }
@@ -159,6 +164,20 @@ export const query = graphql`
                 title
                 link
                 _createdAt
+            }
+        }
+        fanPosts: allSanityFanPost {
+            nodes {
+                id
+                title
+                slug {
+                    current
+                }
+                month
+                day
+                year
+                firstName
+                lastName
             }
         }
     }
