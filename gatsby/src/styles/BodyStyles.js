@@ -275,11 +275,13 @@ export const BodyStyles = styled.div`
             .connect-social-wrapper {
                 justify-self: end;
                 display: flex;
-                grid-gap: 1rem;
                 align-items: center;
                 flex-wrap: wrap;
                 font-size: 1.6rem;
                 color: var(--black);
+                a {
+                    margin-left: 0.75rem;
+                }
                 #twitter {
                     font-size: 1.8rem;
                     padding-top: 0.2rem;

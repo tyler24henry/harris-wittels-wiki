@@ -10,16 +10,22 @@ import { useIsChrome } from '../utils/useIsChrome';
 const HomeStyles = styled.div`
     .masonry-wrapper {
         margin: 0 auto 2rem auto;
-        width: 600px;
+        width: calc(100% - 2rem);
+        @media(max-width: 1400px){
+            width: 600px;
+        }
         @media (max-width: 414px) {
             width: calc(100vw - 4rem);
         }
     }
     .masonry {
         display: grid;
-        grid-gap: 5px;
-        grid-template-columns: repeat(auto-fill, minmax(196.66px,1fr));
+        grid-gap: 1px;
+        grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 0.66rem), 1fr));
         grid-auto-rows: 0;
+        @media(max-width: 1400px){
+            grid-template-columns: repeat(auto-fill, minmax(196.66px,1fr));
+        }
         @media (max-width: 414px) {
             grid-template-columns: repeat(auto-fill, minmax(calc(50vw - 2.5rem),1fr));
         }
@@ -37,6 +43,11 @@ const HomeStyles = styled.div`
         vertical-align: top;
         margin-bottom: 5px;
     }
+    .masonry {
+        .masonry-brick {
+            margin-bottom: 2px;
+        }
+    }
     .masonry-brick, .masonry-content {
         border-radius: 4px;
         overflow: hidden;
@@ -49,10 +60,18 @@ const HomeStyles = styled.div`
         filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, .3));
     }
     .masonry-content {
-        width: 196.66px;
+        width: ${props => `${props.masonryImageWidth}px`};
         height: auto;
+        @media(max-width: 1400px){
+            width: 196.66px;
+        }
         @media (max-width: 414px) {
             width: calc(50vw - 2.5rem);
+        }
+    }
+    .masonry {
+        .masonry-content {
+            width: calc(100% - 0.25rem);
         }
     }
     #background {
@@ -72,12 +91,22 @@ const HomeStyles = styled.div`
         padding: 1rem;
         text-align: center;
         width: calc(100% - 1.7rem);
+        letter-spacing: 0.5px;
         @media (max-width: 414px) {
             font-size: 1.2rem;
             width: calc(50vw - 4.5rem);
         }
         .masonry-content {
             width: 100%;
+        }
+    }
+    .masonry {
+        #text {
+            width: calc(100% - 2.25rem);
+            pointer-events: none;
+            padding: 1.5rem 1rem;
+            color: white;
+            filter: brightness(120%);
         }
     }
     #show {
@@ -99,6 +128,29 @@ export const Home = ({ masonryItems }) => {
     const { isChrome } = useIsChrome();
     const wrapperRef = useRef(null);
     const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
+    const masonryRef = useRef(null);
+    const [masonryWidth, setMasonryWidth] = useState(0);
+
+    const masonryImageWidth = (masonryWidth / 3) - 3.8;
+
+    useEffect(() => {
+        const updateMasonryWidth = () => {
+            if(masonryRef.current){
+                setMasonryWidth(masonryRef.current.offsetWidth);
+            }
+        }
+
+        if(masonryWidth <= 0){
+            updateMasonryWidth();
+        }
+
+        window.addEventListener('resize', updateMasonryWidth);
+        return () => {
+            window.removeEventListener('resize', updateMasonryWidth);
+        }
+    }, [masonryWidth, masonryRef]);
+
+    console.log(masonryWidth);
 
     useEffect(() => {
         if(clickedOutside){
@@ -144,7 +196,7 @@ export const Home = ({ masonryItems }) => {
               
                 let rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
                 if(item.querySelector('#quote')){
-                    const paddingHeight = 20;
+                    const paddingHeight = 30;
                     rowSpan = Math.ceil((item.querySelector('#quote').getBoundingClientRect().height+rowGap+paddingHeight)/(rowHeight+rowGap));
                 }
         
@@ -188,9 +240,9 @@ export const Home = ({ masonryItems }) => {
 
     return (
         <>
-            <HomeStyles>
+            <HomeStyles masonryImageWidth={masonryImageWidth}>
                 <div className="masonry-wrapper" id={selectedImageIndex !== null ? 'background' : ''}>
-                    <div className={isChrome ? 'masonry-not-safari' : 'masonry'}>
+                    <div className={isChrome ? 'masonry-not-safari' : 'masonry'} ref={masonryRef}>
                         {masonryItemsSliced.map(item => {
                             return (
                                 <div className="masonry-brick" key={item.id} id={item.quote ? 'text' : ''}>

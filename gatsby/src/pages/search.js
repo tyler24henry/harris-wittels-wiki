@@ -4,7 +4,6 @@ import SEO from '../components/SEO';
 import { graphql } from 'gatsby';
 
 export default function SearchPage({ data, location }) {
-    console.log(data);
     const siteImages = data.images.nodes;
     let appearances = data.appearances.nodes;
     let tweets = data.tweets.nodes;
