@@ -155,7 +155,7 @@ export const FanPosts = ({ siteImages, fanPosts }) => {
                                             shortname={process.env.GATSBY_DISQUS_SHORTNAME}
                                             config={disqusConfig}
                                         >
-                                            <span>Comments</span>
+                                            <span>0 Comments</span>
                                         </CommentCount>
                                     </div>
                                 </Link>
