@@ -138,12 +138,9 @@ const LeftPanelStyles = styled.div`
         display: grid;
         grid-template-columns: 1fr;
         @media (max-width: 414px) {
-            padding: 2rem 0 0 0;
+            padding: 0.5rem 0 0 0;
             border-right: 2px solid #e2e2e2;
             display: block;
-        }
-        @media(max-width: 320px){
-            padding: 0.5rem 0 0 0;
         }
         a {
             border-top: 1px solid #e2e2e2;
@@ -192,7 +189,7 @@ const LeftPanelStyles = styled.div`
             font-size: 1.2rem;
             font-weight: 500;
             letter-spacing: 0.1rem;
-            padding-bottom: 0.4rem;
+            padding-bottom: 0.45rem;
         }
         .share-icons {
             display: grid;
@@ -201,6 +198,10 @@ const LeftPanelStyles = styled.div`
             align-items: center;
             font-size: 1.6rem;
             color: var(--black);
+            @media(max-width: 414px){
+                width: 80%;
+                justify-items: end;
+            }
         }
     }
 `;

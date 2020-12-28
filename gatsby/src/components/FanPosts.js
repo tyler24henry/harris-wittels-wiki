@@ -149,18 +149,23 @@ export const FanPosts = ({ siteImages, fanPosts }) => {
                                     </div>
                                     <div className="comment-wrapper">
                                         <AiOutlineComment className="comment-icon" />
-                                        <CommentCount
-                                            shortname='harris-wittels-wiki'
-                                            config={
-                                                {
-                                                    url,
-                                                    identifier,
-                                                    title,	
+                                        {!openLeftPanel && (
+                                            <CommentCount
+                                                shortname='harris-wittels-wiki'
+                                                config={
+                                                    {
+                                                        url,
+                                                        identifier,
+                                                        title,	
+                                                    }
                                                 }
-                                            }
-                                        >
-                                            <span>0 Comments</span>
-                                        </CommentCount>
+                                            >
+                                                <span>0 Comments</span>
+                                            </CommentCount>
+                                        )}
+                                        {openLeftPanel && (
+                                            <span># Comments</span>
+                                        )}
                                     </div>
                                 </Link>
                             )
