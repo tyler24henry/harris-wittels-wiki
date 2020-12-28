@@ -40,11 +40,9 @@ export default function FanPost ({ data }) {
         name = `${fanPost.firstName} ${fanPost.lastName}`;
     }
 
-    const disqusConfig = {
-        url: `https://www.harriswittels.wiki/fan-post/${fanPost.slug.current}`,
-        identifier: fanPost.id,
-        title: fanPost.title,
-    }
+    const url = `https://www.harriswittels.wiki/fan-post/${fanPost.slug.current}`;
+    const identifier = fanPost.id;
+    const title = fanPost.title;
 
     return (
         <BodyStyles>
@@ -88,8 +86,14 @@ export default function FanPost ({ data }) {
             </div>
             <div className="disqus-wrapper">
             <DiscussionEmbed
-                shortname="harris-wittels-wiki"
-                config={disqusConfig}
+                shortname='harris-wittels-wiki'
+                config={
+                    {
+                        url,
+                        identifier,
+                        title,	
+                    }
+                }
             />
             </div>
         </BodyStyles>

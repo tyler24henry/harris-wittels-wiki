@@ -135,11 +135,9 @@ export const FanPosts = ({ siteImages, fanPosts }) => {
                             if(fanPost.lastName){
                                 name = `${fanPost.firstName} ${fanPost.lastName}`;
                             }
-                            const disqusConfig = {
-                                url: `https://www.harriswittels.wiki/fan-post/${fanPost.slug.current}`,
-                                identifier: fanPost.id,
-                                title: fanPost.title,
-                            }
+                            const url = `https://www.harriswittels.wiki/fan-post/${fanPost.slug.current}`;
+                            const identifier = fanPost.id;
+                            const title = fanPost.title;
                             return (
                                 <Link to={`/fan-post/${fanPost.slug.current}`} className="post" id={index === 0 ? 'first-post' : ''} key={fanPost.id}>
                                     <div>
@@ -152,8 +150,14 @@ export const FanPosts = ({ siteImages, fanPosts }) => {
                                     <div className="comment-wrapper">
                                         <AiOutlineComment className="comment-icon" />
                                         <CommentCount
-                                            shortname="harris-wittels-wiki"
-                                            config={disqusConfig}
+                                            shortname='harris-wittels-wiki'
+                                            config={
+                                                {
+                                                    url,
+                                                    identifier,
+                                                    title,	
+                                                }
+                                            }
                                         >
                                             <span>0 Comments</span>
                                         </CommentCount>
