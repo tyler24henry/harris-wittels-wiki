@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
@@ -21,12 +21,6 @@ import { TributesStyles } from './Tributes';
 import { FoamJokesStyles } from './FoamCorner';
 import { ImageModalWrapperStyles } from '../styles/ImageModalWrapper';
 import { useIsChrome } from '../utils/useIsChrome';
-import { VscCalendar } from 'react-icons/vsc';
-import { AiOutlineComment } from 'react-icons/ai';
-import { CommentCount } from 'disqus-react';
-import GeneralContext from './GeneralContext';
-import { FanPostsStyles } from './FanPosts';
-import { Link } from 'gatsby';
 
 const SearchPageWrapper = styled.div`
     .categories-nav {
@@ -34,9 +28,9 @@ const SearchPageWrapper = styled.div`
         border-bottom: 1px solid #c4cfd7;
         .categories {
             display: grid;
-            grid-template-columns: repeat(7, auto);
+            grid-template-columns: repeat(6, auto);
             @media(max-width: 600px){
-                grid-template-columns: repeat(4, auto);
+                grid-template-columns: repeat(3, auto);
             }
             @media (max-width: 414px) {
                 justify-items: center;
@@ -90,8 +84,7 @@ const SearchPageWrapper = styled.div`
     }
 `;
 
-export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, allFoam, tributes, fanPosts, searchTerm }) => {
-    const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
+export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, allFoam, tributes, searchTerm }) => {
     const [selected, setSelected] = useState('Podcast Appearances');
     const [searchAvatar] = siteImages.filter(image => image.name === 'Search Avatar');
     const [harrisAvatar] = siteImages.filter(image => image.name === 'Harris Twitter Avatar');
@@ -143,7 +136,6 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
 
     const appearancesSorted = sortByDate([...appearances]);
     const tweetsByDate = sortByDate([...tweets]);
-    const fanPostsByDate = sortByDate([...fanPosts]);
 
     let searchTermStr = searchTerm ? searchTerm.split('-').join(' ') : '';
     if(searchTermStr.length > 30){
@@ -189,9 +181,6 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                                 </div>
                                 <div className="category" id={selected === 'Tributes' ? 'selected' : ''} onClick={e => setSelected('Tributes')}>
                                     <p>Tributes <span>({tributes.length})</span></p>
-                                </div>
-                                <div className="category" id={selected === 'Fan Posts' ? 'selected' : ''} onClick={e => setSelected('Fan Posts')}>
-                                    <p>Fan Posts <span>({fanPosts.length})</span></p>
                                 </div>
                             </div>
                         </div>
@@ -349,58 +338,6 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                             {selected === 'Tributes' && tributes.length === 0 && (
                                 <div className="no-content-wrapper">
                                     <p>No tributes found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
-                                </div>
-                            )}
-                            {selected === 'Fan Posts' && fanPosts.length > 0 && (
-                                <FanPostsStyles>
-                                    <div className="posts">
-                                        {fanPostsByDate.map((fanPost, index) => {
-                                            const date = `${fanPost.month} ${fanPost.day}, ${fanPost.year}`;
-                                            let name = fanPost.firstName;
-                                            if(fanPost.lastName){
-                                                name = `${fanPost.firstName} ${fanPost.lastName}`;
-                                            }
-                                            const url = `https://www.harriswittels.wiki/fan-post/${fanPost.slug.current}`;
-                                            const identifier = fanPost.id;
-                                            const title = fanPost.title;
-                                            return (
-                                                <Link to={`/fan-post/${fanPost.slug.current}`} className="post" id={index === 0 ? 'first-post' : ''} key={fanPost.id}>
-                                                    <div>
-                                                        <h3 className="title">{fanPost.title}</h3>
-                                                        <div className="details-wrapper">
-                                                            <VscCalendar className="calendar" />
-                                                            <p className="details">{date} by {name}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="comment-wrapper">
-                                                        <AiOutlineComment className="comment-icon" />
-                                                        {!openLeftPanel && !search && !searchPage && (
-                                                            <CommentCount
-                                                                shortname='harris-wittels-wiki'
-                                                                config={
-                                                                    {
-                                                                        url,
-                                                                        identifier,
-                                                                        title,	
-                                                                    }
-                                                                }
-                                                            >
-                                                                <span>0 Comments</span>
-                                                            </CommentCount>
-                                                        )}
-                                                        {(openLeftPanel || search || searchPage) && (
-                                                            <span># Comments</span>
-                                                        )}
-                                                    </div>
-                                                </Link>
-                                            )
-                                        })}
-                                    </div>
-                                </FanPostsStyles>
-                            )}
-                            {selected === 'Fan Posts' && fanPosts.length === 0 && (
-                                <div className="no-content-wrapper">
-                                    <p>No fan posts found{searchTerm ? ` for search term "${searchTermStr}"` : ''}</p>
                                 </div>
                             )}
                         </div>

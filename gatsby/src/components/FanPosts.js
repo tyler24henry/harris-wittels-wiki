@@ -156,7 +156,7 @@ export const FanPosts = ({ siteImages, fanPosts }) => {
                                                     {
                                                         url,
                                                         identifier,
-                                                        title,	
+                                                        title,
                                                     }
                                                 }
                                             >

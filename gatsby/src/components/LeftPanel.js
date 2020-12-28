@@ -210,6 +210,9 @@ export const LeftPanel = () => {
     const [search, setSearch, openLeftPanel, setOpenLeftPanel] = useContext(GeneralContext);
     const url = "https://www.harriswittels.wiki";
     const title = "Harris Wittels Tribute Site";
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+    const isFanPostsPage = currentUrl ? currentUrl.slice(currentUrl.length - 9) === 'fan-posts' : false;
+    
     return (
         <LeftPanelStyles>
             <div className="site-name">
@@ -229,7 +232,9 @@ export const LeftPanel = () => {
                 <Link className="link" to="/videos" onClick={e => setOpenLeftPanel(false)}>Videos</Link>
                 <Link className="link" to="/foam-corner" onClick={e => setOpenLeftPanel(false)}>Foam Corner</Link>
                 <Link className="link" to="/tributes" onClick={e => setOpenLeftPanel(false)}>Tributes</Link>
-                <Link className="link" to="/fan-posts" onClick={e => setOpenLeftPanel(false)}>Fan Posts</Link>
+                {!isFanPostsPage && (
+                    <Link className="link" to="/fan-posts" onClick={e => setOpenLeftPanel(false)}>Fan Posts</Link>
+                )}
                 <Link className="link" id="about" to="/about" onClick={e => setOpenLeftPanel(false)}>About</Link>
                 <Link className="link" id="contact" to="/contact" onClick={e => setOpenLeftPanel(false)}>Contact</Link>
                 <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search</Link>
