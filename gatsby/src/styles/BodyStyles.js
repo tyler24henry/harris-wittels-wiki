@@ -32,6 +32,7 @@ export const BodyStyles = styled.div`
             }
         }
         .background-image {
+            position: relative;
             width: 100%;
             height: 200px;
             overflow: hidden;
@@ -85,6 +86,18 @@ export const BodyStyles = styled.div`
                 }
             }
         }
+        .back-to-fan-posts {
+            position: absolute;
+            left: 4px;
+            top: 6px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-gap: 0.3rem;
+            align-items: center;
+            font-size: 1.4rem;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
         #twitter-background {
             background-color: rgb(29, 161, 242);
         }
@@ -116,6 +129,9 @@ export const BodyStyles = styled.div`
             grid-template-columns: 1fr;
             justify-items: center;
             align-items: center;
+        }
+        #fan-posts-background {
+            background-color: var(--black);
         }
         .page-details-wrapper {
             padding: 0 1.5rem;
@@ -179,6 +195,15 @@ export const BodyStyles = styled.div`
                 #contactin {
                     background-color: #25231d;
                 }
+                #sharin {
+                    background-color: var(--black);
+                }
+            }
+            #avatar-phrase-only {
+                grid-template-columns: auto 1fr;
+                .avatar {
+                    background-color: var(--white);
+                }
             }
             #page-title-wrapper {
                 width: 100%;
@@ -223,6 +248,38 @@ export const BodyStyles = styled.div`
                 }
                 @media (max-width: 414px) {
                     font-size: 1.3rem;
+                }
+            }
+            .details-wrapper {
+                background: #fbfbfb;
+                margin-top: 0.25rem;
+                padding: 0.2rem 0.1rem;
+                display: grid;
+                grid-template-columns: auto auto 1fr;
+                grid-gap: 0.5rem;
+                font-size: 1.4rem;
+                align-items: center;
+                .calendar {
+                    padding-bottom: 0.1rem;
+                }
+                .details {
+
+                }
+            }
+            .connect-social-wrapper {
+                justify-self: end;
+                display: flex;
+                grid-gap: 1rem;
+                align-items: center;
+                flex-wrap: wrap;
+                font-size: 1.6rem;
+                color: var(--black);
+                #twitter {
+                    font-size: 1.8rem;
+                    padding-top: 0.2rem;
+                }
+                #facebook {
+                    font-size: 1.7rem;
                 }
             }
             #bold {
@@ -365,6 +422,12 @@ export const BodyStyles = styled.div`
             border-bottom: 2px solid #25231d;
             p {
                 color: #25231d;
+            }
+        }
+        #fan-posts-nav-header {
+            border-bottom: 2px solid var(--black);
+            p {
+                color: var(--black);
             }
         }
     }

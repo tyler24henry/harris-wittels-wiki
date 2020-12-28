@@ -33,6 +33,7 @@ const ContactStyles = styled.div`
         button {
             padding: 1rem 2rem;
             background: var(--red);
+            font-weight: 500;
             &:hover {
                 filter: brightness(80%);
             }
@@ -75,9 +76,9 @@ export const Contact = ({ contactAvatar }) => {
     return (
         <BodyStyles>
             <div className="page-wrapper">
-                <div   div className="background-image" id="contact-background"></div>
+                <div className="background-image" id="contact-background"></div>
                 <div className="page-details-wrapper">
-                    <div className="avatar-search-phrase-grid">
+                    <div className="avatar-search-phrase-grid" id="avatar-phrase-only">
                         <Img className="avatar" fluid={contactAvatar.image.asset.fluid} alt="Avatar" />
                         <button className="phrase-btn" id="contactin" type="button">Contact</button>
                     </div>

@@ -6,6 +6,8 @@ exports.components = {
   "component---src-pages-404-js": () => import("./../../../src/pages/404.js" /* webpackChunkName: "component---src-pages-404-js" */),
   "component---src-pages-about-js": () => import("./../../../src/pages/about.js" /* webpackChunkName: "component---src-pages-about-js" */),
   "component---src-pages-contact-js": () => import("./../../../src/pages/contact.js" /* webpackChunkName: "component---src-pages-contact-js" */),
+  "component---src-pages-create-fan-post-js": () => import("./../../../src/pages/create-fan-post.js" /* webpackChunkName: "component---src-pages-create-fan-post-js" */),
+  "component---src-pages-fan-posts-js": () => import("./../../../src/pages/fan-posts.js" /* webpackChunkName: "component---src-pages-fan-posts-js" */),
   "component---src-pages-foam-corner-js": () => import("./../../../src/pages/foam-corner.js" /* webpackChunkName: "component---src-pages-foam-corner-js" */),
   "component---src-pages-index-js": () => import("./../../../src/pages/index.js" /* webpackChunkName: "component---src-pages-index-js" */),
   "component---src-pages-instagram-js": () => import("./../../../src/pages/instagram.js" /* webpackChunkName: "component---src-pages-instagram-js" */),
@@ -13,6 +15,7 @@ exports.components = {
   "component---src-pages-search-js": () => import("./../../../src/pages/search.js" /* webpackChunkName: "component---src-pages-search-js" */),
   "component---src-pages-tributes-js": () => import("./../../../src/pages/tributes.js" /* webpackChunkName: "component---src-pages-tributes-js" */),
   "component---src-pages-twitter-js": () => import("./../../../src/pages/twitter.js" /* webpackChunkName: "component---src-pages-twitter-js" */),
-  "component---src-pages-videos-js": () => import("./../../../src/pages/videos.js" /* webpackChunkName: "component---src-pages-videos-js" */)
+  "component---src-pages-videos-js": () => import("./../../../src/pages/videos.js" /* webpackChunkName: "component---src-pages-videos-js" */),
+  "component---src-templates-fan-post-js": () => import("./../../../src/templates/FanPost.js" /* webpackChunkName: "component---src-templates-fan-post-js" */)
 }
 

@@ -5,7 +5,7 @@ import GeneralContext from './GeneralContext';
 
 import { FacebookShareButton, TwitterShareButton, RedditShareButton, PocketShareButton } from 'react-share';
 import { FaGetPocket, FaRedditAlien } from 'react-icons/fa';
-import { AiOutlineTwitter, AiFillFacebook } from 'react-icons/ai'
+import { AiOutlineTwitter, AiFillFacebook } from 'react-icons/ai';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 const LeftPanelStyles = styled.div`
@@ -142,6 +142,9 @@ const LeftPanelStyles = styled.div`
             border-right: 2px solid #e2e2e2;
             display: block;
         }
+        @media(max-width: 320px){
+            padding: 0.5rem 0 0 0;
+        }
         a {
             border-top: 1px solid #e2e2e2;
             transition: all 0.4s;
@@ -219,12 +222,13 @@ export const LeftPanel = () => {
             </div>
             <div className="links">
                 <Link className="link" id="first-link" to="/" onClick={e => setOpenLeftPanel(false)}>Home</Link>
-                <Link className="link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast appearances</Link>
+                <Link className="link" to="/podcast-appearances" onClick={e => setOpenLeftPanel(false)}>Podcast Appearances</Link>
                 <Link className="link" to="/twitter" onClick={e => setOpenLeftPanel(false)}>Tweets</Link>
                 <Link className="link" to="/instagram" onClick={e => setOpenLeftPanel(false)}>Instagram Posts</Link>
                 <Link className="link" to="/videos" onClick={e => setOpenLeftPanel(false)}>Videos</Link>
                 <Link className="link" to="/foam-corner" onClick={e => setOpenLeftPanel(false)}>Foam Corner</Link>
                 <Link className="link" to="/tributes" onClick={e => setOpenLeftPanel(false)}>Tributes</Link>
+                <Link className="link" to="/fan-posts" onClick={e => setOpenLeftPanel(false)}>Fan Posts</Link>
                 <Link className="link" id="about" to="/about" onClick={e => setOpenLeftPanel(false)}>About</Link>
                 <Link className="link" id="contact" to="/contact" onClick={e => setOpenLeftPanel(false)}>Contact</Link>
                 <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search</Link>

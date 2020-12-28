@@ -51,7 +51,7 @@ export const About = ({ tylerAvatar }) => {
             <div className="page-wrapper">
                 <div className="background-image" id="about-background"></div>
                 <div className="page-details-wrapper" id="about-page">
-                    <div className="avatar-search-phrase-grid">
+                    <div className="avatar-search-phrase-grid" id="avatar-phrase-only">
                         <Img className="avatar" fluid={tylerAvatar.image.asset.fluid} alt="Avatar" />
                         <button className="phrase-btn" id="aboutin" type="button">About</button>
                     </div>

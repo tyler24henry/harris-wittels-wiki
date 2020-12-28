@@ -7,7 +7,7 @@ export default {
     siteMetadata: {
       title: `Harris Wittels Tribute Site`,
       siteUrl: 'https://www.harriswittels.wiki/',
-      description: `Tribute site for Harris Wittels. Browse his podcast appearances, tweets, phone/foam corner jokes, and more. Share how his story and comedy affected your life.`,
+      description: `Tribute site for comedian Harris Wittels. Browse his podcast appearances, tweets, foam corner jokes, & more. Share how his story & comedy affected your life.`,
       image: '/favicon.png',
       twitter: '@ty24henry',
     },
@@ -20,7 +20,7 @@ export default {
         options: {
           name: `Harris Wittels Tribute Site`,
           short_name: `harris-wittels-wiki`,
-          description: `Tribute site for Harris Wittels. Browse his podcast appearances, tweets, phone/foam corner jokes, and more. Share how his story and comedy affected your life.`,
+          description: `Tribute site for comedian Harris Wittels. Browse his podcast appearances, tweets, foam corner jokes, & more. Share how his story & comedy affected your life.`,
           lang: `en`,
           icon: `static/favicon.png`,
           start_url: `/`,
