@@ -235,6 +235,7 @@ export const LeftPanel = () => {
                 {!isFanPostsPage && (
                     <Link className="link" to="/fan-posts" onClick={e => setOpenLeftPanel(false)}>Fan Posts</Link>
                 )}
+                <Link className="link" to="/create-fan-post" onClick={e => setOpenLeftPanel(false)}>Create Post</Link>
                 <Link className="link" id="about" to="/about" onClick={e => setOpenLeftPanel(false)}>About</Link>
                 <Link className="link" id="contact" to="/contact" onClick={e => setOpenLeftPanel(false)}>Contact</Link>
                 <Link className="link" id="search" to="/search" onClick={e => setOpenLeftPanel(false)}>Search</Link>

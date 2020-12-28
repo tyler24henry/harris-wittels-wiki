@@ -4,7 +4,6 @@ import SEO from '../components/SEO';
 import { graphql } from 'gatsby';
 
 export default function CreateFanPostPage({ data }) {
-    console.log(data);
     const createFanPostAvatar = data.image;
     return (
         <>
