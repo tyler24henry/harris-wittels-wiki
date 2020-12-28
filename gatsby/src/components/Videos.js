@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import ReactPlayer from 'react-player/lazy';
 import smoothscroll from 'smoothscroll-polyfill';
-import { Disqus } from 'gatsby-plugin-disqus';
 import { SearchSection } from './SearchSection';
 import GeneralContext from './GeneralContext';
 import { BodyStyles } from '../styles/BodyStyles';
@@ -100,12 +99,6 @@ export const Videos = ({ siteImages, bits }) => {
         document.querySelector('#description').scrollIntoView({ behavior: 'smooth' });
     }
 
-    let disqusConfig = {
-        url: `https://www.harriswittels.wiki/videos`,
-        identifier: 'harrisWittelsWikiVideosPage',
-        title: 'Videos',
-    }
-
     let bitsFiltered = [...bits];
 
     if(searchSection){
@@ -167,9 +160,6 @@ export const Videos = ({ siteImages, bits }) => {
                         )}
                     </div>
                 </VideosStyles>
-            </div>
-            <div className="disqus-wrapper">
-                <Disqus config={disqusConfig} />
             </div>
         </BodyStyles>
     )

@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
-import { Disqus } from 'gatsby-plugin-disqus';
 import { SearchSection } from './SearchSection';
 import GeneralContext from './GeneralContext';
 import { BodyStyles } from '../styles/BodyStyles';
@@ -68,12 +67,6 @@ export const PodcastAppearances = ({ siteImages, appearances }) => {
 
     let appearancesSorted = sortByDate([...appearances]);
 
-    let disqusConfig = {
-        url: `https://www.harriswittels.wiki/podcast-appearances`,
-        identifier: 'harrisWittelsWikiPodcastAppearancesPage',
-        title: 'Podcast Appearances',
-    }
-
     if(searchSection){
         const regex = new RegExp(searchSection.toLowerCase());
         appearancesSorted = [...appearancesSorted].filter(appearance => {
@@ -121,9 +114,6 @@ export const PodcastAppearances = ({ siteImages, appearances }) => {
                         </div>
                     )}
                 </PodcastAppearancesListStyles>
-            </div>
-            <div className="disqus-wrapper">
-                <Disqus config={disqusConfig} />
             </div>
         </BodyStyles>
     )

@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { FiChevronRight } from 'react-icons/fi';
-import { Disqus } from 'gatsby-plugin-disqus';
 import { SearchSection } from './SearchSection';
 import GeneralContext from './GeneralContext';
 import { BodyStyles } from '../styles/BodyStyles';
@@ -28,12 +27,6 @@ export const FoamJokesStyles = styled.div`
 export const FoamCorner = ({ siteImages, allFoam }) => {
     const [foamAvatar] = siteImages.filter(image => image.name === 'Foam Corner Avatar');
     const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
-
-    let disqusConfig = {
-        url: `https://www.harriswittels.wiki/foam-corner`,
-        identifier: 'harrisWittelsWikiFoamCornerPage',
-        title: 'Foam Corner',
-    }
 
     let allFoamFiltered = [...allFoam];
 
@@ -82,9 +75,6 @@ export const FoamCorner = ({ siteImages, allFoam }) => {
                         </div>
                     )}
                 </FoamJokesStyles>
-            </div>
-            <div className="disqus-wrapper">
-                <Disqus config={disqusConfig} />
             </div>
         </BodyStyles>
     )

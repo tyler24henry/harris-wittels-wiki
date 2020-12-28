@@ -7,7 +7,6 @@ import ReactPlayer from 'react-player/lazy';
 import Img from 'gatsby-image';
 import { sortByDate } from '../utils/dateHelpers';
 import { FiChevronRight, FiExternalLink } from 'react-icons/fi';
-import { Disqus } from 'gatsby-plugin-disqus';
 import { SearchSection } from './SearchSection';
 import GeneralContext from './GeneralContext';
 import { BodyStyles } from '../styles/BodyStyles';
@@ -130,12 +129,6 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
     let tweetsByDate = sortByDate([...tweets]);
     const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
 
-    let disqusConfig = {
-        url: `https://www.harriswittels.wiki/twitter`,
-        identifier: 'harrisWittelsWikiTwitterPage',
-        title: '@twittels Tweets',
-    }
-
     if(searchSection){
         const regex = new RegExp(searchSection.toLowerCase());
         tweetsByDate = [...tweetsByDate].filter(item => {
@@ -229,9 +222,6 @@ export const Twitter = ({ tweets, harrisAvatar }) => {
                         </div>
                     )}
                 </TweetsWrapper>
-            </div>
-            <div className="disqus-wrapper">
-                <Disqus config={disqusConfig} />
             </div>
         </BodyStyles>
     )

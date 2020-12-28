@@ -7,6 +7,7 @@ async function turnFanPostsIntoPages({ graphql, actions }){
             fanPosts: allSanityFanPost {
                 nodes {
                     id
+                    title
                     slug {
                         current
                     }

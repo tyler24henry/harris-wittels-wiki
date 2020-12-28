@@ -8,8 +8,8 @@ import { BodyStyles } from '../styles/BodyStyles';
 import { Link } from 'gatsby';
 import { VscCalendar } from 'react-icons/vsc';
 import { AiOutlineComment } from 'react-icons/ai';
-import { CommentCount } from 'gatsby-plugin-disqus';
 import { sortByDate } from '../utils/dateHelpers';
+import { CommentCount } from 'disqus-react';
 
 export const FanPostsStyles = styled.div`
     .posts {
@@ -67,19 +67,19 @@ export const FanPostsStyles = styled.div`
             display: grid;
             grid-template-columns: auto 1fr;
             grid-gap: 0.5rem;
-            font-size: 1.6rem;
             align-items: center;
             justify-content: end;
             justify-items: end;
+            font-size: 1.3rem;
+            font-weight: 500;
+            @media(max-width: 414px){
+                font-size: 1.1rem;
+            }
+        }
+        .comment-icon {
+            font-size: 1.6rem;
             @media(max-width: 414px){
                 font-size: 1.3rem;
-            }
-            .number-comments {
-                font-size: 1.3rem;
-                font-weight: 500;
-                @media(max-width: 414px){
-                    font-size: 1.1rem;
-                }
             }
         }
     }
@@ -135,7 +135,7 @@ export const FanPosts = ({ siteImages, fanPosts }) => {
                             if(fanPost.lastName){
                                 name = `${fanPost.firstName} ${fanPost.lastName}`;
                             }
-                            let disqusConfig = {
+                            const disqusConfig = {
                                 url: `https://www.harriswittels.wiki/fan-post/${fanPost.slug.current}`,
                                 identifier: fanPost.id,
                                 title: fanPost.title,
@@ -150,8 +150,13 @@ export const FanPosts = ({ siteImages, fanPosts }) => {
                                         </div>
                                     </div>
                                     <div className="comment-wrapper">
-                                        <AiOutlineComment />
-                                        <CommentCount className="number-comments" config={disqusConfig} placeholder={'0 comments'} />
+                                        <AiOutlineComment className="comment-icon" />
+                                        <CommentCount
+                                            shortname={process.env.GATSBY_DISQUS_SHORTNAME}
+                                            config={disqusConfig}
+                                        >
+                                            <span>Comments</span>
+                                        </CommentCount>
                                     </div>
                                 </Link>
                             )

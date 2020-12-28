@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import { Disqus } from 'gatsby-plugin-disqus';
 import { BodyStyles } from '../styles/BodyStyles';
 import { graphql, Link } from 'gatsby';
 import { VscCalendar } from 'react-icons/vsc';
 import { FiChevronLeft, FiExternalLink } from 'react-icons/fi';
 import { AiOutlineTwitter, AiFillFacebook } from 'react-icons/ai';
 import SEO from '../components/SEO';
+import { DiscussionEmbed } from 'disqus-react';
 
 export const FanPostStyles = styled.div`
     .post {
@@ -40,7 +40,7 @@ export default function FanPost ({ data }) {
         name = `${fanPost.firstName} ${fanPost.lastName}`;
     }
 
-    let disqusConfig = {
+    const disqusConfig = {
         url: `https://www.harriswittels.wiki/fan-post/${fanPost.slug.current}`,
         identifier: fanPost.id,
         title: fanPost.title,
@@ -87,7 +87,10 @@ export default function FanPost ({ data }) {
                 </FanPostStyles>
             </div>
             <div className="disqus-wrapper">
-                <Disqus config={disqusConfig} />
+            <DiscussionEmbed
+                shortname={process.env.GATSBY_DISQUS_SHORTNAME}
+                config={disqusConfig}
+            />
             </div>
         </BodyStyles>
     )

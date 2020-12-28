@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { AiFillCaretRight } from 'react-icons/ai';
-import { Disqus } from 'gatsby-plugin-disqus';
 import { SearchSection } from './SearchSection';
 import GeneralContext from './GeneralContext';
 import { BodyStyles } from '../styles/BodyStyles';
@@ -40,12 +39,6 @@ export const TributesStyles = styled.div`
 export const Tributes = ({ siteImages, tributes }) => {
     const [tributesAvatar] = siteImages.filter(image => image.name === 'Tribute Avatar');
     const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
-
-    let disqusConfig = {
-        url: `https://www.harriswittels.wiki/tributes`,
-        identifier: 'harrisWittelsWikiTributesPage',
-        title: 'Tributes',
-    }
 
     let tributesFiltered = [...tributes];
 
@@ -96,9 +89,6 @@ export const Tributes = ({ siteImages, tributes }) => {
                         </div>
                     )}
                 </TributesStyles>
-            </div>
-            <div className="disqus-wrapper">
-                <Disqus config={disqusConfig} />
             </div>
         </BodyStyles>
     )
