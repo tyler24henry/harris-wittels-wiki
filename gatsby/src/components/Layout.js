@@ -37,7 +37,10 @@ const RightBodyStyles = styled.div`
 const ContentStyles = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 650px 1fr;
+  grid-template-columns: 2fr 1fr;
+  @media(max-width: 1400px){
+    grid-template-columns: 650px 1fr;
+  }
   @media(max-width: 1080px){
     grid-template-columns: 1fr;
   }

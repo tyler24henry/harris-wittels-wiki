@@ -35,7 +35,7 @@ export const VideosStyles = styled.div`
         margin-top: 2.5rem;
         padding: 1.5rem;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         grid-gap: 1.5rem;
         @media (max-width: 414px) {
             grid-template-columns: 1fr 1fr;

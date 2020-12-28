@@ -3,8 +3,14 @@ import styled from 'styled-components';
 export const BodyStyles = styled.div`
     .page-wrapper {
         margin: 0 auto 2rem auto;
-        width: 600px;
+        width: calc(100% - 2rem);
         border: 1px solid #c4cfd7;
+        @media(max-width: 1400px){
+            width: 600px;
+        }
+        @media(max-width: 1080px){
+            width: calc(100% - 2rem);
+        }
         @media (max-width: 414px) {
             width: 100%;
         }

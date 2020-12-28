@@ -149,7 +149,7 @@ export const FanPosts = ({ siteImages, fanPosts }) => {
                                     </div>
                                     <div className="comment-wrapper">
                                         <AiOutlineComment className="comment-icon" />
-                                        {!openLeftPanel && (
+                                        {!openLeftPanel && !search && !searchSection && (
                                             <CommentCount
                                                 shortname='harris-wittels-wiki'
                                                 config={
@@ -163,7 +163,7 @@ export const FanPosts = ({ siteImages, fanPosts }) => {
                                                 <span>0 Comments</span>
                                             </CommentCount>
                                         )}
-                                        {openLeftPanel && (
+                                        {(openLeftPanel || search || searchSection) && (
                                             <span># Comments</span>
                                         )}
                                     </div>

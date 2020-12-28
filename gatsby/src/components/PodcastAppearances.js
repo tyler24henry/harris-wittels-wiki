@@ -20,7 +20,7 @@ export const PodcastAppearancesListStyles = styled.div`
         grid-gap: 0.5rem;
         align-items: center;
         padding: 0.5rem 1rem;
-        background: #c4cfd7;
+        background: #e2e2e2;
         @media (max-width: 414px) {
             padding: 0.3rem 0.6rem;
         }
@@ -32,7 +32,7 @@ export const PodcastAppearancesListStyles = styled.div`
         }
     }
     .header {
-        padding: 0.6rem 1rem 0.4rem 1rem;
+        padding: 0.7rem 1rem 0.6rem 1rem;
         p {
             text-transform: uppercase;
             font-weight: 600;
@@ -44,12 +44,12 @@ export const PodcastAppearancesListStyles = styled.div`
         }
     }
     .podcast {
-        border-top: 1px solid #c4cfd7;
+        border-top: 1px solid #f7f7f7;
         background: none;
         color: var(--black);
         transition: all 0.5s;
         &:hover {
-            background: #c4cfd7;
+            background: #f7f7f7;
             text-decoration: none;
         }
         p {

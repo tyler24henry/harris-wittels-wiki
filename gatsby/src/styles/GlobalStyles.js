@@ -56,7 +56,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .disqus-wrapper {
-    width: 600px;
+    width: calc(100% - 4rem);
     margin: 0 auto;
     @media (max-width: 414px) {
         width: 100%;
