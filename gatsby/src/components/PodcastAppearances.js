@@ -6,6 +6,7 @@ import { SearchSection } from './SearchSection';
 import GeneralContext from './GeneralContext';
 import { BodyStyles } from '../styles/BodyStyles';
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
+import { useIsChrome } from '../utils/useIsChrome';
 
 export const PodcastAppearancesListStyles = styled.div`
     margin-top: 4rem;
@@ -70,6 +71,15 @@ export const PodcastAppearancesListStyles = styled.div`
             }
         }
     }
+    #safari {
+        .header-wrapper {
+            p {
+                @media (max-width: 414px) {
+                    padding-top: 0.1rem;
+                }
+            }
+        }
+    }
     .podcast {
         border-top: 1px solid #f7f7f7;
         background: none;
@@ -93,6 +103,7 @@ export const PodcastAppearances = ({ siteImages, appearances }) => {
     const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
     const [sortBy, setSortBy] = useState('date');
     const [descending, setDescending] = useState(true);
+    const { isChrome } = useIsChrome();
 
     const sortAlphabetically = (arr, key) => {
         const sortedArr = arr.sort((a, b) => {
@@ -152,7 +163,7 @@ export const PodcastAppearances = ({ siteImages, appearances }) => {
                     <p id="description">"How’s it going everybody? This is Harris Wittels. I’ll be your tour guide through the cosmos today, sorry." - The Analyze Phish intro</p>
                 </div>
                 <PodcastAppearancesListStyles>
-                    <div className="header-wrapper">
+                    <div className="header-wrapper" id={isChrome ? 'non-safari' : 'safari'}>
                         <div className="header-grid"
                             onClick={e => {
                                 if(sortBy === 'podcast'){

@@ -58,7 +58,7 @@ export const About = ({ tylerAvatar }) => {
                     <div id="page-title-wrapper">
                         <h1>Tyler Henry</h1>
                     </div>
-                    <p id="description">This is a website for people who connected with Harris's story and comedy. Or for people to discover him for the first time. I hope you enjoy it!</p>
+                    <p id="description">This is a website for people who connected with Harris's story and comedy. Or for people to discover him for the first time.</p>
                     <p id="description">If there's something that could be added (foam corner joke, video, article, etc.) send me a message on the <Link to="/contact">contact page</Link>.</p>
                     <p id="description">If you liked the website and have friends who are Harris fans or could be Harris fans but just don't know it yet, send them a link! Or share it with strangers on social media. Good old word of mouth can go a long way in keeping a website alive. Thanks!</p>
                     <SocialWrapperStyles>
