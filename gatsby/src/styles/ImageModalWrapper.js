@@ -3,17 +3,44 @@ import styled from 'styled-components';
 export const ImageModalWrapperStyles = styled.div`
     z-index: 700;
     position: fixed;
-    top: 0;
+    top: 15vh;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 620px;
     overflow-y: scroll;
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
+    @media(max-height: 700px){
+        top: 0;
+        height: 100vh;
+    }
     @media (max-width: 414px) {
         width: 100vw;
+    }
+    &.instagram-wrapper {
+        height: 670px;
+        @media (min-width: 1000px) and (min-height: 1200px){
+            height: 690px;
+        }
+        @media (max-width: 600px) and (max-height: 750px){
+            top: 2.5vh;
+            height: 95vh;
+        }
+        @media(max-height: 700px){
+            top: 0;
+            height: 100vh;
+        }
+        .modal {
+            @media (max-width: 600px) and (max-height: 750px) {
+                width: calc(100vw - 4rem);
+                overflow-y: scroll;
+            } 
+            @media (max-width: 414px) {
+                height: calc(100vw + 5rem);
+            }   
+        }
     }
     .modal {
         position: relative;
@@ -43,7 +70,10 @@ export const ImageModalWrapperStyles = styled.div`
                 background: none;
                 border: none;
                 color: #919191;
-                font-size: 3rem;
+                font-size: 4rem;
+                @media(max-height: 700px){
+                    font-size: 3rem;
+                }
             }
             .instagram-avatar {
                 height: 35px;
@@ -208,7 +238,7 @@ export const ImageModalWrapperStyles = styled.div`
         .modal {
             .modal-image-wrapper {
                 @media(max-width: 414px){
-                    max-width: calc(90vw - 1.5rem);
+                    max-width: calc(90vw - 2rem);
                 }
             }
         }

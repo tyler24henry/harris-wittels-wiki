@@ -4,7 +4,7 @@ import SEO from '../components/SEO';
 import { graphql } from 'gatsby';
 
 export default function AboutPage({ data }) {
-    const [tylerAvatar] = data.images.nodes.filter(image => image.name === 'Tyler Avatar');
+    const tylerAvatar = data.image;
     return (
         <>
             <SEO title="About" />
@@ -15,15 +15,13 @@ export default function AboutPage({ data }) {
 
 export const query = graphql`
     query {
-        images: allSanitySiteImage {
-            nodes {
-                id
-                name
-                image {
-                    asset {
-                        fluid {
-                            ...GatsbySanityImageFluid
-                        }
+        image: sanitySiteImage(name: {eq: "Tyler Avatar"}) {
+            id
+            name
+            image {
+                asset {
+                    fluid {
+                        ...GatsbySanityImageFluid
                     }
                 }
             }

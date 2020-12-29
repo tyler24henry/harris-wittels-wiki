@@ -4,27 +4,25 @@ import SEO from '../components/SEO';
 import { graphql } from 'gatsby';
 
 export default function FanPostsPage({ data }) {
-    const siteImages = data.images.nodes;
+    const fanPostsAvatar = data.image;
     const fanPosts = data.fanPosts.nodes;
     return (
         <>
             <SEO title="Fan Posts" />
-            <FanPosts siteImages={siteImages} fanPosts={fanPosts} />
+            <FanPosts fanPostsAvatar={fanPostsAvatar} fanPosts={fanPosts} />
         </>
     )
 }
 
 export const query = graphql`
     query {
-        images: allSanitySiteImage {
-            nodes {
-                id
-                name
-                image {
-                    asset {
-                        fluid {
-                            ...GatsbySanityImageFluid
-                        }
+        image: sanitySiteImage(name: {eq: "Fan Posts Avatar"}) {
+            id
+            name
+            image {
+                asset {
+                    fluid {
+                        ...GatsbySanityImageFluid
                     }
                 }
             }

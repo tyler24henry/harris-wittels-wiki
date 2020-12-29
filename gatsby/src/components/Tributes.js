@@ -36,8 +36,7 @@ export const TributesStyles = styled.div`
     }
 `;
 
-export const Tributes = ({ siteImages, tributes }) => {
-    const [tributesAvatar] = siteImages.filter(image => image.name === 'Tribute Avatar');
+export const Tributes = ({ tributesAvatar, tributes }) => {
     const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
 
     let tributesFiltered = [...tributes];

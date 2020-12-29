@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 
 export default function TwitterPage({ data }) {
     const tweets = data.tweets.nodes;
-    const [harrisAvatar] = data.images.nodes.filter(image => image.name === 'Harris Twitter Avatar');
+    const harrisAvatar = data.image;
     return (
         <>
             <SEO title="Harris's Tweets" />
@@ -46,15 +46,13 @@ export const query = graphql`
                 _createdAt
             }
         }
-        images: allSanitySiteImage {
-            nodes {
-                id
-                name
-                image {
-                    asset {
-                        fluid {
-                            ...GatsbySanityImageFluid
-                        }
+        image: sanitySiteImage(name: {eq: "Harris Twitter Avatar"}) {
+            id
+            name
+            image {
+                asset {
+                    fluid {
+                        ...GatsbySanityImageFluid
                     }
                 }
             }

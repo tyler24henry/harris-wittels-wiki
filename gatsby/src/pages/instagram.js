@@ -4,7 +4,7 @@ import SEO from '../components/SEO';
 import { graphql } from 'gatsby';
 
 export default function InstagramPage({ data }) {
-    const [instagramAvatar] = data.images.nodes.filter(image => image.name === 'Instagram Avatar');
+    const instagramAvatar = data.image;
     const images = data.harrisImages.nodes;
     return (
         <>
@@ -34,15 +34,13 @@ export const query = graphql`
                 _createdAt
             }
         }
-        images: allSanitySiteImage {
-            nodes {
-                id
-                name
-                image {
-                    asset {
-                        fluid {
-                            ...GatsbySanityImageFluid
-                        }
+        image: sanitySiteImage(name: {eq: "Instagram Avatar"}) {
+            id
+            name
+            image {
+                asset {
+                    fluid {
+                        ...GatsbySanityImageFluid
                     }
                 }
             }

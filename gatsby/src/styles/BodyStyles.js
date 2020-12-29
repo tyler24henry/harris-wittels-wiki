@@ -317,6 +317,7 @@ export const BodyStyles = styled.div`
             .followers-wrapper {
                 margin-top: 1rem;
                 display: flex;
+                flex-wrap: wrap;
                 .item {
                     display: flex;
                     align-items: center;
@@ -335,6 +336,7 @@ export const BodyStyles = styled.div`
                     }
                 }
             }
+
             .soundcloud-embed-wrapper {
                 margin-top: 2.5rem;
                 width: 100%;

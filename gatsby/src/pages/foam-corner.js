@@ -4,12 +4,12 @@ import SEO from '../components/SEO';
 import { graphql } from 'gatsby';
 
 export default function FoamCornerPage({ data }) {
-    const siteImages = data.images.nodes;
+    const foamAvatar = data.image;
     const allFoam = data.allFoam.nodes;
     return (
         <>
             <SEO title="Foam Corner" />
-            <FoamCorner siteImages={siteImages} allFoam={allFoam} />
+            <FoamCorner foamAvatar={foamAvatar} allFoam={allFoam} />
         </>
     )
 }
@@ -23,15 +23,13 @@ export const query = graphql`
                 _createdAt
             }
         }
-        images: allSanitySiteImage {
-            nodes {
-                id
-                name
-                image {
-                    asset {
-                        fluid {
-                            ...GatsbySanityImageFluid
-                        }
+        image: sanitySiteImage(name: {eq: "Foam Corner Avatar"}) {
+            id
+            name
+            image {
+                asset {
+                    fluid {
+                        ...GatsbySanityImageFluid
                     }
                 }
             }

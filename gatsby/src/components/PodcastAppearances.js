@@ -98,8 +98,7 @@ export const PodcastAppearancesListStyles = styled.div`
     }
 `;
 
-export const PodcastAppearances = ({ siteImages, appearances }) => {
-    const [podcastAvatar] = siteImages.filter(image => image.name === 'Harris Last Farts Ep');
+export const PodcastAppearances = ({ podcastAvatar, appearances }) => {
     const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
     const [sortBy, setSortBy] = useState('date');
     const [descending, setDescending] = useState(true);

@@ -88,8 +88,7 @@ export const FanPostsStyles = styled.div`
     }
 `;
 
-export const FanPosts = ({ siteImages, fanPosts }) => {
-    const [fanPostsAvatar] = siteImages.filter(image => image.name === 'Fan Posts Avatar');
+export const FanPosts = ({ fanPostsAvatar, fanPosts }) => {
     const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
 
     let fanPostsFiltered = sortByDate([...fanPosts]);

@@ -449,7 +449,7 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                 </div>
             </BodyStyles>
             {selectedImageIndex !== null && (
-                <ImageModalWrapperStyles id={isChrome ? 'non-safari' : 'safari'}>
+                <ImageModalWrapperStyles className="instagram-wrapper" id={isChrome ? 'non-safari' : 'safari'}>
                     <div className="modal" ref={wrapperRef}>
                         <div className="modal-header">
                             <Img className="instagram-avatar" fluid={instagramAvatar.image.asset.fluid} alt="Avatar" />

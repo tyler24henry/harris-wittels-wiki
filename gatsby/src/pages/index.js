@@ -29,18 +29,5 @@ export const query = graphql`
                 _createdAt
             }
         }
-        images: allSanitySiteImage {
-            nodes {
-                id
-                name
-                image {
-                    asset {
-                        fluid {
-                            ...GatsbySanityImageFluid
-                        }
-                    }
-                }
-            }
-        }
     }
 `;

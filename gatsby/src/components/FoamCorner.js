@@ -24,8 +24,7 @@ export const FoamJokesStyles = styled.div`
     }
 `;
 
-export const FoamCorner = ({ siteImages, allFoam }) => {
-    const [foamAvatar] = siteImages.filter(image => image.name === 'Foam Corner Avatar');
+export const FoamCorner = ({ foamAvatar, allFoam }) => {
     const [search, setSearch, openLeftPanel, setOpenLeftPanel, searchSection, setSearchSection] = useContext(GeneralContext);
 
     let allFoamFiltered = [...allFoam];

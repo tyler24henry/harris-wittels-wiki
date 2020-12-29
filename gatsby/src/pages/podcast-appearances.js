@@ -4,12 +4,12 @@ import SEO from '../components/SEO';
 import { graphql } from 'gatsby';
 
 export default function PodcastAppearancesPage({ data }) {
-    const siteImages = data.images.nodes;
+    const podcastAvatar = data.image;
     const appearances = data.appearances.nodes;
     return (
         <>
             <SEO title="Podcast Appearances" />
-            <PodcastAppearances siteImages={siteImages} appearances={appearances} />
+            <PodcastAppearances podcastAvatar={podcastAvatar} appearances={appearances} />
         </>
     )
 }
@@ -29,15 +29,13 @@ export const query = graphql`
                 _createdAt
             }
         }
-        images: allSanitySiteImage {
-            nodes {
-                id
-                name
-                image {
-                    asset {
-                        fluid {
-                            ...GatsbySanityImageFluid
-                        }
+        image: sanitySiteImage(name: {eq: "Harris Last Farts Ep"}) {
+            id
+            name
+            image {
+                asset {
+                    fluid {
+                        ...GatsbySanityImageFluid
                     }
                 }
             }
