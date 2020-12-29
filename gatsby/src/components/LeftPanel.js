@@ -28,7 +28,6 @@ const LeftPanelStyles = styled.div`
     @media (max-width: 414px) {
         width: 65vw;
         height: 100vh;
-        overflow: hidden;
         z-index: 1001;
         display: grid;
         grid-template-rows: 60px 1fr;
@@ -131,6 +130,9 @@ const LeftPanelStyles = styled.div`
         padding: 1rem;
         &:hover {
             text-decoration: none;
+        }
+        @media(max-width: 414px){
+            font-size: 1.6rem;
         }
     }
     .links {
