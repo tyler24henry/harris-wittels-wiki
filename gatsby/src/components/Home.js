@@ -88,7 +88,7 @@ const HomeStyles = styled.div`
         color: var(--white);
         font-size: 1.5rem;
         font-weight: 500;
-        padding: 1rem;
+        padding: 1.5rem 1rem;
         text-align: center;
         width: calc(100% - 1.7rem);
         letter-spacing: 0.5px;
@@ -149,8 +149,6 @@ export const Home = ({ masonryItems }) => {
             window.removeEventListener('resize', updateMasonryWidth);
         }
     }, [masonryWidth, masonryRef]);
-
-    console.log(masonryWidth);
 
     useEffect(() => {
         if(clickedOutside){
