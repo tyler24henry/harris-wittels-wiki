@@ -25,7 +25,7 @@ export const VideosStyles = styled.div`
             align-items: center;
             justify-items: center;
             width: calc(100% - 4.2rem);
-            border-radius: 10px;
+            border-radius: 2px;
             overflow: hidden;
             filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, .3));
             transition: filter .25s ease-in-out;
@@ -126,7 +126,7 @@ export const Videos = ({ siteImages, bits }) => {
                     <div id="page-title-wrapper">
                         <h1>Videos</h1>
                     </div>
-                    <p id="description">“A lot of people want to do serious stuff with their comedy...but I just think motherfuckers wanna laugh” - Harris Wittels</p>
+                    <p id="description">Browse videos of Harris from Youtube, Vimeo, etc.</p>
                 </div>
                 <VideosStyles>
                     {bitsFiltered.length > 0 && (

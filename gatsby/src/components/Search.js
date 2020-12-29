@@ -5,7 +5,7 @@ import { sortByDate } from '../utils/dateHelpers';
 import { GoVerified } from 'react-icons/go';
 import { FaRetweet } from 'react-icons/fa';
 import ReactPlayer from 'react-player/lazy';
-import { FiChevronRight, FiChevronLeft, FiExternalLink } from 'react-icons/fi';
+import { FiChevronRight, FiChevronLeft, FiChevronUp, FiChevronDown, FiExternalLink } from 'react-icons/fi';
 import { AiFillCaretRight } from 'react-icons/ai';
 import smoothscroll from 'smoothscroll-polyfill';
 import { FaSearch } from 'react-icons/fa';
@@ -96,6 +96,8 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
     const wrapperRef = useRef(null);
     const { clickedOutside, setClickedOutside } = useClickOutside(wrapperRef);
     const { isChrome } = useIsChrome();
+    const [sortBy, setSortBy] = useState('date');
+    const [descending, setDescending] = useState(true);
 
     useEffect(() => {
         if(clickedOutside){
@@ -122,6 +124,21 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
         }
     }
 
+    const sortAlphabetically = (arr, key) => {
+        const sortedArr = arr.sort((a, b) => {
+            const aKey = a[key].toLowerCase();
+            const bKey = b[key].toLowerCase();
+            if(aKey < bKey){
+                return -1;
+            } else if(aKey > bKey){
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        return sortedArr;
+    }
+
     let harrisImagesSorted = sortByDate([...harrisImages]);
 
     const selectedVideo = bits[selectedVideoIndex];
@@ -134,7 +151,26 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
     const isPrevIndex = selectedImageIndex > 0;
     const isNextIndex = selectedImageIndex + 1 < harrisImages.length;
 
-    const appearancesSorted = sortByDate([...appearances]);
+    let appearancesSorted = [];
+    if(sortBy === 'date' && descending){
+        appearancesSorted = sortByDate([...appearances]);
+    } else if(sortBy === 'date' && !descending){
+        appearancesSorted = sortByDate([...appearances]).reverse();
+    } else if(sortBy === 'podcast' && descending){
+        appearancesSorted = sortAlphabetically([...appearances], 'podcastTitle');
+    } else if(sortBy === 'podcast' && !descending){
+        appearancesSorted = sortAlphabetically([...appearances], 'podcastTitle').reverse();
+    } else if(sortBy === 'episode' && descending){
+        appearancesSorted = sortAlphabetically([...appearances], 'episodeTitle');
+    } else if(sortBy === 'episode' && !descending){
+        appearancesSorted = sortAlphabetically([...appearances], 'episodeTitle').reverse();
+    } else if(sortBy === 'host' && descending){
+        appearancesSorted = sortAlphabetically([...appearances], 'host');
+    } else if(sortBy === 'host' && !descending){
+        appearancesSorted = sortAlphabetically([...appearances], 'host').reverse();
+    } 
+
+
     const tweetsByDate = sortByDate([...tweets]);
 
     let searchTermStr = searchTerm ? searchTerm.split('-').join(' ') : '';
@@ -187,11 +223,79 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
                         <div className="results-wrapper">
                             {selected === 'Podcast Appearances' && appearances.length > 0 && (
                                 <PodcastAppearancesListStyles id="search-page">
-                                    <div className="header">
-                                        <p>Podcast</p>
-                                        <p>Episode title</p>
-                                        <p>Host</p>
-                                        <p>Date</p>
+                                    <div className="header-wrapper">
+                                        <div className="header-grid"
+                                            onClick={e => {
+                                                if(sortBy === 'podcast'){
+                                                    setDescending(!descending);
+                                                } else {
+                                                    setDescending(false);
+                                                    setSortBy('podcast');
+                                                }
+                                            }}
+                                        >
+                                            <p>Podcast</p>
+                                            {sortBy === 'podcast' && descending && (
+                                                <FiChevronUp className="chevron-up" />
+                                            )}
+                                            {sortBy === 'podcast' && !descending && (
+                                                <FiChevronDown className="chevron-down" />
+                                            )}
+                                        </div>
+                                        <div className="header-grid"
+                                            onClick={e => {
+                                                if(sortBy === 'episode'){
+                                                    setDescending(!descending);
+                                                } else {
+                                                    setDescending(false);
+                                                    setSortBy('episode');
+                                                }
+                                            }}
+                                        >
+                                            <p>Episode</p>
+                                            {sortBy === 'episode' && descending && (
+                                                <FiChevronUp className="chevron-up" />
+                                            )}
+                                            {sortBy === 'episode' && !descending && (
+                                                <FiChevronDown className="chevron-down" />
+                                            )}
+                                        </div>
+                                        <div className="header-grid"
+                                            onClick={e => {
+                                                if(sortBy === 'host'){
+                                                    setDescending(!descending);
+                                                } else {
+                                                    setDescending(false);
+                                                    setSortBy('host');
+                                                }
+                                            }}
+                                        >
+                                            <p>Host(s)</p>
+                                            {sortBy === 'host' && descending && (
+                                                <FiChevronUp className="chevron-up" />
+                                            )}
+                                            {sortBy === 'host' && !descending && (
+                                                <FiChevronDown className="chevron-down" />
+                                            )}
+                                        </div>
+                                        <div className="header-grid"
+                                            onClick={e => {
+                                                if(sortBy === 'date'){
+                                                    setDescending(!descending);
+                                                } else {
+                                                    setDescending(true);
+                                                    setSortBy('date');
+                                                }
+                                            }}
+                                        >
+                                            <p>Date</p>
+                                            {sortBy === 'date' && descending && (
+                                                <FiChevronUp className="chevron-up" />
+                                            )}
+                                            {sortBy === 'date' && !descending && (
+                                                <FiChevronDown className="chevron-down" />
+                                            )}
+                                        </div>
                                     </div>
                                     {appearancesSorted.map(appearance => {
                                         const dateStr = `${appearance.month} ${appearance.day}, ${appearance.year}`;

@@ -149,7 +149,7 @@ export const PodcastAppearances = ({ siteImages, appearances }) => {
                     <div id="page-title-wrapper">
                         <h1>Podcast Appearances</h1>
                     </div>
-                    <p id="description">"How’s it going everybody? This is Harris Wittels. I’ll be your tour guide through the cosmos today, sorry." - Harris Wittels, episode 1 of Analyze Phish</p>
+                    <p id="description">"How’s it going everybody? This is Harris Wittels. I’ll be your tour guide through the cosmos today, sorry." - The Analyze Phish intro</p>
                 </div>
                 <PodcastAppearancesListStyles>
                     <div className="header-wrapper">
