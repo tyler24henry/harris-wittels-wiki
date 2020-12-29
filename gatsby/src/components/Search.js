@@ -112,7 +112,6 @@ export const Search = ({ siteImages, appearances, tweets, harrisImages, bits, al
     }, []);
 
     const scrollToTop = () => {
-        // document.body.scrollTop = document.documentElement.scrollTop = 430;
         document.querySelector('.categories').scrollIntoView({ behavior: 'smooth' });
     }
 

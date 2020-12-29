@@ -10,6 +10,7 @@ export default function SEO({ children, location, description, title, image }) {
         siteMetadata {
           title
           description
+          siteUrl
           twitter
         }
       }
@@ -26,6 +27,13 @@ export default function SEO({ children, location, description, title, image }) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta charSet="utf-8" />
       <meta name="description" content={site.siteMetadata.description} />
+      <link rel="canonical" href={site.siteMetadata.siteUrl} />
+      {/* Twitter Card tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content={site.siteMetadata.twitter} />
+      <meta name="twitter:title" content={title || site.siteMetadata.title} />
+      <meta name="twitter:description" content={description || site.siteMetadata.description} />
+      <meta name="twitter:image" content={image || '/favicon.png'} />
       {/* Open Graph */}
       {location && <meta property="og:url" content={location.href} />}
       <meta property="og:image" content={image || '/favicon.png'} />
@@ -35,7 +43,7 @@ export default function SEO({ children, location, description, title, image }) {
         content={site.siteMetadata.title}
         key="ogsitename"
       />
-      <meta property="og:description" content={description} key="ogdesc" />
+      <meta property="og:description" content={description || site.siteMetadata.description} key="ogdesc" />
       {children}
     </Helmet>
   );

@@ -103,7 +103,7 @@ const RightPanelStyles = styled.div`
 `;
 
 export const RightPanel = () => {
-    const { wikiItems, images } = useStaticQuery(graphql`
+    const { wikiItems, image } = useStaticQuery(graphql`
         query {
             wikiItems: allSanityWiki(sort: {fields: _createdAt, order: ASC}) {
                 nodes {
@@ -117,22 +117,20 @@ export const RightPanel = () => {
                     }
                 }
             }
-            images: allSanitySiteImage {
-                nodes {
-                    id
-                    name
-                    image {
-                        asset {
-                            fluid {
-                                ...GatsbySanityImageFluid
-                            }
+            image: sanitySiteImage(name: {eq: "Wiki Avatar"}) {
+                id
+                name
+                image {
+                    asset {
+                        fluid {
+                            ...GatsbySanityImageFluid
                         }
                     }
                 }
             }
         }
     `);
-    const [wikiAvatar] = images.nodes.filter(image => image.name === 'Wiki Avatar');
+    const wikiAvatar = image;
     return (
         <RightPanelStyles>
             <div className="harris-img-wrapper">
