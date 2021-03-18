@@ -60,7 +60,7 @@ export const About = ({ tylerAvatar }) => {
                     </div>
                     <p id="description">This is a website for people who connected with Harris's story and comedy. Or for people to discover him for the first time.</p>
                     <p id="description">If there's something that could be added (foam corner joke, video, article, etc.) send me a message on the <Link to="/contact">contact page</Link>.</p>
-                    <p id="description">If you liked the website and have friends who are Harris fans or could be Harris fans but just don't know it yet, send them a link! Or share it with strangers on social media. Good old word of mouth can go a long way in keeping a website alive. Thanks!</p>
+                    <p id="description">If you are a comedy fan, I made another <a href="https://www.yuks.co" target="_blank">comedian-themed website</a> that you might like.</p>
                     <SocialWrapperStyles>
                         <a href="mailto:tyler.henry2442@gmail.com" target="_blank" title="Email">Email</a>
                         <a href="https://www.twitter.com/ty24henry" target="_blank" title="Twitter">Twitter</a>

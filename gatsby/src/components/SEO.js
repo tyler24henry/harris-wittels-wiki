@@ -44,6 +44,7 @@ export default function SEO({ children, location, description, title, image }) {
         key="ogsitename"
       />
       <meta property="og:description" content={description || site.siteMetadata.description} key="ogdesc" />
+      <script type="text/javascript" src="https://t.mentioned.app/track/track.js" id="mentioned-by-script" token="rcDxWM3pI-TwONBCwqvneTf2rfMNo3__YsOByFq3175VjOearNg4BV9x3druO3C4mmU" host="www.harriswittels.wiki"></script>
       {children}
     </Helmet>
   );
